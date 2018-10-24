@@ -11,4 +11,8 @@
 |
 */
 
-Route::get('/', 'PagesController@index')->name('Get home page of website');
+// Public site
+Route::get('/', 'PagesController@index');
+
+
+Auth::routes();
