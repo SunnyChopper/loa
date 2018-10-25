@@ -19,7 +19,7 @@
 	<div class="container main-menu">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
-				<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+				<a href="index.html"><img src="<?php echo e(URL::asset('img/logo.png')); ?>" alt="" title="" /></a>
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
@@ -41,7 +41,7 @@
 						<li><a href="/members/community">Community</a></li>
 						<li><a href="/members/tools">Tools</a></li>
 						<li><a href="/members/courses">Courses</a></li>
-						<li><a href="/members/shop">Courses</a></li>
+						<li><a href="/members/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li class="menu-has-children"><a>Sunny Singh</a>
 							<ul>

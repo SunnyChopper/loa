@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -23,12 +24,19 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    public function split_name($name) {
+        $name = trim($name);
+        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+        $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+        return array($first_name, $last_name);
+    }
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/members/dashboard/';
 
     /**
      * Create a new controller instance.
@@ -49,9 +57,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'username' => 'required|string|max:255|unique:users',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
     }
 
@@ -63,8 +72,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        date_default_timezone_set('America/Los_Angeles');
+        $name_array = $this->split_name($data['name']);
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['username'],
+            'first_name' => $name_array[0],
+            'last_name' => $name_array[1],
+            'last_login_time' => Carbon::now(),
+            'last_login_ip' => $_SERVER['REMOTE_ADDR'],
+            'number_of_logins' => 1,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
