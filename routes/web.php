@@ -11,6 +11,10 @@
 |
 */
 
+// Testing
+Route::get('/test/payment', 'PagesController@test_payment');
+Route::post('/test/payment/create', 'PagesController@test_payment_charge');
+
 // Public site
 Route::get('/', 'PagesController@index');
 Route::get('/contact', 'PagesController@contact');

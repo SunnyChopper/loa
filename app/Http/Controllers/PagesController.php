@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Stripe\Error\Card;
+use Validator;
 
 class PagesController extends Controller
 {
@@ -78,6 +81,64 @@ class PagesController extends Controller
     	$page_header = "Events";
 
     	return view('pages.events')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    }
+
+    public function test_payment() {
+        $page_header = "Test Payment";
+        return view('pages.test-payment')->with('page_header', $page_header);
+    }
+
+    public function test_payment_charge(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'card_number' => 'required',
+            'ccExpiryMonth' => 'required',
+            'ccExpiryYear' => 'required',
+            'cvvNumber' => 'required',
+            'amount' => 'required',
+        ]);
+
+        $input = $request->all();
+        if ($validator->passes()) {
+            $input = array_except($input,array('_token'));
+            $stripe = Stripe::make(env('STRIPE_SECRET'));
+
+            try {
+                $token = $stripe->tokens()->create([
+                    'card' => [
+                        'number'    => $request->get('card_number'),
+                        'exp_month' => $request->get('ccExpiryMonth'),
+                        'exp_year'  => $request->get('ccExpiryYear'),
+                        'cvc'       => $request->get('cvvNumber'),
+                    ],
+                ]);
+
+                if (!isset($token['id'])) {
+                    \Session::put('error','The Stripe Token was not generated correctly');
+                    return redirect()->route('stripform');
+                }
+
+                $charge = $stripe->charges()->create([
+                    'card' => $token['id'],
+                    'currency' => 'USD',
+                    'amount'   => $request->get('amount'),
+                    'description' => 'Test payment',
+                ]);
+
+                if($charge['status'] == 'succeeded') {
+                    echo "Successful";
+                } else {
+                    echo "Error";
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            } catch(\Cartalyst\Stripe\Exception\CardErrorException $e) {
+                echo $e->getMessage();
+            } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e) {
+                echo $e->getMessage();
+            }
+        }
+        \Session::put('error','All fields are required!!');
+        echo "Something went wrong";
     }
 
     public function login() {
