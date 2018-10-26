@@ -80,11 +80,11 @@
 
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<div class="blog-box">
-					<div class="blog-image">
+				<div class="image-box-rounded">
+					<div class="image">
 						<img src="https://i.ytimg.com/vi/lJjILQu2xM8/maxresdefault.jpg" class="regular-image">
 					</div>
-					<div class="blog-info">
+					<div class="info">
 						<h3>How to Be An Entrepreneur</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						<hr />
@@ -94,11 +94,11 @@
 			</div>
 
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<div class="blog-box">
-					<div class="blog-image">
+				<div class="image-box-rounded">
+					<div class="image">
 						<img src="https://i.ytimg.com/vi/lJjILQu2xM8/maxresdefault.jpg" class="regular-image">
 					</div>
-					<div class="blog-info">
+					<div class="info">
 						<h3>How to Be An Entrepreneur</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						<hr />
@@ -108,11 +108,11 @@
 			</div>
 
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<div class="blog-box">
-					<div class="blog-image">
+				<div class="image-box-rounded">
+					<div class="image">
 						<img src="https://i.ytimg.com/vi/lJjILQu2xM8/maxresdefault.jpg" class="regular-image">
 					</div>
-					<div class="blog-info">
+					<div class="info">
 						<h3>How to Be An Entrepreneur</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						<hr />

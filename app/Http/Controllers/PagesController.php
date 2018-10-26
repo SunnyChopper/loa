@@ -69,6 +69,17 @@ class PagesController extends Controller
     	return view('pages.courses')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
 
+    public function events() {
+    	// SEO Data
+    	$page_title = "Events";
+    	$page_description = "Come out and meet me and other Wolf Squad members. Network and grow your alliance.";
+
+    	// Dynamic page features
+    	$page_header = "Events";
+
+    	return view('pages.events')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    }
+
     public function login() {
     	// SEO Data
     	$page_title = "Login";

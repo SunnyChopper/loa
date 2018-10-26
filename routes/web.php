@@ -18,6 +18,7 @@ Route::get('/free-tools', 'PagesController@tools');
 Route::get('/free-advice', 'PagesController@blog');
 Route::get('/shop', 'PagesController@shop');
 Route::get('/courses', 'PagesController@courses');
+Route::get('/events', 'PagesController@events');
 Route::get('/members/login', 'PagesController@login');
 Route::get('/members/register', 'PagesController@register');
 Route::get('/members/logout', 'UsersController@logout');
