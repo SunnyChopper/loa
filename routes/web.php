@@ -21,11 +21,17 @@ Route::get('/contact', 'PagesController@contact');
 Route::get('/free-tools', 'PagesController@tools');
 Route::get('/free-advice', 'PagesController@blog');
 Route::get('/shop', 'PagesController@shop');
+Route::get('/product', 'PagesController@product');
 Route::get('/courses', 'PagesController@courses');
 Route::get('/events', 'PagesController@events');
 Route::get('/members/login', 'PagesController@login');
 Route::get('/members/register', 'PagesController@register');
 Route::get('/members/logout', 'UsersController@logout');
+
+// Admin site
+Route::get('/admin', 'AdminController@index');
+Route::post('/admin/login', 'AdminController@login');
+Route::get('/admin/dashboard', 'AdminController@dashboard');
 
 // Private site
 Route::get('/members/dashboard/', 'DashboardController@index');

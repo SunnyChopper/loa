@@ -273,6 +273,10 @@
 	padding: 24px;
 }
 
+.admin-action:hover {
+	background-color: #EAEAEA;
+}
+
 #post-body > p {
 	font-size: 18px;
 	line-height: 32px;

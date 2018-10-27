@@ -81,6 +81,7 @@ class RegisterController extends Controller
             'last_login_time' => Carbon::now(),
             'last_login_ip' => $_SERVER['REMOTE_ADDR'],
             'number_of_logins' => 1,
+            'backend_auth' => 0,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

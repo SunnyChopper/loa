@@ -83,6 +83,13 @@ class PagesController extends Controller
     	return view('pages.events')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
 
+    public function product() {
+        // Dynamic page features
+        $page_header = "Ambition Premium Shirt";
+
+        return view('pages.product')->with('page_header', $page_header);
+    }
+
     public function test_payment() {
         $page_header = "Test Payment";
         return view('pages.test-payment')->with('page_header', $page_header);
