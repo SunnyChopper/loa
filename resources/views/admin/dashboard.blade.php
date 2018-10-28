@@ -24,6 +24,52 @@
 							<p class="mb-0 text-center"><small>Daily Retention Percentage</small></p>
 						</div>
 					</div>
+
+					<div class="row mt-32 mb-16">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<h3 class="text-center">18</h3>
+							<p class="mb-0 text-center"><small>New Users</small></p>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<h3 class="text-center">7</h3>
+							<p class="mb-0 text-center"><small>Referred Users</small></p>
+						</div>
+					</div>
+
+					<div class="row mt-32 mb-16">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h5 class="mb-2">Today's Orders</h5>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<td>Order ID</td>
+										<td>Product</td>
+										<td>Total</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>GD768DSJG98</td>
+										<td>Ambition Premium Shirt</td>
+										<td>$49.99</td>
+									</tr>
+
+									<tr>
+										<td>FK8DSF86DSD</td>
+										<td>Ambition Premium Shirt</td>
+										<td>$49.99</td>
+									</tr>
+
+									<tr>
+										<td>HFHJ6HF5975F</td>
+										<td>Ambition Premium Shirt</td>
+										<td>$49.99</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -33,44 +79,50 @@
 					<hr />
 
 					<ul class="list-group">
-						@if(Session::get('backend_auth') < 2)
+						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2 || Session::get('backend_auth') == 3)
 							<a href="">
 								<li class="list-group-item admin-action mt-8">
 									<h4 class="mb-0" style="display: inline-block;">Write a New Blog Post</h4>
 									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
 								</li>
 							</a>
+						@endif
 
+						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2)
 							<a href="">
 								<li class="list-group-item admin-action mt-8">
-									<h4 style=" display: inline-block;">Check Blog Stats</h4>
+									<h4 class="mb-0" style="display: inline-block;">Create New Event</h4>
 									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
 								</li>
 							</a>
 						@endif
 
-						@if(Session::get('backend_auth') == 1)
+						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2)
 							<a href="">
 								<li class="list-group-item admin-action mt-8">
-									<h4 style=" display: inline-block;">Create New Course</h4>
-									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
-								</li>
-							</a>
-						
-							<a href="">
-								<li class="list-group-item admin-action mt-8">
-									<h4 style=" display: inline-block;">Check Course Stats</h4>
+									<h4 class="mb-0" style="display: inline-block;">Create Voting Poll</h4>
 									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
 								</li>
 							</a>
 						@endif
 
-						<a href="">
-							<li class="list-group-item admin-action mt-8">
-								<h4 style=" display: inline-block;">Check Full Stats</h4>
-								<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
-							</li>
-						</a>
+						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2 || Session::get('backend_auth') == 6)
+							<a href="">
+								<li class="list-group-item admin-action mt-8">
+									<h4 class="mb-0" style="display: inline-block;">Check Support Tickets</h4>
+									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
+								</li>
+							</a>
+						@endif
+
+						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2 || Session::get('backend_auth') == 6)
+							<a href="">
+								<li class="list-group-item admin-action mt-8">
+									<h4 class="mb-0" style="display: inline-block;">Check Orders</h4>
+									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
+								</li>
+							</a>
+						@endif
 					</ul>
 				</div>
 			</div>

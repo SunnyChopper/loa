@@ -12,7 +12,17 @@
 					</ul>
 				</div>
 				<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
+					@if(Session::has('backend_auth'))
+					<a href="/members/dashboard" style="display: inline-block;" class="mb-0">Switch to Regular Site</a>
+					@endif
+
+					@if(!Session::has('backend_auth'))
+					<span class="lnr lnr-cart white"></span> <a href="/cart" style="display: inline-block;" class="mb-0"> Cart <span class="badge">0</span></a>
+					@endif
+
+					@if(!Session::has('backend_auth'))
 					<a href="mailto:luis@lawofambition.com"><span class="lnr lnr-envelope"></span> <span class="text">luis@lawofambition.com</span></a>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -38,6 +48,8 @@
 								<li><a href="/members/login">Login</a></li>
 							</ul>
 						</li>
+					@elseif(\Session::has('backend_auth'))
+						@include('layouts.backend-menu')
 					@else
 						<li><a href="/members/dashboard">Dashboard</a></li>
 						<li><a href="/members/community">Community</a></li>

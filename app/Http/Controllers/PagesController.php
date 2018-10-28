@@ -90,6 +90,27 @@ class PagesController extends Controller
         return view('pages.product')->with('page_header', $page_header);
     }
 
+    public function cart() {
+        // Dynamic page features
+        $page_header = "Cart";
+
+        return view('pages.cart')->with('page_header', $page_header);
+    }
+
+    public function checkout() {
+        // Dynamic page features
+        $page_header = "Checkout";
+
+        return view('pages.checkout')->with('page_header', $page_header);
+    }
+
+    public function thank_you() {
+        // Dynamic page features
+        $page_header = "Order Confirmed";
+
+        return view('pages.thank-you')->with('page_header', $page_header);
+    }
+
     public function test_payment() {
         $page_header = "Test Payment";
         return view('pages.test-payment')->with('page_header', $page_header);

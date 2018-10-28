@@ -28,6 +28,11 @@ Route::get('/members/login', 'PagesController@login');
 Route::get('/members/register', 'PagesController@register');
 Route::get('/members/logout', 'UsersController@logout');
 
+// E-commerce
+Route::get('/cart', 'PagesController@cart');
+Route::get('/checkout', 'PagesController@checkout');
+Route::get('/thank-you', 'PagesController@thank_you');
+
 // Admin site
 Route::get('/admin', 'AdminController@index');
 Route::post('/admin/login', 'AdminController@login');
