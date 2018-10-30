@@ -64,4 +64,25 @@ class AdminController extends Controller
 
         return view('admin.dashboard')->with('page_header', $page_header);
     }
+
+    public function view_products() {
+        // Dynamic page features
+        $page_header = "Active Products";
+
+        return view('admin.products.view')->with('page_header', $page_header);
+    }
+
+    public function new_product() {
+        // Dynamic page features
+        $page_header = "Create New Product";
+
+        return view('admin.products.new')->with('page_header', $page_header);
+    }
+
+    public function edit_product() {
+        // Dynamic page features
+        $page_header = "Edit Product";
+
+        return view('admin.products.edit')->with('page_header', $page_header);
+    }
 }

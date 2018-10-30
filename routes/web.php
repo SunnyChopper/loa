@@ -37,6 +37,9 @@ Route::get('/thank-you', 'PagesController@thank_you');
 Route::get('/admin', 'AdminController@index');
 Route::post('/admin/login', 'AdminController@login');
 Route::get('/admin/dashboard', 'AdminController@dashboard');
+Route::get('/admin/products/view', 'AdminController@view_products');
+Route::get('/admin/products/new', 'AdminController@new_product');
+Route::get('/admin/products/edit', 'AdminController@edit_product');
 
 // Private site
 Route::get('/members/dashboard/', 'DashboardController@index');
