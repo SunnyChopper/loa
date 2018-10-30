@@ -7,6 +7,8 @@ use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Stripe\Error\Card;
 use Validator;
 
+use App\Custom\ProductHelper;
+
 class PagesController extends Controller
 {
     public function index() {
@@ -58,7 +60,11 @@ class PagesController extends Controller
     	// Dynamic page features
     	$page_header = "Ambition Shop";
 
-    	return view('pages.shop')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+        // Get all products
+        $product_helper = new ProductHelper();
+        $products = $product_helper->get_active_products();
+
+    	return view('pages.shop')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('products', $products);
     }
 
     public function courses() {

@@ -16,11 +16,11 @@ class ProductHelper {
 	}
 
 	/* Public functions */
-	public function load_active_products() {
+	public function get_active_products() {
 		return Product::where('is_active', 1)->get();
 	}
 
-	public function load_product_by_id() {
+	public function get_product_by_id() {
 		return Product::where('id', $this->product_id)->get();
 	}
 
