@@ -8,6 +8,7 @@ use Stripe\Error\Card;
 use Validator;
 
 use App\Custom\ProductHelper;
+use App\Custom\CartHelper;
 
 class PagesController extends Controller
 {
@@ -89,25 +90,58 @@ class PagesController extends Controller
     	return view('pages.events')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
 
-    public function product() {
-        // Dynamic page features
-        $page_header = "Ambition Premium Shirt";
+    public function product($product_id) {
+        // Get product
+        $product_helper = new ProductHelper($product_id);
+        $product = $product_helper->get_product_by_id();
 
-        return view('pages.product')->with('page_header', $page_header);
+        // Dynamic page features
+        $page_header = $product->product_name;
+
+        return view('pages.product')->with('page_header', $page_header)->with('product', $product);
     }
 
     public function cart() {
         // Dynamic page features
         $page_header = "Cart";
 
-        return view('pages.cart')->with('page_header', $page_header);
+        // Get products in cart
+        $cart_helper = new CartHelper();
+        $products = $cart_helper->get_products_in_cart();
+
+        // Product helper for page
+        $product_helper = new ProductHelper();
+
+        return view('pages.cart')->with('page_header', $page_header)->with('products', $products)->with('product_helper', $product_helper)->with('cart_helper', $cart_helper);
+    }
+
+    public function getFutureBusinessDay($num_business_days, $today_ymd = null, $holiday_dates_ymd = []) {
+        $num_business_days = min($num_business_days, 1000);
+        $business_day_count = 0;
+        $current_timestamp = empty($today_ymd) ? time() : strtotime($today_ymd);
+        while ($business_day_count < $num_business_days) {
+            $next1WD = strtotime('+1 weekday', $current_timestamp);
+            $next1WDDate = date('Y-m-d', $next1WD);        
+            if (!in_array($next1WDDate, $holiday_dates_ymd)) {
+                $business_day_count++;
+            }
+            $current_timestamp = $next1WD;
+        }
+        return date('Y-m-d', $current_timestamp);
     }
 
     public function checkout() {
         // Dynamic page features
         $page_header = "Checkout";
 
-        return view('pages.checkout')->with('page_header', $page_header);
+        // Get important info from cart helper class
+        $cart_helper = new CartHelper();
+        $total = $cart_helper->get_total();
+
+        // Get date three business days from now
+        $expected_shipping_date = $this->getFutureBusinessDay(env('SHIPPING_DAYS'));
+
+        return view('pages.checkout')->with('page_header', $page_header)->with('total', $total)->with('expected_shipping_date', $expected_shipping_date);
     }
 
     public function thank_you() {

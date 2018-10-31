@@ -22,32 +22,36 @@
 						<th style="text-align: center;">Expected Arrival Date</th>
 					</thead>
 					<tbody>
-						<tr>
-							<td align="center" style="vertical-align:middle; min-width: 80px; max-width: 80px;">
-								<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4104ee33454859.56ab829293136.png" class="regular-image">
-							</td>
+						@foreach(session('products') as $product)
+							<?php
+								$product_helper = session('product_helper');
+								$product_helper->set_product_id($product["product_id"]);
+								$product_info = $product_helper->get_product_by_id();
+							?>
+							<tr>
+								<td align="center" style="vertical-align:middle; min-width: 80px; max-width: 80px;">
+									<img src="{{ $product_info["featured_image_url"] }}" class="regular-image">
+								</td>
 
-							<td style="vertical-align:middle;">
-								<h4>Ambition Premium Shirt</h4>
-								<p class="mb-0"><small>Large</small></p>
-							</td>
+								<td style="vertical-align:middle;">
+									<h4>{{ $product_info["product_name"] }}</h4>
+									<?php $selected = json_decode($product["selectors"]); ?>
+									<p class="mb-0">
+										<?php $option_index = 0; $options = count($selected); ?>
+										@foreach($selected as $option)
+											@if($option_index == ($options - 1))
+												<small>{{ $option }}</small>
+											@else
+												<small>{{ $option }}, </small>
+											@endif
+										@endforeach
+									</p>
+								</td>
 
-							<td align="center" style="vertical-align:middle;"><p>1</p></td>
-							<td align="center" style="vertical-align:middle;"><p class="text-center">October 29th, 2018</p></td>
-						</tr>
-						<tr>
-							<td align="center" style="vertical-align:middle; min-width: 80px; max-width: 80px;">
-								<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4104ee33454859.56ab829293136.png" class="regular-image">
-							</td>
-
-							<td style="vertical-align:middle;">
-								<h4>Ambition Premium Shirt</h4>
-								<p class="mb-0"><small>Medium</small></p>
-							</td>
-
-							<td align="center" style="vertical-align:middle;"><p>1</p></td>
-							<td align="center" style="vertical-align:middle;"><p class="text-center">October 29th, 2018</p></td>
-						</tr>
+								<td align="center" style="vertical-align:middle;"><p>{{ $product["quantity"] }}</p></td>
+								<td align="center" style="vertical-align:middle;"><p class="text-center">{{ Carbon\Carbon::parse(session('expected_arrival_date'))->format('M d, Y') }}</p></td>
+							</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>

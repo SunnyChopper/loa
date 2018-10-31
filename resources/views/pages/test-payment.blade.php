@@ -21,9 +21,9 @@
 								<div class="form-group{{ $errors->has('card_no') ? ' has-error' : '' }}">
 		                            <h5 for="card_number" class="control-label mb-2">Card Number</h5>
 		                            <input id="card_number" type="text" class="form-control" name="card_number" value="{{ old('card_number') }}" autofocus required>
-	                                @if ($errors->has('card_no'))
+	                                @if ($errors->has('card_number'))
 	                                    <span class="help-block">
-	                                        <strong>{{ $errors->first('card_no') }}</strong>
+	                                        <strong>{{ $errors->first('card_number') }}</strong>
 	                                    </span>
 	                                @endif
 		                        </div>

@@ -21,12 +21,18 @@ Route::get('/contact', 'PagesController@contact');
 Route::get('/free-tools', 'PagesController@tools');
 Route::get('/free-advice', 'PagesController@blog');
 Route::get('/shop', 'PagesController@shop');
-Route::get('/product', 'PagesController@product');
+Route::get('/product/{product_id}', 'PagesController@product');
 Route::get('/courses', 'PagesController@courses');
 Route::get('/events', 'PagesController@events');
 Route::get('/members/login', 'PagesController@login');
 Route::get('/members/register', 'PagesController@register');
 Route::get('/members/logout', 'UsersController@logout');
+
+// Cart functions
+Route::post('/cart/add', 'CartController@add_to_cart');
+Route::get('/cart/delete/all', 'CartController@delete_all_from_cart');
+Route::post('/cart/delete/product', 'CartController@delete_from_cart');
+Route::post('/cart/checkout', 'CartController@checkout');
 
 // E-commerce
 Route::get('/cart', 'PagesController@cart');

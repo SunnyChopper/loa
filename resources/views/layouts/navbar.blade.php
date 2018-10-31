@@ -1,3 +1,7 @@
+<?php
+	use \App\Custom\CartHelper;
+	$cart_helper = new CartHelper();
+?>
 <header id="header" id="home">
 	<div class="header-top">
 		<div class="container">
@@ -17,7 +21,7 @@
 					@endif
 
 					@if(!Session::has('backend_auth'))
-					<span class="lnr lnr-cart white"></span> <a href="/cart" style="display: inline-block;" class="mb-0"> Cart <span class="badge">0</span></a>
+					<span class="lnr lnr-cart white"></span> <a href="/cart" style="display: inline-block;" class="mb-0"> Cart <span class="badge">{{ $cart_helper->get_number_of_items() }}</span></a>
 					@endif
 
 					@if(!Session::has('backend_auth'))

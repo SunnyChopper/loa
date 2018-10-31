@@ -6,49 +6,61 @@
 	<div class="container p-32 mt-32 mb-32">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-8 mb-8">
-				<img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4104ee33454859.56ab829293136.png" class="regular-image">
+				<img src="{{ $product->featured_image_url }}" class="regular-image">
 			</div>
 
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-8 mb-8 p-32" style="border: 2px solid #EEEEEE;">
-				<h3>Ambition Premium Shirt</h3>
-				<hr />
-				<p>Show off your inner wolf and ambition. It's more than just a shirt, it's a symbol. A symbol that shows that you're not like the rest. You have something that others don't and that's ambition.</p>
-				<h3 class="mb-16 green">$49.99</h3>
-				<p class="mb-0">Pick a Size:</p>
-				<div class="default-select mb-16" id="default-select">
-					<select style="display: none;">
-						<option value="small">Small</option>
-						<option value="medium">Medium</option>
-						<option value="large">Large</option>
-					</select>
-					<div class="nice-select" tabindex="0" style="border: 1px solid #EDEDED;">
-						<span class="current">Small</span>
-						<ul class="list">
-							<li data-value="small" class="option selected">Small</li>
-							<li data-value="medium" class="option">Medium</li>
-							<li data-value="large" class="option">Large</li>
-						</ul>
-					</div>
-				</div>
+				<form id="add_to_cart_form" action="/cart/add" method="POST">
+					{{ csrf_field() }}
+					<input type="hidden" name="product_id" value="{{ $product->id }}">
+					<h3>{{ $product->product_name }}</h3>
+					<hr />
+					<p>{{ $product->product_description }}</p>
+					<h3 class="mb-16 green">${{ $product->product_price }}</h3>
 
-				<p class="mb-0">Number of item:</p>
-				<div class="default-select mb-16" id="default-select">
-					<select style="display: none;">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-					</select>
-					<div class="nice-select" tabindex="0" style="border: 1px solid #EDEDED;">
-						<span class="current">1</span>
-						<ul class="list">
-							<li data-value="1" class="option selected">1</li>
-							<li data-value="2" class="option">2</li>
-							<li data-value="3" class="option">3</li>
-						</ul>
-					</div>
-				</div>
+					<?php 
+						$selectors = json_decode($product->selectors);
+						$loop_index = 0;
+					?>
 
-				<a href="" id="add_to_cart_button" class="genric-btn primary circle large" style="font-size: 16px;">Add to Cart <span class="lnr lnr-cart"></span></a>
+					@foreach($selectors as $selector=>$options)
+						<div class="default-select mb-16" id="default-select">
+							<select form="add_to_cart_form" name="{{ $selector }}" style="display: none;">
+								@foreach($options as $option)
+								<option value="{{ $option }}">{{ $option }}</option>
+								@endforeach
+							</select>
+							<div class="nice-select" tabindex="0" style="border: 1px solid #EDEDED;">
+								<span class="current">Small</span>
+								<ul class="list">
+									@foreach($options as $option)
+										<li data-value="{{ $option }}" class="option">{{ $option }}</li>
+									@endforeach
+								</ul>
+							</div>
+						</div>
+					@endforeach
+
+					<p class="mb-0">Number of item:</p>
+					<div class="default-select mb-16" id="default-select">
+						<select form="add_to_cart_form" name="num_items" style="display: none;">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+						<div class="nice-select" tabindex="0" style="border: 1px solid #EDEDED;">
+							<span class="current">1</span>
+							<ul class="list">
+								<li data-value="1" class="option selected">1</li>
+								<li data-value="2" class="option">2</li>
+								<li data-value="3" class="option">3</li>
+							</ul>
+						</div>
+					</div>
+
+
+					<button id="add_to_cart_button" class="genric-btn primary circle large mt-8" style="font-size: 16px;">Add to Cart <span class="lnr lnr-cart"></span></button>
+				</form>
 
 				<div class="row mt-32">
 					<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">

@@ -16,12 +16,16 @@ class ProductHelper {
 	}
 
 	/* Public functions */
+	public function set_product_id($product_id) {
+		$this->product_id = $product_id;
+	}
+
 	public function get_active_products() {
 		return Product::where('is_active', 1)->get();
 	}
 
 	public function get_product_by_id() {
-		return Product::where('id', $this->product_id)->get();
+		return Product::where('id', $this->product_id)->first();
 	}
 
 	public function update_name($product_name) {

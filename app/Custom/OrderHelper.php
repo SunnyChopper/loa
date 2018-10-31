@@ -29,7 +29,7 @@ class OrderHelper {
 	private $order_country;
 	private $order_zipcode;
 	private $order_status;
-	private $order_tracking_number;
+	private $order_tracking_num;
 	private $created_at;
 	private $updated_at;
 
@@ -51,7 +51,7 @@ class OrderHelper {
 		$this->order_country = "";
 		$this->order_zipcode = "";
 		$this->order_status = 0;
-		$this->order_tracking_number = "";
+		$this->order_tracking_num = "";
 		$this->created_at = "";
 		$this->updated_at = "";
 	}
@@ -71,7 +71,7 @@ class OrderHelper {
 		$this->order_zipcode = $data["order_zipcode"];
 		$this->customer_id = $data["customer_id"];
 		$this->order_status = 1;
-		$this->order_tracking_number = "";
+		$this->order_tracking_num = "";
 
 		// Set guest variables
 		if (Auth::guest()) {
@@ -95,6 +95,7 @@ class OrderHelper {
 		$order->product_id = $this->product_id;
 		$order->customer_id = $this->customer_id;
 		$order->order_ip = $this->order_ip;
+		$order->order_selectors = $this->order_selectors;
 		$order->order_first_name = $this->order_first_name;
 		$order->order_last_name = $this->order_last_name;
 		$order->order_email = $this->order_email;
@@ -103,7 +104,7 @@ class OrderHelper {
 		$order->order_country = $this->order_country;
 		$order->order_zipcode = $this->order_zipcode;
 		$order->order_status = $this->order_status;
-		$order->order_tracking_number = $this->order_tracking_number;
+		$order->order_tracking_num = $this->order_tracking_num;
 		$order->save();
 
 		// Update variables
@@ -130,7 +131,7 @@ class OrderHelper {
 		$this->order_country = $order->order_country;
 		$this->order_zipcode = $order->order_zipcode;
 		$this->order_status = $order->order_status;
-		$this->order_tracking_number = $order->order_tracking_number;
+		$this->order_tracking_num = $order->order_tracking_num;
 		$this->created_at = $order->created_at;
 		$this->updated_at = $order->updated_at;
 	}
@@ -164,12 +165,12 @@ class OrderHelper {
 		}
 	}
 
-	public function edit_tracking_number($tracking_number) {
+	public function edit_tracking_num($tracking_num) {
 		if ($this->order_id == 0) {
 			return "error";
 		} else {
 			$order = Order::where('id', $this->order_id)->first();
-			$order->order_tracking_number = $tracking_number;
+			$order->order_tracking_num = $tracking_num;
 			$order->save();
 
 			$this->updated_at = $order->updated_at;
