@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 
+use App\Custom\BlogPostHelper;
 use App\Custom\ProductHelper;
 use App\Custom\OrderHelper;
 use App\Custom\SiteStatsHelper;
@@ -95,6 +96,37 @@ class AdminController extends Controller
         $product_helper = new ProductHelper();
 
         return view('admin.orders.edit')->with('page_header', $page_header)->with('order', $order)->with('product_helper', $product_helper);
+    }
+
+    public function view_blog_posts() {
+        // Dynamic page features
+        $page_header = "Blog Posts";
+
+        // Get all active posts
+        $user_id = Auth::id();
+        $post_helper = new BlogPostHelper();
+        $posts = $post_helper->get_posts_by_author_id($user_id);
+
+        return view('admin.posts.view')->with('page_header', $page_header)->with('posts', $posts);
+    }
+
+    public function new_blog_post() {
+        // Dynamic page features
+        $page_header = "New Post";
+
+        return view('admin.posts.new')->with('page_header', $page_header);
+    }
+
+    public function blog_post_stats() {
+        // Dynamic page features
+        $page_header = "Blog Post Stats";
+
+        // Get all active posts
+        $user_id = Auth::id();
+        $post_helper = new BlogPostHelper();
+        $posts = $post_helper->get_posts_by_author_id($user_id);
+
+        return view('admin.posts.stats')->with('page_header', $page_header)->with('posts', $posts);
     }
 
     public function view_products() {

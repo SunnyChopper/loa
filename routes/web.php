@@ -49,6 +49,9 @@ Route::get('/admin/products/edit/{product_id}', 'AdminController@edit_product');
 Route::get('/admin/products/stats', 'AdminController@view_product_stats');
 Route::get('/admin/orders/view', 'AdminController@view_orders');
 Route::get('/admin/orders/edit/{order_id}', 'AdminController@edit_order');
+Route::get('/admin/posts/view', 'AdminController@view_blog_posts');
+Route::get('/admin/posts/new', 'AdminController@new_blog_post');
+Route::get('/admin/posts/stats', 'AdminController@blog_post_stats');
 
 // Private site
 Route::get('/members/dashboard/', 'DashboardController@index');
