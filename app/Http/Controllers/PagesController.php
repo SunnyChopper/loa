@@ -9,6 +9,7 @@ use Validator;
 
 use App\Custom\ProductHelper;
 use App\Custom\CartHelper;
+use App\Custom\SiteStatsHelper;
 
 class PagesController extends Controller
 {
@@ -94,6 +95,10 @@ class PagesController extends Controller
         // Get product
         $product_helper = new ProductHelper($product_id);
         $product = $product_helper->get_product_by_id();
+
+        // Stats for site
+        $site_stats_helper = new SiteStatsHelper();
+        $site_stats_helper->product_add_view($product_id);
 
         // Dynamic page features
         $page_header = $product->product_name;

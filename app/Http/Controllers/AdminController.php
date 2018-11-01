@@ -11,6 +11,7 @@ use Auth;
 
 use App\Custom\ProductHelper;
 use App\Custom\OrderHelper;
+use App\Custom\SiteStatsHelper;
 
 class AdminController extends Controller
 {
@@ -105,6 +106,20 @@ class AdminController extends Controller
         $products = $product_helper->get_active_products();
 
         return view('admin.products.view')->with('page_header', $page_header)->with('products', $products);
+    }
+
+    public function view_product_stats() {
+        // Dynamic page features
+        $page_header = "Product Stats";
+
+        // Get all active products
+        $product_helper = new ProductHelper();
+        $products = $product_helper->get_active_products();
+
+        // Stats helper
+        $site_stats_helper = new SiteStatsHelper();
+
+        return view('admin.products.stats')->with('page_header', $page_header)->with('products', $products)->with('site_stats_helper', $site_stats_helper);
     }
 
     public function new_product() {

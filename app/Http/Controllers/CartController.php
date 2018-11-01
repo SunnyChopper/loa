@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Custom\ProductHelper;
 use App\Custom\CartHelper;
+use App\Custom\SiteStatsHelper;
 
 class CartController extends Controller
 {
@@ -46,6 +47,10 @@ class CartController extends Controller
     	// Add to cart
     	$cart_helper = new CartHelper();
     	$cart_helper->add_to_cart($product_info);
+
+        // Add to analytics
+        $site_stats_helper = new SiteStatsHelper();
+        $site_stats_helper->product_add_add_to_cart($product_id);
 
     	// Redirect to cart page
     	return redirect(url('/cart'));

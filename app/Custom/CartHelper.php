@@ -9,6 +9,7 @@ use Stripe\Error\Card;
 use App\Product;
 
 use App\Custom\OrderHelper;
+use App\Custom\SiteStatsHelper;
 
 use Validator;
 use Session;
@@ -159,6 +160,7 @@ class CartHelper {
 			if($charge['status'] == 'succeeded') {
 				// Successfully created charge, now, let's create orders for each product
 				$products = $this->get_current_products();
+				$site_stats_helper = new SiteStatsHelper();
 				foreach ($products as $product) {
 					// Create dictionary for OrderHelper
 					$order_info = array();
@@ -173,6 +175,13 @@ class CartHelper {
 					$order_info["order_country"] = $data["order_country"];
 					$order_info["order_zipcode"] = $data["order_zipcode"];
 					$order_info["customer_id"] = $customer["id"];
+
+            		$site_stats_helper->product_add_purchased($product["product_id"]);
+            		if (Auth::guest()) {
+            			$site_stats_helper->product_add_guest_purchase($product["product_id"]);
+            		} else {
+            			$site_stats_helper->product_add_member_purchase($product["product_id"]);
+            		}
 
 					$order_helper = new OrderHelper();
 					$order_helper->create_order($order_info);

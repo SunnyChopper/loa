@@ -46,6 +46,7 @@ Route::get('/admin/dashboard', 'AdminController@dashboard');
 Route::get('/admin/products/view', 'AdminController@view_products');
 Route::get('/admin/products/new', 'AdminController@new_product');
 Route::get('/admin/products/edit/{product_id}', 'AdminController@edit_product');
+Route::get('/admin/products/stats', 'AdminController@view_product_stats');
 Route::get('/admin/orders/view', 'AdminController@view_orders');
 Route::get('/admin/orders/edit/{order_id}', 'AdminController@edit_order');
 
