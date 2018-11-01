@@ -50,7 +50,7 @@
 					<h3 class="mt-32">Step 2: Billing Information</h3>
 					<hr />
 					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 							<div class="form-group">
 								<h5 class="mb-2">Address<span class="red">*</span>:</h5>
 								@if(Auth::guest())
@@ -60,9 +60,20 @@
 								@endif
 							</div>
 						</div>
+
+						<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+							<div class="form-group">
+								<h5 class="mb-2">City<span class="red">*</span>:</h5>
+								@if(Auth::guest())
+									<input type="text" name="order_city" class="form-control" required>
+								@else
+									<input type="text" name="order_city" value="{{ Auth::user()->city }}" class="form-control" autofocus required>
+								@endif
+							</div>
+						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-12 col-12">
+						<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="form-group">
 								<h5 class="mb-2">State/Province<span class="red">*</span>:</h5>
 								@if(Auth::guest())
@@ -73,7 +84,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-4 col-md-6 col-sm-12 col-12">
+						<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="form-group">
 								<h5 class="mb-2">Country<span class="red">*</span>:</h5>
 								@if(Auth::guest())
@@ -84,7 +95,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-4 col-md-6 col-sm-12 col-12">
+						<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="form-group">
 								<h5 class="mb-2">Zipcode<span class="red">*</span>:</h5>
 								@if(Auth::guest())

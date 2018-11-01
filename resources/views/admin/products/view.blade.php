@@ -14,23 +14,25 @@
 							<th>Stock</th>
 							<th>SKU</th>
 							<th>Average Rating</th>
-							<th>Reviews</th>
+							<th># of Reviews</th>
 							<th></th>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Ambition Premium Shirt</td>
-								<td>Show off your inner Wolf</td>
-								<td>$49.99</td>
-								<td>43</td>
-								<td>AMB-SHIRT</td>
-								<td>4.7/5</td>
-								<td>34</td>
-								<td>
-									<a href="/admin/products/edit" class="genric-btn info small">Edit</a>
-									<a href="" class="genric-btn danger small">Delete</a>
-								</td>
-							</tr>
+							@foreach($products as $product)
+								<tr>
+									<td>{{ $product->product_name }}</td>
+									<td>{{ $product->product_description }}</td>
+									<td>${{ $product->product_price }}</td>
+									<td>{{ $product->stock }}</td>
+									<td>{{ $product->sku }}</td>
+									<td>{{ $product->avg_rating }}/5</td>
+									<td>{{ $product->reviews }}</td>
+									<td>
+										<a href="/admin/products/edit/{{ $product->id }}" class="genric-btn info small">Edit</a>
+										<button href="" class="genric-btn danger small">Delete</button>
+									</td>
+								</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>

@@ -156,7 +156,7 @@ class ProductHelper {
 		}
 	}
 
-	public function add_product(Request $data) {
+	public function add_product($data) {
 		$product = new Product;
 		$product->product_name = $data->product_name;
 		$product->product_description = $data->product_description;

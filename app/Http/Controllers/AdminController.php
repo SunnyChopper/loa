@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 
+use App\Custom\ProductHelper;
+use App\Custom\OrderHelper;
+
 class AdminController extends Controller
 {
     public function index() {
@@ -65,11 +68,43 @@ class AdminController extends Controller
         return view('admin.dashboard')->with('page_header', $page_header);
     }
 
+    public function view_orders() {
+        // Dynamic page features
+        $page_header = "Orders";
+
+        // Get all orders
+        $order_helper = new OrderHelper();
+        $orders = $order_helper->load_all_orders();
+
+        // Product helper for the page
+        $product_helper = new ProductHelper();
+
+        return view('admin.orders.view')->with('page_header', $page_header)->with('orders', $orders)->with('product_helper', $product_helper);
+    }
+
+    public function edit_order($order_id) {
+        // Dynamic page features
+        $page_header = "Edit Product";
+
+        // Get order
+        $order_helper = new OrderHelper();
+        $order = $order_helper->load_order_by_id($order_id);
+
+        // Product helper for the page
+        $product_helper = new ProductHelper();
+
+        return view('admin.orders.edit')->with('page_header', $page_header)->with('order', $order)->with('product_helper', $product_helper);
+    }
+
     public function view_products() {
         // Dynamic page features
         $page_header = "Active Products";
 
-        return view('admin.products.view')->with('page_header', $page_header);
+        // Get all active products
+        $product_helper = new ProductHelper();
+        $products = $product_helper->get_active_products();
+
+        return view('admin.products.view')->with('page_header', $page_header)->with('products', $products);
     }
 
     public function new_product() {
@@ -79,10 +114,14 @@ class AdminController extends Controller
         return view('admin.products.new')->with('page_header', $page_header);
     }
 
-    public function edit_product() {
+    public function edit_product($product_id) {
         // Dynamic page features
         $page_header = "Edit Product";
 
-        return view('admin.products.edit')->with('page_header', $page_header);
+        // Get product
+        $product_helper = new ProductHelper($product_id);
+        $product = $product_helper->get_product_by_id();
+
+        return view('admin.products.edit')->with('page_header', $page_header)->with('product', $product);
     }
 }

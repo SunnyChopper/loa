@@ -98,6 +98,7 @@ class CartController extends Controller
     		"order_last_name" => $data->order_last_name,
     		"order_email" => $data->order_email,
     		"order_address" => $data->order_address,
+            "order_city" => $data->order_city,
     		"order_state" => $data->order_state,
     		"order_country" => $data->order_country,
     		"order_zipcode" => $data->order_zipcode,

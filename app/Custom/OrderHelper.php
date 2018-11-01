@@ -25,6 +25,7 @@ class OrderHelper {
 	private $order_last_name;
 	private $order_email;
 	private $order_address;
+	private $order_city;
 	private $order_state;
 	private $order_country;
 	private $order_zipcode;
@@ -47,6 +48,7 @@ class OrderHelper {
 		$this->order_last_name = "";
 		$this->order_email = "";
 		$this->order_address = "";
+		$this->order_city = "";
 		$this->order_state = "";
 		$this->order_country = "";
 		$this->order_zipcode = "";
@@ -66,6 +68,7 @@ class OrderHelper {
 		$this->order_last_name = $data["order_last_name"];
 		$this->order_email = $data["order_email"];
 		$this->order_address = $data["order_address"];
+		$this->order_city = $data["order_city"];
 		$this->order_state = $data["order_state"];
 		$this->order_country = $data["order_country"];
 		$this->order_zipcode = $data["order_zipcode"];
@@ -100,6 +103,7 @@ class OrderHelper {
 		$order->order_last_name = $this->order_last_name;
 		$order->order_email = $this->order_email;
 		$order->order_address = $this->order_address;
+		$order->order_city = $this->order_city;
 		$order->order_state = $this->order_state;
 		$order->order_country = $this->order_country;
 		$order->order_zipcode = $this->order_zipcode;
@@ -127,6 +131,7 @@ class OrderHelper {
 		$this->order_last_name = $order->order_last_name;
 		$this->order_email = $order->order_email;
 		$this->order_address = $order->order_address;
+		$this->order_city = $order->order_city;
 		$this->order_state = $order->order_state;
 		$this->order_country = $order->order_country;
 		$this->order_zipcode = $order->order_zipcode;
@@ -134,22 +139,28 @@ class OrderHelper {
 		$this->order_tracking_num = $order->order_tracking_num;
 		$this->created_at = $order->created_at;
 		$this->updated_at = $order->updated_at;
+
+		return $order;
+	}
+
+	public function load_all_orders() {
+		return Order::paginate(25);
 	}
 
 	public function load_open_orders() {
-		return Order::where('status', 1)->get('id', 'order_first_name', 'order_country');
+		return Order::where('status', 1)->get('id', 'order_first_name', 'order_last_name', 'order_country');
 	}
 
 	public function load_shipped_orders() {
-		return Order::where('status', 2)->get('id', 'order_first_name', 'order_country');
+		return Order::where('status', 2)->get('id', 'order_first_name', 'order_last_name', 'order_country');
 	}
 
 	public function load_refunded_orders() {
-		return Order::where('status', 3)->get('id', 'order_first_name', 'order_country');
+		return Order::where('status', 3)->get('id', 'order_first_name', 'order_last_name', 'order_country');
 	}
 
 	public function load_returned_orders() {
-		return Order::where('status', 4)->get('id', 'order_first_name', 'order_country');
+		return Order::where('status', 4)->get('id', 'order_first_name', 'order_last_name', 'order_country');
 	}
 
 	public function edit_status($status) {
