@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use App\Custom\SiteStatsHelper;
+
 class RegisterController extends Controller
 {
     /*
@@ -72,9 +74,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Set the timezone
         date_default_timezone_set('America/Los_Angeles');
+
+        // Get name
         $name_array = $this->split_name($data['name']);
-        return User::create([
+
+        // Create user 
+        $user = User::create([
             'username' => $data['username'],
             'first_name' => $name_array[0],
             'last_name' => $name_array[1],
@@ -85,5 +92,14 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // Handle analytics
+        $site_stats_helper = new SiteStatsHelper();
+        $user_id = $user->id;
+        $user_data = array("user_id" => $user_id);
+        $site_stats_helper->new_signup($user_data);
+
+        // Return user
+        return $user;
     }
 }
