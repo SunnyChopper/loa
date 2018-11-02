@@ -48,7 +48,14 @@
             tinymce.init({
                selector: "#post_body",
                plugins: "a11ychecker, advcode, linkchecker, powerpaste, tinymcespellchecker",
-               toolbar: "a11ycheck, code"
+               toolbar: "a11ycheck, code",
+               setup : function(ed) {
+                    ed.on('init', function() {
+                        $(ed.getDoc()).contents().find('body').focus(function(){
+                            $("#body_error").hide();
+                        }); 
+                    });
+                }
             });
         </script>
 

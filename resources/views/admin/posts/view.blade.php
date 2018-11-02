@@ -2,6 +2,7 @@
 
 @section('content')
 	@include('layouts.hero')
+	@include('admin.posts.modals.delete-post')
 	<div class="container mt-32 mb-32">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -12,6 +13,7 @@
 								<th>Title</th>
 								<th>Views</th>
 								<th>Likes</th>
+								<th>Status</th>
 								<th>Created</th>
 								<th></th>
 							</thead>
@@ -21,10 +23,17 @@
 										<td style="min-width: 150px;">{{ $post->title }}</td>
 										<td style="min-width: 50px;">{{ $post->views }}</td>
 										<td style="min-width: 50px;">{{ $post->likes }}</td>
+										<td style="min-width: 50px;">
+											@if($post->is_active == 1)
+												Published
+											@elseif($post->is_active == 2)
+												In Draft
+											@endif
+										</td>
 										<td style="min-width: 50px;">{{ $post->created_at->format('M d, Y') }}</td>
 										<td style="min-width: 100px;"> 
 											<a href="/admin/posts/edit/{{ $post->id }}" class="genric-btn info small">Edit</a>
-											<button href="" class="genric-btn danger small">Delete</button>
+											<button id="{{ $post->id }}" type="button" class="genric-btn danger small delete_post_button">Delete</button>
 										</td>
 									</tr>
 								@endforeach
@@ -49,4 +58,19 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('page_js')
+	<script type="text/javascript">
+		$(".delete_post_button").on('click', function() {
+			// Get post ID
+			var post_id = $(this).attr('id');
+
+			// Set ID for modal
+			$("#post_id_delete_modal").val(post_id);
+
+			// Show modal
+			$("#delete_post_modal").modal();
+		});
+	</script>
 @endsection

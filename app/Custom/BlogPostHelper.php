@@ -2,7 +2,10 @@
 
 namespace App\Custom;
 
+use Illuminate\Support\Facades\DB;
+
 use App\BlogPost;
+use App\Custom\SiteStatsHelper;
 
 use Auth;
 
@@ -16,6 +19,18 @@ class BlogPostHelper {
 	}
 
 	/* Public functions */
+	public function add_view($post_id = 0) {
+		// Post ID
+		if ($post_id == 0) {
+			$post_id = $this->blog_post_id;
+		}
+
+		// Get blog post and update views
+		$blog_post = BlogPost::where('id', $post_id)->first();
+		$blog_post->views = $blog_post->views + 1;
+		$blog_post->save();
+	}
+
 	public function create_blog_post($data) {
 		// Get blog post data
 		$title = $data["title"];
@@ -40,7 +55,27 @@ class BlogPostHelper {
 		// Update local variable
 		$this->blog_post_id = $blog->id;
 
+		// Create stats
+		$site_stats_helper = new SiteStatsHelper();
+		$post_data = array(
+			"post_id" => $blog->id,
+			"author_id" => $author_id
+		);
+		$site_stats_helper->new_blog_post($post_data);
+
 		return $blog->id;
+	}
+
+	public function put_blog_post_in_draft($post_id) {
+		$blog_post = BlogPost::where('id', $post_id)->first();
+		$blog_post->is_active = 2;
+		$blog_post->save();
+	}
+
+	public function publish_blog_post($post_id) {
+		$blog_post = BlogPost::where('id', $post_id)->first();
+		$blog_post->is_active = 1;
+		$blog_post->save();
 	}
 
 	public function read_blog_post() {
@@ -66,16 +101,37 @@ class BlogPostHelper {
 	}
 
 	public function get_posts_with_pagination($pagination) {
-		return BlogPost::where('is_active', 1)->paginate($pagination);
+		return BlogPost::where('is_active', 1)->orderBy('created_at', 'desc')->paginate($pagination);
 	}
 
 	public function get_posts_by_author_id($author_id) {
-		return BlogPost::where('author_id', $author_id)->where('is_active', 1)->get();
+		return BlogPost::where('author_id', $author_id)
+			->where(function($q) {
+				$q->where('is_active', 1)
+				->orWhere('is_active', 2);
+			})
+			->get();
+	}
+
+	public function get_post_by_id($post_id = 0) {
+		if ($post_id == 0) {
+			$post_id = $this->blog_post_id;
+		}
+
+		return BlogPost::where('id', $post_id)->first();
+	}
+
+	public function get_image_url($post_id = 0) {
+		if ($post_id == 0) {
+			$post_id = $this->blog_post_id;
+		}
+
+		return BlogPost::where('id', $post_id)->first()->featured_image_url;
 	}
 
 	public function update_blog_post($data) {
 		// Get blog post data
-		$post_id = $data["blog_post_id"];
+		$post_id = $data["post_id"];
 		$title = $data["title"];
 		$featured_image_url = $data["featured_image_url"];
 		$slug = $data["slug"];
@@ -92,6 +148,7 @@ class BlogPostHelper {
 	}
 
 	public function delete_blog_post($post_id) {
+		$this->blog_post_id = $post_id;
 		$blog_post = $this->get_blog_post_data();
 		$blog_post->is_active = 0;
 		$blog_post->save();

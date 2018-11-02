@@ -5,23 +5,12 @@
 	<div class="container mt-32 mb-32">
 		<div class="row">
 			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-				@foreach($posts as $post)
-					<a href="/posts/{{ $post->id }}/{{ $post->slug }}" class="black-link">
-						<div class="blog-entry">
-							<div class="image">
-								<img src="{{ $post->featured_image_url }}" class="regular-image">
-							</div>
-							<div class="info">
-								<h3>{{ $post->title }}</h3>
-								<p>{{ substr(strip_tags($post->post_body), 0, 128) . '...' }}</p>
-								<hr />
-								<p class="mb-0"><small>Written on {{ $post->created_at->format('F jS, Y') }}</small></p>
-							</div>
-						</div>
-					</a>
-				@endforeach
-
-				{{ $posts->links() }}
+				<img src="{{ $post->featured_image_url }}" class="regular-image mb-16">
+				<div id="post-body">
+					{!! $post->post_body !!}
+				</div>
+				<hr />
+				<p><small>Written by {{ $post->author_first_name }} on {{ $post->created_at->format('F jS, Y') }}</small>
 			</div>
 
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">

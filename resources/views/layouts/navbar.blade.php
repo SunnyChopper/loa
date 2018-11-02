@@ -17,7 +17,7 @@
 				</div>
 				<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
 					@if(Session::has('backend_auth'))
-					<a href="/members/dashboard" style="display: inline-block;" class="mb-0">Switch to Regular Site</a>
+					<a href="/admin/switch" style="display: inline-block;" class="mb-0">Switch to Regular Site</a>
 					@endif
 
 					@if(!Session::has('backend_auth'))
@@ -56,11 +56,12 @@
 						@include('layouts.backend-menu')
 					@else
 						<li><a href="/members/dashboard">Dashboard</a></li>
+						<li><a href="/free-advice">Free Advice</a></li>
 						<li><a href="/members/community">Community</a></li>
 						<li><a href="/members/tools">Tools</a></li>
 						<li><a href="/members/courses">Courses</a></li>
 						<li><a href="/events">Events</a></li>
-						<li><a href="/members/shop">Ambition Shop</a></li>
+						<li><a href="/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li class="menu-has-children"><a href="/members/profile">{{ Auth::user()->first_name }}</a>
 							<ul>

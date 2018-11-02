@@ -67,7 +67,7 @@
 								@if(Auth::guest())
 									<input type="text" name="order_city" class="form-control" required>
 								@else
-									<input type="text" name="order_city" value="{{ Auth::user()->city }}" class="form-control" autofocus required>
+									<input type="text" name="order_city" value="{{ Auth::user()->city }}" class="form-control" required>
 								@endif
 							</div>
 						</div>

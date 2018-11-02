@@ -10,6 +10,7 @@ use Validator;
 use App\Custom\ProductHelper;
 use App\Custom\CartHelper;
 use App\Custom\SiteStatsHelper;
+use App\Custom\BlogPostHelper;
 
 class PagesController extends Controller
 {
@@ -51,7 +52,27 @@ class PagesController extends Controller
     	// Dynamic page features
     	$page_header = "Free Advice";
 
-    	return view('pages.blog')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+        // Load posts
+        $blog_post_helper = new BlogPostHelper();
+        $posts = $blog_post_helper->get_posts_with_pagination(10);
+
+    	return view('pages.blog')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts);
+    }
+
+    public function view_post($post_id, $slug) {
+        // Get post and add view
+        $blog_post_helper = new BlogPostHelper($post_id);
+        $blog_post_helper->add_view();
+        $post = $blog_post_helper->get_post_by_id($post_id);
+
+        // Dynamic page features
+        $page_header = $post->title;
+
+        // Analytics for site stats
+        $site_stats_helper = new SiteStatsHelper();
+        $site_stats_helper->blog_post_add_view($post_id);
+
+        return view('pages.view-post')->with('page_header', $page_header)->with('post', $post);
     }
 
     public function shop() {
@@ -156,63 +177,6 @@ class PagesController extends Controller
         return view('pages.thank-you')->with('page_header', $page_header);
     }
 
-    public function test_payment() {
-        $page_header = "Test Payment";
-        return view('pages.test-payment')->with('page_header', $page_header);
-    }
-
-    public function test_payment_charge(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'card_number' => 'required',
-            'ccExpiryMonth' => 'required',
-            'ccExpiryYear' => 'required',
-            'cvvNumber' => 'required',
-            'amount' => 'required',
-        ]);
-
-        $input = $request->all();
-        if ($validator->passes()) {
-            $input = array_except($input,array('_token'));
-            $stripe = Stripe::make(env('STRIPE_SECRET'));
-
-            try {
-                $token = $stripe->tokens()->create([
-                    'card' => [
-                        'number'    => $request->get('card_number'),
-                        'exp_month' => $request->get('ccExpiryMonth'),
-                        'exp_year'  => $request->get('ccExpiryYear'),
-                        'cvc'       => $request->get('cvvNumber'),
-                    ],
-                ]);
-
-                if (!isset($token['id'])) {
-                    \Session::put('error','The Stripe Token was not generated correctly');
-                    return redirect()->route('stripform');
-                }
-
-                $charge = $stripe->charges()->create([
-                    'card' => $token['id'],
-                    'currency' => 'USD',
-                    'amount'   => $request->get('amount'),
-                    'description' => 'Test payment',
-                ]);
-
-                if($charge['status'] == 'succeeded') {
-                    echo "Successful";
-                } else {
-                    echo "Error";
-                }
-            } catch (Exception $e) {
-                echo $e->getMessage();
-            } catch(\Cartalyst\Stripe\Exception\CardErrorException $e) {
-                echo $e->getMessage();
-            } catch(\Cartalyst\Stripe\Exception\MissingParameterException $e) {
-                echo $e->getMessage();
-            }
-        }
-        \Session::put('error','All fields are required!!');
-        echo "Something went wrong";
-    }
 
     public function login() {
     	// SEO Data

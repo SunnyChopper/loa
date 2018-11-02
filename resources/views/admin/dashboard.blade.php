@@ -80,7 +80,7 @@
 
 					<ul class="list-group">
 						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2 || Session::get('backend_auth') == 3)
-							<a href="">
+							<a href="/admin/posts/new">
 								<li class="list-group-item admin-action mt-8">
 									<h4 class="mb-0" style="display: inline-block;">Write a New Blog Post</h4>
 									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
@@ -116,7 +116,7 @@
 						@endif
 
 						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2 || Session::get('backend_auth') == 6)
-							<a href="">
+							<a href="/admin/orders/view">
 								<li class="list-group-item admin-action mt-8">
 									<h4 class="mb-0" style="display: inline-block;">Check Orders</h4>
 									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>

@@ -19,8 +19,9 @@ class AdminController extends Controller
     public function index() {
     	// Check if already logged in
     	if ($user = Auth::user()) {
-    		if ($user->backend_auth == 1) {
+    		if ($user->backend_auth == 1 || $user->backend_auth == 2 || $user->backend_auth == 3 || $user->backend_auth == 4 || $user->backend_auth == 5 || $user->backend_auth == 6) {
     			// Redirect
+                Session::put('backend_auth', $user->backend_auth);
     			return redirect(url('/admin/dashboard'));
     		} else {
     			return redirect(url('/members/dashboard'));
@@ -31,6 +32,14 @@ class AdminController extends Controller
     	$page_header = "Admin Login";
 
     	return view('admin.index')->with('page_header', $page_header);
+    }
+
+    public function switch() {
+        // Remove variable
+        Session::forget('backend_auth');
+
+        // Redirect
+        return redirect(url('/members/dashboard'));
     }
 
     public function login(Request $data) {
@@ -115,6 +124,17 @@ class AdminController extends Controller
         $page_header = "New Post";
 
         return view('admin.posts.new')->with('page_header', $page_header);
+    }
+
+    public function edit_blog_post($post_id) {
+        // Dynamic page features
+        $page_header = "Edit Post";
+
+        // Get post
+        $blog_post_helper = new BlogPostHelper($post_id);
+        $post = $blog_post_helper->get_post_by_id();
+
+        return view('admin.posts.edit')->with('page_header', $page_header)->with('post', $post);
     }
 
     public function blog_post_stats() {

@@ -171,6 +171,7 @@ class CartHelper {
 					$order_info["order_last_name"] = $data["order_last_name"];
 					$order_info["order_email"] = $data["order_email"];
 					$order_info["order_address"] = $data["order_address"];
+					$order_info["order_city"] = $data["order_city"];
 					$order_info["order_state"] = $data["order_state"];
 					$order_info["order_country"] = $data["order_country"];
 					$order_info["order_zipcode"] = $data["order_zipcode"];

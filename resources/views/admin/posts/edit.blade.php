@@ -4,16 +4,16 @@
 	@include('layouts.hero')
 	
 	<div class="container mt-64 mb-64">
-		<form id="new_blog_post_form" method="post" enctype="multipart/form-data">
+		<form id="edit_blog_post_form" action="/admin/posts/update" method="post" enctype="multipart/form-data">
 			{{ csrf_field() }}
-			<input type="hidden" value="" name="post_id"> 
+			<input type="hidden" value="{{ $post->id }}" name="post_id"> 
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12">
 							<div class="form-group">
 								<h5 class="mb-2">Title:</h5>
-								<input type="text" name="title" class="form-control" required>
+								<input type="text" name="title" value="{{ $post->title }}" class="form-control" required>
 								<span class="mb-0" id="title_error" style="display: none;"><small class="red">Please enter title.</small></span>
 							</div>
 						</div>
@@ -21,7 +21,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 mt-16">
 							<div class="form-group">
 								<h5 class="mb-2">Body:</h5>
-								<textarea name="post_body" form="new_blog_post_form" id="post_body" class="form-control" rows="16"></textarea>
+								<textarea name="post_body" form="edit_blog_post_form" id="post_body" class="form-control" rows="16">{{ $post->post_body }}</textarea>
 								<span class="mb-0 mt-0" id="body_error" style="display: none;"><small class="red">Please enter body.</small></span>
 							</div>
 						</div>
@@ -34,7 +34,7 @@
 							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 								<div class="form-group">
 									<h5 class="mb-2">URL Slug:</h5>
-									<input type="text" name="slug" class="form-control" required>
+									<input type="text" name="slug" value="{{ $post->slug }}" class="form-control" required>
 									<span class="mb-0" id="slug_error" style="display: none;"><small class="red">Please enter slug.</small></span>
 								</div>
 							</div>
@@ -48,8 +48,8 @@
 							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 								<div class="form-group">
 									<h5 class="mb-2">Main Image:</h5>
-									<img id="main_image_img" src="" class="regular-image mb-8 mt-8">
-									<input type="file" onchange="displayMainImage(this);" name="featured_image" required>
+									<img id="main_image_img" src="{{ $post->featured_image_url }}" class="regular-image mb-8 mt-8">
+									<input type="file" onchange="displayMainImage(this);" name="featured_image">
 									<span class="mb-0" id="file_error" style="display: none;"><small class="red">Please upload file.</small></span>
 								</div>
 							</div>
@@ -60,12 +60,8 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-12">
-								<input type="submit" value="Publish Post" class="genric-btn primary medium center-button">
-							</div>
-
-							<div class="col-lg-6 col-md-6 col-sm-6 col-12">
-								<input id="save_draft_button" type="submit" value="Save Draft" class="genric-btn info medium center-button">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<input type="submit" value="Update Post" class="genric-btn primary medium center-button">
 							</div>
 						</div>
 					</div>
@@ -116,7 +112,7 @@
 			$("#file_error").hide();
 		});
 
-		$("#new_blog_post_form").submit(function(e) {
+		$("#edit_blog_post_form").submit(function(e) {
 			if ($("input[name=title]").val() == "") {
 				e.preventDefault();
 				$("input[name=title]").css('border', '2px solid red');
@@ -134,17 +130,6 @@
 				$("#slug_error").show();
 			}
 
-			if ($('input[name=featured_image]').get(0).files.length === 0) {
-				e.preventDefault();
-			 	$("#file_error").show();
-			}
-
-		});
-
-		$("#save_draft_button").on('click', function(e) {
-			// Change the form's action
-			$("#new_blog_post_form").attr('action', '/admin/posts/create/draft');
-			$("#new_blog_post_form").submit();
 		});
 	</script>
 @endsection
