@@ -20,10 +20,12 @@
 							<tbody>
 								@foreach($posts as $post)
 									<tr>
-										<td><img src="{{ $post->featured_image_url }}" class="regular-image"></td>
+										<td>{{ $post->id }}</td>
 										<td>{{ $post->title }}</td>
-										<td>{{ $posts->views }}</td>
-										<td>{{ $posts->likes }}</td>
+										<td>{{ $post->views }}</td>
+										<td>{{ $post->likes }}</td>
+										<td>{{ $site_stats_helper->get_blog_post_link_clicks($post->id) }}</td>
+										<td>{{ $site_stats_helper->get_blog_post_member_signups($post->id) }}</td>
 										<td>{{ $posts->created_at->format('m D y') }}</td>
 									</tr>
 								@endforeach

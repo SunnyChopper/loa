@@ -11,4 +11,6 @@
 <script src="{{ URL::asset('js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ URL::asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{ URL::asset('js/mail-script.js') }}"></script>
+<script src="{{ URL::asset('js/StopWord.js') }}"></script>
 <script src="{{ URL::asset('js/main.js') }}"></script>
+@yield('page_js')

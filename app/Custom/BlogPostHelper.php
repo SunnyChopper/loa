@@ -39,6 +39,8 @@ class BlogPostHelper {
 
 		// Update local variable
 		$this->blog_post_id = $blog->id;
+
+		return $blog->id;
 	}
 
 	public function read_blog_post() {
@@ -46,6 +48,16 @@ class BlogPostHelper {
 			return "error";
 		} else {
 			return BlogPost::where('id', $this->blog_post_id)->first();
+		}
+	}
+
+	public function get_next_post_id() {
+		if (BlogPost::count() > 0) {
+			$last_post = DB::table('blog_posts')->orderBy('created_at', 'desc')->first();
+			$lastest_id = $last_post->id;
+			return $lastest_id + 1;
+		} else {
+			return 1;
 		}
 	}
 

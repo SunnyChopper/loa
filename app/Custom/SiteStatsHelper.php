@@ -31,11 +31,23 @@ class SiteStatsHelper {
 		$blog_post_stats->save();
 	}
 
+	public function get_blog_post_view($post_id) {
+		$this->verify_blog_post_exists($post_id);
+		$blog_post_stats = BlogPostStats::where('post_id', $post_id)->first();
+		return $blog_post_stats->views;
+	}
+
 	public function blog_post_add_like($post_id) {
 		$this->verify_blog_post_exists($post_id);
 		$blog_post_stats = BlogPostStats::where('post_id', $post_id)->first();
 		$blog_post_stats->likes = $blog_post_stats->likes + 1;
 		$blog_post_stats->save();
+	}
+
+	public function get_blog_post_likes($post_id) {
+		$this->verify_blog_post_exists($post_id);
+		$blog_post_stats = BlogPostStats::where('post_id', $post_id)->first();
+		return $blog_post_stats->likes;
 	}
 
 	public function blog_post_add_link_click($post_id) {
@@ -45,11 +57,23 @@ class SiteStatsHelper {
 		$blog_post_stats->save();
 	}
 
+	public function get_blog_post_link_clicks($post_id) {
+		$this->verify_blog_post_exists($post_id);
+		$blog_post_stats = BlogPostStats::where('post_id', $post_id)->first();
+		return $blog_post_stats->link_clicks;
+	}
+
 	public function blog_post_member_signups($post_id) {
 		$this->verify_blog_post_exists($post_id);
 		$blog_post_stats = BlogPostStats::where('post_id', $post_id)->first();
 		$blog_post_stats->member_signups = $blog_post_stats->member_signups + 1;
 		$blog_post_stats->save();
+	}
+
+	public function get_blog_post_member_signups($post_id) {
+		$this->verify_blog_post_exists($post_id);
+		$blog_post_stats = BlogPostStats::where('post_id', $post_id)->first();
+		return $blog_post_stats->member_signups;
 	}
 
 	public function new_tool($data) {

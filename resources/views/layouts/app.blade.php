@@ -43,6 +43,15 @@
             gtag('config', 'UA-128180547-1');
         </script>
 
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=bse9ckzqs2pox7zzzhudpdxcc0gtdem3jzvjp79w5dx7qc4w"></script>
+        <script type="text/javascript">
+            tinymce.init({
+               selector: "#post_body",
+               plugins: "a11ychecker, advcode, linkchecker, powerpaste, tinymcespellchecker",
+               toolbar: "a11ycheck, code"
+            });
+        </script>
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">

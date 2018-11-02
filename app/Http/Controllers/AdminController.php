@@ -126,7 +126,10 @@ class AdminController extends Controller
         $post_helper = new BlogPostHelper();
         $posts = $post_helper->get_posts_by_author_id($user_id);
 
-        return view('admin.posts.stats')->with('page_header', $page_header)->with('posts', $posts);
+        // Get stats class loaded
+        $site_stats_helper = new SiteStatsHelper();
+
+        return view('admin.posts.stats')->with('page_header', $page_header)->with('posts', $posts)->with('site_stats_helper', $site_stats_helper);
     }
 
     public function view_products() {

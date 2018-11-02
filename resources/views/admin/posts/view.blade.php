@@ -9,7 +9,6 @@
 					<div style="overflow: auto;">
 						<table class="table table-striped" style="text-align: center;">
 							<thead>
-								<th>Main Image</th>
 								<th>Title</th>
 								<th>Views</th>
 								<th>Likes</th>
@@ -19,13 +18,12 @@
 							<tbody>
 								@foreach($posts as $post)
 									<tr>
-										<td><img src="{{ $post->featured_image_url }}" class="regular-image"></td>
-										<td>{{ $post->title }}</td>
-										<td>{{ $posts->views }}</td>
-										<td>{{ $posts->likes }}</td>
-										<td>{{ $posts->created_at->format('m D y') }}</td>
-										<td>
-											<a href="/admin/products/edit/{{ $product->id }}" class="genric-btn info small">Edit</a>
+										<td style="min-width: 150px;">{{ $post->title }}</td>
+										<td style="min-width: 50px;">{{ $post->views }}</td>
+										<td style="min-width: 50px;">{{ $post->likes }}</td>
+										<td style="min-width: 50px;">{{ $post->created_at->format('M d, Y') }}</td>
+										<td style="min-width: 100px;"> 
+											<a href="/admin/posts/edit/{{ $post->id }}" class="genric-btn info small">Edit</a>
 											<button href="" class="genric-btn danger small">Delete</button>
 										</td>
 									</tr>

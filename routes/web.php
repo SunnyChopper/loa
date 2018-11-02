@@ -53,6 +53,9 @@ Route::get('/admin/posts/view', 'AdminController@view_blog_posts');
 Route::get('/admin/posts/new', 'AdminController@new_blog_post');
 Route::get('/admin/posts/stats', 'AdminController@blog_post_stats');
 
+// Blog post functions
+Route::post('/admin/posts/create', 'PostsController@create');
+
 // Private site
 Route::get('/members/dashboard/', 'DashboardController@index');
 Route::get('/members/tools/', 'DashboardController@tools');
