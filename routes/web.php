@@ -20,6 +20,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/free-tools', 'PagesController@tools');
 Route::get('/free-advice', 'PagesController@blog');
+Route::get('/posts/{post_id}/{slug}', 'PagesController@view_post');
 Route::get('/shop', 'PagesController@shop');
 Route::get('/product/{product_id}', 'PagesController@product');
 Route::get('/courses', 'PagesController@courses');
@@ -41,6 +42,7 @@ Route::get('/thank-you', 'PagesController@thank_you');
 
 // Admin site
 Route::get('/admin', 'AdminController@index');
+Route::get('/admin/switch', 'AdminController@switch');
 Route::post('/admin/login', 'AdminController@login');
 Route::get('/admin/dashboard', 'AdminController@dashboard');
 Route::get('/admin/products/view', 'AdminController@view_products');
@@ -51,10 +53,14 @@ Route::get('/admin/orders/view', 'AdminController@view_orders');
 Route::get('/admin/orders/edit/{order_id}', 'AdminController@edit_order');
 Route::get('/admin/posts/view', 'AdminController@view_blog_posts');
 Route::get('/admin/posts/new', 'AdminController@new_blog_post');
+Route::get('/admin/posts/edit/{post_id}', 'AdminController@edit_blog_post');
 Route::get('/admin/posts/stats', 'AdminController@blog_post_stats');
 
 // Blog post functions
 Route::post('/admin/posts/create', 'PostsController@create');
+Route::post('/admin/posts/create/draft', 'PostsController@save_draft');
+Route::post('/admin/posts/update', 'PostsController@update');
+Route::post('/admin/posts/delete', 'PostsController@delete');
 
 // Private site
 Route::get('/members/dashboard/', 'DashboardController@index');

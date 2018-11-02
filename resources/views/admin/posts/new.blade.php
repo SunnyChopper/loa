@@ -4,7 +4,7 @@
 	@include('layouts.hero')
 	
 	<div class="container mt-64 mb-64">
-		<form id="new_blog_post_form" method="post" enctype="multipart/form-data">
+		<form id="new_blog_post_form" action="/admin/posts/create" method="post" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<input type="hidden" value="" name="post_id"> 
 			<div class="row">
@@ -121,7 +121,7 @@
 				e.preventDefault();
 				$("input[name=title]").css('border', '2px solid red');
 				$("#title_error").show();
-			}
+			}	
 
 			if (tinyMCE.get('post_body').getContent() == "") {
 				e.preventDefault();
