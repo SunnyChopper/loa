@@ -2,6 +2,7 @@
 
 @section('content')
 	@include('layouts.hero')
+	@include('pages.modals.accountability-tool-info')
 	<div class="container mt-64 mb-64">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -12,7 +13,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+			{{-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 				<a href="/members/register" class="black-link">
 					<div class="image-box">
 						<div class="image">
@@ -25,20 +26,29 @@
 						</div>
 					</div>
 				</a>
-			</div>
+			</div> --}}
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				<div class="image-box-disabled">
+				<div class="image-box-disabled" id="accountability_tool_box">
 					<div class="image">
-						<img src="https://i.ytimg.com/vi/zIqcrGpqO2g/maxresdefault.jpg" class="regular-image">
+						<img src="{{ URL::asset('img/Accountability-Tool-Cover.jpg') }}" class="regular-image">
 					</div>
 
 					<div class="info">
 						<h4 class="text-center">Accountability Tool</h4>
 						<p class="text-center mb-0 mt-8">Often times, we all need someone to push us and hold us accountable to make sure we get that project done. This is where Wolf Squad can help you do exactly that.</p>
-						<a href="" class="genric-btn disable center-button mt-16" style="font-size: 14px">Coming Soon</a>
+						<button type="button" class="genric-btn primary center-button mt-16" style="font-size: 14px; width: 100%;">Learn More</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('page_js')
+	<script type="text/javascript">
+		$("#accountability_tool_box").on('click', function() {
+			// Show modal
+			$("#accountability_tool_info_modal").modal();
+		});
+	</script>
 @endsection

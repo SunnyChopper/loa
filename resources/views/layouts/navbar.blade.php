@@ -42,8 +42,8 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/free-tools">Free Tools</a></li>
 						<li><a href="/free-advice">Free Advice</a></li>
-						<li><a href="/courses">Courses</a></li>
-						<li><a href="/events">Events</a></li>
+						{{-- <li><a href="/courses">Courses</a></li> --}}
+						{{-- <li><a href="/events">Events</a></li> --}}
 						<li><a href="/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li class="menu-has-children"><a href="/members/login">Members</a>
@@ -59,8 +59,8 @@
 						<li><a href="/free-advice">Free Advice</a></li>
 						<li><a href="/members/community">Community</a></li>
 						<li><a href="/members/tools">Tools</a></li>
-						<li><a href="/members/courses">Courses</a></li>
-						<li><a href="/events">Events</a></li>
+						{{-- <li><a href="/members/courses">Courses</a></li> --}}
+						{{-- <li><a href="/events">Events</a></li> --}}
 						<li><a href="/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li class="menu-has-children"><a href="/members/profile">{{ Auth::user()->first_name }}</a>
