@@ -73,6 +73,14 @@ class AdminController extends Controller
     }
 
     public function dashboard() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Admin Dashboard";
 
@@ -80,6 +88,14 @@ class AdminController extends Controller
     }
 
     public function view_orders() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Orders";
 
@@ -94,6 +110,14 @@ class AdminController extends Controller
     }
 
     public function edit_order($order_id) {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Edit Product";
 
@@ -108,6 +132,14 @@ class AdminController extends Controller
     }
 
     public function view_blog_posts() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Blog Posts";
 
@@ -120,6 +152,14 @@ class AdminController extends Controller
     }
 
     public function new_blog_post() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "New Post";
 
@@ -127,6 +167,14 @@ class AdminController extends Controller
     }
 
     public function edit_blog_post($post_id) {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Edit Post";
 
@@ -138,6 +186,14 @@ class AdminController extends Controller
     }
 
     public function blog_post_stats() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Blog Post Stats";
 
@@ -153,6 +209,14 @@ class AdminController extends Controller
     }
 
     public function view_products() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Active Products";
 
@@ -164,6 +228,14 @@ class AdminController extends Controller
     }
 
     public function view_product_stats() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Product Stats";
 
@@ -178,6 +250,14 @@ class AdminController extends Controller
     }
 
     public function new_product() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Create New Product";
 
@@ -185,6 +265,14 @@ class AdminController extends Controller
     }
 
     public function edit_product($product_id) {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
         // Dynamic page features
         $page_header = "Edit Product";
 
@@ -193,5 +281,21 @@ class AdminController extends Controller
         $product = $product_helper->get_product_by_id();
 
         return view('admin.products.edit')->with('page_header', $page_header)->with('product', $product);
+    }
+
+    private function check_login() {
+        // Get session variables
+        if (Auth::guest()) {
+            // Redirect
+            return 1;
+        } elseif (!Session::has('backend_auth')) {
+            // Redirect
+            return 1;
+        } else {
+            if (Session::get('backend_auth') == 0) {
+                // Redirect
+                return 2;
+            }
+        }
     }
 }

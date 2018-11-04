@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 col-12">
 				<div class="well">
-					<form>
+					<form id="update_order_form" action="/admin/orders/update" method="post">
 						{{ csrf_field() }}
 						<input type="hidden" name="order_id" value="{{ $order->id }}">
 						<h3>Basic Information</h3>
@@ -102,11 +102,14 @@
 
 							<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 								<h4>{{ $product_info->product_name }}</h4>
-								<p >
+								<p>
 									@foreach(json_decode($order->order_selectors) as $selector)
 										{{ $selector }}<br>
 									@endforeach
 								</p>
+
+								<h5>Quantity</h5>
+								<p>{{ $order->quantity }}</p>
 
 								<h5>Digital Product?</h5>
 								@if($product_info->digital_product == 1)
@@ -124,7 +127,7 @@
 							<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 								<div class="form-group">
 									<h5 class="mb-2">Order Status:</h5>
-									<select class="form-control">
+									<select class="form-control" form="update_order_form" name="order_status">
 										<option value="1" <?php if($order->order_status == 1) { echo "selected"; } ?>>Need to Ship</option>
 										<option value="2" <?php if($order->order_status == 2) { echo "selected"; } ?>>Shipped</option>
 										<option value="3" <?php if($order->order_status == 3) { echo "selected"; } ?>>Refunded</option>
@@ -143,7 +146,7 @@
 
 						<div class="row mt-32">
 							<div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-12 col-12">
-								<a href="" class="genric-btn  primary large rounded center-button" style="font-size: 20px;">Update Order</a>
+								<input type="submit" value="Update Order" class="genric-btn primary large rounded center-button" style="font-size: 20px;">
 							</div>
 						</div>
 					</form>

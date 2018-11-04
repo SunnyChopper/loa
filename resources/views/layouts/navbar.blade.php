@@ -34,7 +34,7 @@
 	<div class="container main-menu">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
-				<a href="index.html"><img src="{{ URL::asset('img/logo.png') }}" alt="" title="" /></a>
+				<a href="/"><img src="{{ URL::asset('img/logo.png') }}" alt="" title="" style="max-width: 150px;" /></a>
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">

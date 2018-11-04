@@ -15,4 +15,11 @@ class ProductsController extends Controller
     	// Redirect
     	return redirect(url('/admin/products/view'));
     }
+
+    public function delete(Request $data) {
+    	$product_id = $data->product_id;
+    	$product_helper = new ProductHelper($product_id);
+    	$product_helper->delete_product();
+    	return redirect()->back();
+    }
 }

@@ -176,6 +176,15 @@ class ProductHelper {
 		return $product->save();
 	}
 
+	public function delete_product() {
+		// Get product
+		$product = Product::where('id', $this->product_id)->first();
+
+		// Change
+		$product->is_active = 0;
+		$product->save();
+	}
+
 }
 
 ?>

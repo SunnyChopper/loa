@@ -56,6 +56,13 @@ Route::get('/admin/posts/new', 'AdminController@new_blog_post');
 Route::get('/admin/posts/edit/{post_id}', 'AdminController@edit_blog_post');
 Route::get('/admin/posts/stats', 'AdminController@blog_post_stats');
 
+// Product functions
+Route::post('/admin/products/delete', 'ProductsController@delete');
+
+// Order functions
+Route::post('/admin/orders/update', 'OrdersController@update_order');
+Route::get('/admin/orders/full/{order_id}', 'OrdersController@get_order');
+
 // Blog post functions
 Route::post('/admin/posts/create', 'PostsController@create');
 Route::post('/admin/posts/create/draft', 'PostsController@save_draft');

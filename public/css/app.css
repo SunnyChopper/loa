@@ -323,6 +323,10 @@
 		border: 2px solid #EEEEEE;
 		border-radius: 8px;
 	}
+
+	#mobile-nav-toggle {
+		padding-top: 25px;
+	}
 }
 
 /*-------------------------------*\

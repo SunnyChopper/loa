@@ -2,6 +2,7 @@
 
 @section('content')
 	@include('layouts.hero')
+	@include('admin.products.modals.delete-product');
 	<div class="container mt-32 mb-32">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -29,7 +30,7 @@
 									<td>{{ $product->reviews }}</td>
 									<td>
 										<a href="/admin/products/edit/{{ $product->id }}" class="genric-btn info small">Edit</a>
-										<button href="" class="genric-btn danger small">Delete</button>
+										<button id="{{ $product->id }}" class="genric-btn danger small delete_product_button">Delete</button>
 									</td>
 								</tr>
 							@endforeach
@@ -39,4 +40,19 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('page_js')
+	<script type="text/javascript">
+		$(".delete_product_button").on('click', function() {
+			// Get the product id
+			var product_id = $(this).attr('id');
+
+			// Change the hidden input value
+			$("#product_id_delete_modal").val(product_id);
+
+			// Show the modal
+			$("#delete_product_modal").modal();
+		});
+	</script>
 @endsection

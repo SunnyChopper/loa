@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table = "orders";
-    public $primaryKey = "user_id";
+    public $primaryKey = "id";
 }

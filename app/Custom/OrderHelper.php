@@ -31,6 +31,7 @@ class OrderHelper {
 	private $order_zipcode;
 	private $order_status;
 	private $order_tracking_num;
+	private $quantity;
 	private $created_at;
 	private $updated_at;
 
@@ -54,6 +55,7 @@ class OrderHelper {
 		$this->order_zipcode = "";
 		$this->order_status = 0;
 		$this->order_tracking_num = "";
+		$this->quantity = 0;
 		$this->created_at = "";
 		$this->updated_at = "";
 	}
@@ -73,6 +75,7 @@ class OrderHelper {
 		$this->order_country = $data["order_country"];
 		$this->order_zipcode = $data["order_zipcode"];
 		$this->customer_id = $data["customer_id"];
+		$this->quantity = $data["quantity"];
 		$this->order_status = 1;
 		$this->order_tracking_num = "";
 
@@ -109,6 +112,7 @@ class OrderHelper {
 		$order->order_zipcode = $this->order_zipcode;
 		$order->order_status = $this->order_status;
 		$order->order_tracking_num = $this->order_tracking_num;
+		$order->quantity = $this->quantity;
 		$order->save();
 
 		// Update variables
@@ -163,12 +167,16 @@ class OrderHelper {
 		return Order::where('status', 4)->get('id', 'order_first_name', 'order_last_name', 'order_country');
 	}
 
+	public function get_order_by_id($order_id) {
+		return Order::where('id', $order_id)->first();
+	}
+
 	public function edit_status($status) {
 		if ($this->order_id == 0) {
 			return "error";
 		} else {
 			$order = Order::where('id', $this->order_id)->first();
-			$order->status = $status;
+			$order->order_status = $status;
 			$order->save();
 
 			$this->updated_at = $order->updated_at;
