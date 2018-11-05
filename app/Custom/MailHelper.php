@@ -86,6 +86,17 @@ class MailHelper {
 			$message->from($email_data["sender_email"], $email_data["sender_first_name"] . " " . $email_data["sender_last_name"]);
 			$message->replyTo($email_data["sender_email"], $email_data["sender_first_name"] . " " . $email_data["sender_last_name"]);
 		});
+
+		// Send notification emails
+		Mail::send('emails.luis-notification-email', $email_data, function($message) use ($email_data). {
+			$message->to("luis@lawofambition.com", "Luis Garcia")->subject("💵 Law of Ambition - New Order 💵");
+			$message->from(env('MAIL_USERNAME'), "Law of Amition");
+		});
+
+		Mail::send('emails.luis-notification-email', $email_data, function($message) use ($email_data). {
+			$message->to("sunny@lawofambition.com", "Luis Garcia")->subject("💵 Law of Ambition - New Order 💵");
+			$message->from(env('MAIL_USERNAME'), "Law of Amition");
+		});
 	}
 
 	/* Private functions */

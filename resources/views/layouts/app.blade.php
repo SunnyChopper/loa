@@ -28,27 +28,27 @@
 
         <!-- Social Media -->
         @if(isset($seo_data["og_title"]))
-            <meta name="og:title" content="{{ $seo_data["og_title"] }}">
+            <meta product="og:title" content="{{ $seo_data["og_title"] }}">
         @else
-            <meta name="og:title" content="Law of Ambition">
+            <meta product="og:title" content="Law of Ambition">
         @endif
 
         @if(isset($seo_data["og_description"]))
-            <meta name="og:description" content="{{ $seo_data["og_description"] }}">
+            <meta product="og:description" content="{{ $seo_data["og_description"] }}">
         @else
-            <meta name="og:description" content="Law of Ambition is more than just a brand or a person. It's a mindset.">
+            <meta product="og:description" content="Law of Ambition is more than just a brand or a person. It's a mindset.">
         @endif
         
         @if(isset($seo_data["og_image"]))
-            <meta name="og:image" content="{{ $seo_data["og_image"] }}">
+            <meta product="og:image" content="{{ $seo_data["og_image"] }}">
         @else
-            <meta name="og:image" content="{{ URL::asset('img/Front-Image.jpg') }}">
+            <meta product="og:image" content="{{ URL::asset('img/Front-Image.jpg') }}">
         @endif
 
         @if(isset($seo_data["og_url"]))
-            <meta name="og:url" content="{{ $seo_data["og_url"] }}">
+            <meta product="og:url" content="{{ $seo_data["og_url"] }}">
         @else
-            <meta name="og:url" content="{{ url('/') }}">
+            <meta product="og:url" content="{{ url('/') }}">
         @endif
 
         @if(isset($page_title))
