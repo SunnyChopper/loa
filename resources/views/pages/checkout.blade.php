@@ -47,7 +47,7 @@
 						</div>
 					</div>
 
-					<h3 class="mt-32">Step 2: Billing Information</h3>
+					<h3 class="mt-32">Step 2: Shipping Information</h3>
 					<hr />
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
