@@ -95,7 +95,7 @@ class DashboardController extends Controller
     	// Dynamic page elements
     	$page_header = "Settings";
 
-    	return view('dashboard.courses')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    	return view('dashboard.settings')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
 
     public function checkAuth() {
