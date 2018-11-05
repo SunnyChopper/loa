@@ -20,7 +20,7 @@
         @if(isset($page_description))
             <meta name="description" content="{{ $page_description }}">
         @else
-            <meta name="description" content="Law of Ambition is more than just a brand or a person. It's a mindset.">
+            <meta name="description" content="No sympathy for the lazy.">
         @endif
 
         <!-- meta character set -->
@@ -28,27 +28,27 @@
 
         <!-- Social Media -->
         @if(isset($seo_data["og_title"]))
-            <meta product="og:title" content="{{ $seo_data["og_title"] }}">
+            <meta property="og:title" content="{{ $seo_data["og_title"] }}">
         @else
-            <meta product="og:title" content="Law of Ambition">
+            <meta property="og:title" content="Law of Ambition">
         @endif
 
         @if(isset($seo_data["og_description"]))
-            <meta product="og:description" content="{{ $seo_data["og_description"] }}">
+            <meta property="og:description" content="{{ $seo_data["og_description"] }}">
         @else
-            <meta product="og:description" content="Law of Ambition is more than just a brand or a person. It's a mindset.">
+            <meta property="og:description" content="No sympathy for the lazy.">
         @endif
         
         @if(isset($seo_data["og_image"]))
-            <meta product="og:image" content="{{ $seo_data["og_image"] }}">
+            <meta property="og:image" content="{{ $seo_data["og_image"] }}">
         @else
-            <meta product="og:image" content="{{ URL::asset('img/Front-Image.jpg') }}">
+            <meta property="og:image" content="{{ URL::asset('img/Front-Image.jpg') }}">
         @endif
 
         @if(isset($seo_data["og_url"]))
-            <meta product="og:url" content="{{ $seo_data["og_url"] }}">
+            <meta property="og:url" content="{{ $seo_data["og_url"] }}">
         @else
-            <meta product="og:url" content="{{ url('/') }}">
+            <meta property="og:url" content="{{ url('/') }}">
         @endif
 
         @if(isset($page_title))
