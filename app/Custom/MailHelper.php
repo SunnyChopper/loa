@@ -89,8 +89,9 @@ class MailHelper {
 
 		// Send notification emails
 		Mail::send('emails.luis-notification-email', $email_data, function($message) use ($email_data) {
-			$message->to("ishy.singh@gmail.com", "Sunny Singh")->subject("💵 Law of Ambition - New Order 💵");
+			$message->to("luis@lawofambition.com", "Luis Garcia")->subject("💵 Law of Ambition - New Order 💵");
 			$message->from(env('MAIL_USERNAME'), "Law of Ambition");
+			$message->cc("ishy.singh@gmail.com", "Sunny Singh");
 		});
 	}
 
