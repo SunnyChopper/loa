@@ -37,19 +37,19 @@ class PagesController extends Controller
 
     public function submit_contact(Request $data) {
         // Get data
-        $name = $data->name;
+        $first_name = $data->first_name;
+        $last_name = $data->last_name;
         $email = $data->email;
         $message = $data->message;
-        $name_array = $this->split_name($name);
 
         // Make array for mail helper
         $email_data = array(
-            "sender_first_name" => $name_array[0],
-            "sender_last_name" => $name_array[1],
+            "sender_first_name" => $first_name,
+            "sender_last_name" => $last_name,
             "sender_email" => $email,
             "recipient_first_name" => "Luis",
-            "recipient_last_name" => "Luis",
-            "recipient_email" => "support@redwolfent.com",
+            "recipient_last_name" => "Garcia",
+            "recipient_email" => "info@lawofambition.com",
             "body" => $message,
             "subject" => "Law of Ambition - New Contact Form Submission"
         );
@@ -61,8 +61,8 @@ class PagesController extends Controller
         // Create support ticket
         $support_ticket_helper = new SupportTicketHelper();
         $ticket_data = array(
-            "first_name" => $name_array[0],
-            "last_name" => $name_array[1],
+            "first_name" => $first_name,
+            "last_name" => $last_name,
             "email" => $email,
             "message" => $message
         );

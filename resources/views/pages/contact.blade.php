@@ -11,10 +11,17 @@
 					<form id="contact_form" action="/contact/submit" method="post">
 						{{ csrf_field() }}
 						<div class="row">
-							<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 								<div class="form-group">
-									<h5 class="mb-2">Name:</h5>
-									<input type="text" name="name" class="form-control" required>
+									<h5 class="mb-2">First Name:</h5>
+									<input type="text" name="first_name" class="form-control" required>
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<div class="form-group">
+									<h5 class="mb-2">Last Name:</h5>
+									<input type="text" name="last_name" class="form-control" required>
 								</div>
 							</div>
 
