@@ -17,11 +17,12 @@
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-12 col-12">
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<p><b>Name: </b> <span id="full_order_first_name"></span></p>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Name: </b> <br><span id="full_order_name"></span></p>
 							</div>
-
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 								<p><b>Email Address: </b> <span id="full_order_order_email"></span></p>
 							</div>
 						</div>
@@ -35,32 +36,36 @@
 						<hr />
 
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5><b>Order Status: </b> <span id="full_order_order_status"></span></h5>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Quantity: </b> <span id="full_order_quantity"></span></p>
 							</div>
 
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5><b>Order Tracking Number: </b> <span id="full_order_order_tracking_num"></span></h5>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5><b>Digital Product: </b> <span id="full_order_order_status"></span></h5>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Order Status: </b> <span id="full_order_order_status"></span></p>
 							</div>
 
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5><b>Order IP: </b> <span id="full_order_order_tracking_num"></span></h5>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Order Tracking Number: </b> <span id="full_order_order_tracking_num"></span></p>
 							</div>
 						</div>
 
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5><b>Is Guest: </b> <span id="full_order_order_status"></span></h5>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Digital Product: </b> <span id="full_order_digital_product"></span></p>
 							</div>
 
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5><b>User ID: </b> <span id="full_order_order_tracking_num"></span></h5>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Order IP: </b> <span id="full_order_order_ip"></span></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Is Guest: </b> <span id="full_order_is_guest"></span></p>
+							</div>
+
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>User ID: </b> <span id="full_order_user_id"></span></p>
 							</div>
 						</div>
 					</div>

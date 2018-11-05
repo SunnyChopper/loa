@@ -62,15 +62,64 @@
 				success: function(data) {
 					// Convert JSON into array
 					var order_data = JSON.parse(data);
+
+					// Conditional text
+					var order_status = "";
+					if (order_data["order_status"] == 1) {
+						order_status = "Need to be Shipped";
+					} else if (order_data["order_status"] == 2) {
+						order_status = "Shipped";
+					} else if (order_data["order_status"] == 3) {
+						order_status = "Refunded";
+					} else if (order_data["order_status"] == 4) {
+						order_status = "Returned";
+					} else {
+						order_status = "Unknown";
+					}
+
+					var digital_product = "";
+					if (order_data["digital_product"] == 1) {
+						digital_product = "Yes";
+					} else {
+						digital_product = "No";
+					}
+
+					var is_guest = "";
+					if (order_data["is_guest"] == 1) {
+						is_guest = "Yes";
+					} else {
+						is_guest = "No";
+					}
+
+					var order_selectors = "";
+					var json_data = JSON.parse(order_data["order_selectors"]);
+					var keys = Object.keys(json_data);
+					var length = keys.length;
+					for (var i = 0; i < length; i++) {
+						order_selectors += json_data[keys[i]];
+						if (i != (length - 1)) {
+							order_selectors += ", ";
+						}
+					}
 					
 					// Set data
 					$("#full_order_order_id").html(order_id);
 					$("#full_order_featured_image_url").attr('src', order_data["featured_image_url"]);
 					$("#full_order_product_name").html(order_data["product_name"]);
-					$("#full_order_selectors").html(order_data["order_selectors"]);
+					$("#full_order_selectors").html(order_selectors);
+					$("#full_order_name").html(order_data["order_first_name"] + " " + order_data["order_last_name"]);
+					$("#full_order_order_email").html(order_data["order_email"]);
+					$("#full_order_order_address").html(order_data["order_address"] + ", " + order_data["order_city"] + " " + order_data["order_state"] + ", " + order_data["order_zipcode"]);
+					$("#full_order_order_status").html(order_status);
+					$("#full_order_order_tracking_num").html(order_data["order_tracking_num"]);
+					$("#full_order_digital_product").html(digital_product);
+					$("#full_order_order_ip").html(order_data["order_ip"]);
+					$("#full_order_is_guest").html(is_guest);
+					$("#full_order_user_id").html(order_data["user_id"]);
+					$("#full_order_quantity").html(order_data["quantity"]);
 
 					// Show modal
-					$("#view_full_order_modal").modal();	
+					$("#view_full_order_modal").modal();
 				}
 			});
 		});

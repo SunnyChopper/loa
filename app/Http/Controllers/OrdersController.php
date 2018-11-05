@@ -58,7 +58,7 @@ class OrdersController extends Controller
     		"order_tracking_num" => $order->order_tracking_num,
     		"created_at" => $order->created_at,
     		"updated_at" => $order->updated_at,
-    		"order_selctors" => $order->order_selctors,
+    		"order_selectors" => $order->order_selectors,
     		"order_city" => $order->order_city,
     		"quantity" => $order->quantity,
             "product_name" => $product->product_name,
