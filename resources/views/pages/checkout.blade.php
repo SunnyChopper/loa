@@ -237,10 +237,20 @@
 							</div>
 						</div> --}}
 
-						<input type="submit" value="Complete Checkout" class="genric-btn primary circle large center-button mt-16 mb-0" style="font-size: 16px;"></a>
+						<input id="checkout_button" type="submit" value="Complete Checkout" class="genric-btn primary circle large center-button mt-16 mb-0" style="font-size: 16px;"></a>
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
+@endsection
+
+@section('page_js')
+	<script type="text/javascript">
+		$("#checkout_form").on('submit', function() {
+			// Disable the button
+			$("#checkout_button").prop('disabled', true);
+			$("#checkout_button").val('Processing...');
+		});
+	</script>
 @endsection
