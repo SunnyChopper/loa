@@ -19,7 +19,7 @@
 						{{-- <li><a href="/free-tools">Free Tools</a></li> --}}
 						{{-- <li><a href="/free-advice">Free Advice</a></li> --}}
 						{{-- <li><a href="/courses">Courses</a></li> --}}
-						<li><a href="/shop">Ambition Shop</a></li>
+						<li><a href="/shop">Shop</a></li>
 					</ul>
 				</div>
 			</div>

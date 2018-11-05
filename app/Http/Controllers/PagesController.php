@@ -130,7 +130,7 @@ class PagesController extends Controller
 
     public function shop() {
     	// SEO Data
-    	$page_title = "Ambition Shop";
+    	$page_title = "Shop";
     	$page_description = "Show off that you're part of Wolf Squad. Take pride in the work and effort that you make.";
 
     	// Dynamic page features
