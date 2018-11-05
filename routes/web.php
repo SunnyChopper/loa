@@ -29,6 +29,7 @@ Route::get('/members/login', 'PagesController@login');
 Route::get('/members/register', 'PagesController@register');
 Route::get('/members/logout', 'UsersController@logout');
 Route::post('/contact/submit', 'PagesController@submit_contact');
+Route::get('/contact/success', 'PagesController@thank_you_post_contact');
 
 // Cart functions
 Route::post('/cart/add', 'CartController@add_to_cart');

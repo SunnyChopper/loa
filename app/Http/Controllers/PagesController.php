@@ -69,7 +69,14 @@ class PagesController extends Controller
         $support_ticket_helper->create_contact_submission($ticket_data);
 
         // Go to thank you submission page
-        return "Got it, I will return back to you as soon as humanly possible.";
+        return redirect(url('/contact/success'));
+    }
+
+    public function thank_you_post_contact() {
+        // Dynamic page features
+        $page_header = "Got it";
+
+        return view('pages.thank-you-contact')->with('page_header', $page_header);
     }
 
     public function tools() {
