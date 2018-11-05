@@ -8,7 +8,7 @@
 				<div class="well">
 					<h3 class="text-center">My Team and I Will Get Back to You Shortly</h3>
 					<hr />
-					<form action="/contact/submit" method="post">
+					<form id="contact_form" action="/contact/submit" method="post">
 						{{ csrf_field() }}
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
