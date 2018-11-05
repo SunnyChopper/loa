@@ -75,7 +75,7 @@ class MailHelper {
 		Mail::send('emails.contact-email', $email_data, function($message) use ($email_data) {
 			$message->to("info@lawofambition.com", "Law of Ambition")->subject($email_data["subject"]);
 			$message->from("info@lawofambition.com", "Law of Ambition");
-			$message->replyTo($email_data["sender_email"], $email_data["first_name"] . " " . $email_data["last_name"]);
+			$message->replyTo($email_data["sender_email"], $email_data["sender_first_name"] . " " . $email_data["sender_last_name"]);
 		});
 	}
 
