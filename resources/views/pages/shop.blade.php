@@ -16,7 +16,7 @@
 			<div class="row">
 				@if(count($products) > 0)
 					@foreach($products as $product)
-						<div class="col-lg-3 col-md-3 col-sm-6 col-6">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-12">
 							<a href="/product/{{ $product->id }}" class="black-link">
 								<div class="image-box">
 									<div class="image">

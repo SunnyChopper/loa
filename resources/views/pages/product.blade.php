@@ -9,7 +9,7 @@
 				<img src="{{ $product->featured_image_url }}" class="regular-image">
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-8 mb-8 p-32" style="border: 2px solid #EEEEEE;">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-8 mb-8 p-32" style="border: 2px solid #EEEEEE;">
 				<form id="add_to_cart_form" action="/cart/add" method="POST">
 					{{ csrf_field() }}
 					<input type="hidden" name="product_id" value="{{ $product->id }}">
