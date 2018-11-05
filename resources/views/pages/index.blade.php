@@ -31,7 +31,7 @@
 	<div class="container mt-64 mb-64">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-				<img src="{{ URL::asset('img/Front-Image.JPG') }}" class="regular-image">
+				<img src="{{ URL::asset('img/Front-Image.jpg') }}" class="regular-image">
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<h3>Helping Entrepreneurs Unlock Their Inner Ambition And Start Achieving</h3>
