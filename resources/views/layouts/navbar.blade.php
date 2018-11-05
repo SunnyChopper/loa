@@ -35,15 +35,15 @@
 			<div id="logo">
 				<a href="/"><img src="{{ URL::asset('img/logo.png') }}" alt="" title="" style="max-width: 150px;" /></a>
 			</div>
-			<nav id="nav-menu-container">
+			{{-- <nav id="nav-menu-container">
 				<ul class="nav-menu">
 					@if(Auth::guest())
 						<li><a href="/">Home</a></li>
 						<li><a href="/free-tools">Free Tools</a></li>
 						<li><a href="/free-advice">Free Advice</a></li>
-						<li><a href="/courses">Courses</a></li>
+						<li><a href="/courses">Courses</a></li> --}}
 						{{-- <li><a href="/events">Events</a></li> --}}
-						<li><a href="/shop">Ambition Shop</a></li>
+						{{-- <li><a href="/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li class="menu-has-children"><a href="/members/login">Members</a>
 							<ul>
@@ -55,12 +55,12 @@
 						@include('layouts.backend-menu')
 					@else
 						<li><a href="/members/dashboard">Dashboard</a></li>
-						<li><a href="/free-advice">Free Advice</a></li>
+						<li><a href="/free-advice">Free Advice</a></li> --}}
 						{{-- <li><a href="/members/community">Community</a></li> --}}
-						<li><a href="/free-tools">Tools</a></li>
-						<li><a href="/courses">Courses</a></li>
+						{{-- <li><a href="/free-tools">Tools</a></li>
+						<li><a href="/courses">Courses</a></li> --}}
 						{{-- <li><a href="/events">Events</a></li> --}}
-						<li><a href="/shop">Ambition Shop</a></li>
+						{{-- <li><a href="/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>
 						<li class="menu-has-children"><a href="/members/profile">{{ Auth::user()->first_name }}</a>
 							<ul>
@@ -70,7 +70,7 @@
 						</li>
 					@endif
 				</ul>
-			</nav>
+			</nav> --}}
 		</div>
 	</div>
 </header>
