@@ -4,7 +4,7 @@
 	@include('layouts.hero')
 	<div class="container mt-32 mb-32">
 		<div class="row">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+			<div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-12 col-xs-12">
 				<img src="{{ $post->featured_image_url }}" class="regular-image mb-16">
 				<div id="post-body">
 					{!! $post->post_body !!}
