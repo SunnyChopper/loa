@@ -11,6 +11,8 @@ use App\Custom\ProductHelper;
 use App\Custom\CartHelper;
 use App\Custom\SiteStatsHelper;
 use App\Custom\BlogPostHelper;
+use App\Custom\MailHelper;
+use App\Custom\SupportTicketHelper;
 
 class PagesController extends Controller
 {
@@ -31,6 +33,43 @@ class PagesController extends Controller
     	$page_header = "Contact";
 
     	return view('pages.contact')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    }
+
+    public function submit_contact(Request $data) {
+        // Get data
+        $name = $data->name;
+        $email = $data->email;
+        $message = $data->message;
+        $name_array = $this->split_name($name);
+
+        // Make array for mail helper
+        $email_data = array(
+            "sender_first_name" => $name_array[0],
+            "sender_last_name" => $name_array[1],
+            "sender_email" => $email,
+            "recipient_first_name" => "Luis",
+            "recipient_last_name" => "Luis",
+            "recipient_email" => "support@redwolfent.com",
+            "body" => $message,
+            "subject" => "Law of Ambition - New Contact Form Submission"
+        );
+
+        // Mail helper
+        $mail_helper = new MailHelper($email_data);
+        $mail_helper->send_contact_email();
+
+        // Create support ticket
+        $support_ticket_helper = new SupportTicketHelper();
+        $ticket_data = array(
+            "first_name" => $name_array[0],
+            "last_name" => $name_array[1],
+            "email" => $email,
+            "message" => $message
+        );
+        $support_ticket_helper->create_contact_submission($ticket_data);
+
+        // Go to thank you submission page
+        return "Got it, I will return back to you as soon as humanly possible.";
     }
 
     public function tools() {
@@ -198,5 +237,13 @@ class PagesController extends Controller
     	$page_header = "Join Wolf Squad";
 
     	return view('pages.register')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    }
+
+    /* Private functions */
+    private function split_name($name) {
+        $name = trim($name);
+        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+        $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+        return array($first_name, $last_name);
     }
 }
