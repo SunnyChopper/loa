@@ -9,7 +9,7 @@
 					</div>
 					<div class="desc-wrap">
 						<p>Leverage the power of technology and the Ambition mindsets to become a better entrepreneur.</p>
-						<a href="/free-tools">Browse Free Tools</a>
+						<a href="">Browse Free Tools</a>
 					</div>
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="desc-wrap">
 						<p>Learn how I built my Instagram empire, a social media marketing agency, and how I launch businesses.</p>
-						<a href="/courses">Browse Courses</a>
+						<a href="">Browse Courses</a>
 					</div>
 				</div>
 			</div>
