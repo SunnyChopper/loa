@@ -20,7 +20,7 @@
 					</div>
 					<div class="desc-wrap">
 						<p>The Law of Ambition is more than just the mindsets and what I teach, it's a community of hustlers. Best part, it's free.</p>
-						<a href="#">Join Wolf Squad</a>
+						<a href="/members/register">Join Wolf Squad</a>
 					</div>
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="desc-wrap">
 						<p>Learn how I built my Instagram empire, a social media marketing agency, and how I launch businesses.</p>
-						<a href="#">Browse Courses</a>
+						<a href="/courses">Browse Courses</a>
 					</div>
 				</div>
 			</div>

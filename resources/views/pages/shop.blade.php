@@ -24,7 +24,6 @@
 									</div>
 									<div class="info">
 										<h5 class="text-center">{{ $product->product_name }}</h5>
-										<p class="text-center black mb-0">{{ $product->product_description }}</p>
 										<h4 class='text-center green mt-8 mb-16'>${{ $product->product_price }}</h4>
 										<a href="/product/{{ $product->id }}" class="genric-btn primary round medium center-button" style="font-size: 14px;">View Product <span class="lnr lnr-arrow-right"></span></a>
 									</div>

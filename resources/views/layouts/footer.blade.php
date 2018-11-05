@@ -2,7 +2,7 @@
 <footer class="footer-area section-gap">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-2 col-md-6 col-sm-6">
+			{{-- <div class="col-lg-2 col-md-6 col-sm-6">
 				<div class="single-footer-widget">
 					<h4>Legal</h4>
 					<ul>
@@ -11,14 +11,14 @@
 						<li><a href="#">Cookie Policy</a></li>
 					</ul>
 				</div>
-			</div>
+			</div> --}}
 			<div class="col-lg-2 col-md-6 col-sm-6">
 				<div class="single-footer-widget">
 					<h4>Quick links</h4>
 					<ul>
 						<li><a href="/free-tools">Free Tools</a></li>
 						<li><a href="/free-advice">Free Advice</a></li>
-						<li><a href="/courses">Courses</a></li>
+						{{-- <li><a href="/courses">Courses</a></li> --}}
 						<li><a href="/shop">Ambition Shop</a></li>
 					</ul>
 				</div>
@@ -37,13 +37,13 @@
 				<div class="single-footer-widget">
 					<h4>Resources</h4>
 					<ul>
-						<li><a href="#">Jobs & Careers</a></li>
-						<li><a href="#">Hire My Agency</a></li>
-						<li><a href="#">Guest Post</a></li>
+						{{-- <li><a href="#">Jobs & Careers</a></li> --}}
+						<li><a href="https://www.redwolfent.com">Hire My Agency</a></li>
+						{{-- <li><a href="#">Guest Post</a></li> --}}
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-4  col-md-6 col-sm-6">
+			{{-- <div class="col-lg-4  col-md-6 col-sm-6">
 				<div class="single-footer-widget">
 					<h4>Newsletter</h4>
 					<p>Get weekly entrepreneurship and mindset tips</p>
@@ -61,18 +61,17 @@
 						</form> 
 					</div>
 				</div>
-			</div>
+			</div> --}}
 		</div>
 		<div class="footer-bottom row align-items-center justify-content-between">
 			<p class="footer-text m-0 col-lg-6 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Law of Ambition &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 			<div class="col-lg-6 col-sm-12 footer-social">
-				<a href="#"><i class="fa fa-instagram"></i></a>
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-twitter"></i></a>
-				<a href="#"><i class="fa fa-youtube"></i></a>
-				<a href="#"><i class="fa fa-snapchat"></i></a>
+				<a href="https://www.instagram.com/lawofambition"><i class="fa fa-instagram"></i></a>
+				<a href="https://www.facebook.com/LawOfAmbition/"><i class="fa fa-facebook"></i></a>
+				<a href="https://www.twitter.com/lawofambition"><i class="fa fa-twitter"></i></a>
+				<a href="https://www.youtube.com/channel/UCGoNJS6pCTdfGAP66r4kLrA"><i class="fa fa-youtube"></i></a>
 			</div>
 		</div>
 	</div>

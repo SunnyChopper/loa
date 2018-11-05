@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Custom\BlogPostHelper;
+
 use Auth;
 
 class DashboardController extends Controller
@@ -18,7 +21,11 @@ class DashboardController extends Controller
     	// Dynamic page elements
     	$page_header = "Dashboard";
 
-    	return view('dashboard.index')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+        // Get latest posts
+        $blog_post_helper = new BlogPostHelper();
+        $posts = $blog_post_helper->get_latest_posts();
+
+    	return view('dashboard.index')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts);
     }
 
     public function tools() {

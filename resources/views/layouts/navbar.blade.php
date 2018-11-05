@@ -8,11 +8,10 @@
 			<div class="row">
 				<div class="col-lg-6 col-sm-6 col-8 header-top-left no-padding">
 					<ul>
-						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-						<li><a href="#"><i class="fa fa-snapchat"></i></a></li>
+						<li><a href="https://www.instagram.com/lawofambition"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="https://www.facebook.com/LawOfAmbition/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://www.twitter.com/lawofambition"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="https://www.youtube.com/channel/UCGoNJS6pCTdfGAP66r4kLrA"><i class="fa fa-youtube"></i></a></li>
 					</ul>
 				</div>
 				<div class="col-lg-6 col-sm-6 col-4 header-top-right no-padding">
@@ -42,7 +41,7 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/free-tools">Free Tools</a></li>
 						<li><a href="/free-advice">Free Advice</a></li>
-						{{-- <li><a href="/courses">Courses</a></li> --}}
+						<li><a href="/courses">Courses</a></li>
 						{{-- <li><a href="/events">Events</a></li> --}}
 						<li><a href="/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>
@@ -57,9 +56,9 @@
 					@else
 						<li><a href="/members/dashboard">Dashboard</a></li>
 						<li><a href="/free-advice">Free Advice</a></li>
-						<li><a href="/members/community">Community</a></li>
-						<li><a href="/members/tools">Tools</a></li>
-						{{-- <li><a href="/members/courses">Courses</a></li> --}}
+						{{-- <li><a href="/members/community">Community</a></li> --}}
+						<li><a href="/free-tools">Tools</a></li>
+						<li><a href="/courses">Courses</a></li>
 						{{-- <li><a href="/events">Events</a></li> --}}
 						<li><a href="/shop">Ambition Shop</a></li>
 						<li><a href="/contact">Contact</a></li>

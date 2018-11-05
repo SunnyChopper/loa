@@ -100,6 +100,11 @@ class BlogPostHelper {
 		return BlogPost::where('is_active', 1)->get();
 	}
 
+	public function get_latest_posts($num_posts = 3) {
+		return BlogPost::where('is_active', 1)->orderBy('created_at', 'desc')->limit($num_posts)->get();
+	}
+
+
 	public function get_posts_with_pagination($pagination) {
 		return BlogPost::where('is_active', 1)->orderBy('created_at', 'desc')->paginate($pagination);
 	}
