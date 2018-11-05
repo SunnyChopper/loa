@@ -40,7 +40,7 @@
 				<img src="{{ URL::asset('img/Front-Image.jpg') }}" class="regular-image">
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-				<h3>Helping Entrepreneurs Unlock Their Inner Ambition And Start Achieving</h3>
+				<h3 class="mt-8">Helping Entrepreneurs Unlock Their Inner Ambition And Start Achieving</h3>
 				<hr />
 				<p>Every single day that you're not feeling ambitious about your goals and dreams, you're wasting your days. Without any ambition, any drive, you will not achieve at the levels that you want to start achieving at.</p>
 				<p>My name is Luis Garcia and I believe that there's a natural law that determines how fast you will accomplish your goals: the law of ambition.</p>
