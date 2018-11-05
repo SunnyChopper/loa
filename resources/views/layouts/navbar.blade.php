@@ -35,10 +35,10 @@
 			<div id="logo">
 				<a href="/"><img src="{{ URL::asset('img/logo.png') }}" alt="" title="" style="max-width: 150px;" /></a>
 			</div>
-			{{-- <nav id="nav-menu-container">
+			<nav id="nav-menu-container">
 				<ul class="nav-menu">
 					@if(Auth::guest())
-						<li><a href="/">Home</a></li>
+						{{-- <li><a href="/">Home</a></li>
 						<li><a href="/free-tools">Free Tools</a></li>
 						<li><a href="/free-advice">Free Advice</a></li>
 						<li><a href="/courses">Courses</a></li> --}}
@@ -50,11 +50,11 @@
 								<li><a href="/members/register">Register</a></li>
 								<li><a href="/members/login">Login</a></li>
 							</ul>
-						</li>
+						</li> --}}
 					@elseif(\Session::has('backend_auth'))
 						@include('layouts.backend-menu')
 					@else
-						<li><a href="/members/dashboard">Dashboard</a></li>
+						{{-- <li><a href="/members/dashboard">Dashboard</a></li>
 						<li><a href="/free-advice">Free Advice</a></li> --}}
 						{{-- <li><a href="/members/community">Community</a></li> --}}
 						{{-- <li><a href="/free-tools">Tools</a></li>
@@ -67,10 +67,10 @@
 								<li><a href="/members/settings">Settings</a></li>
 								<li><a href="/members/logout">Logout</a></li>
 							</ul>
-						</li>
+						</li> --}}
 					@endif
 				</ul>
-			</nav> --}}
+			</nav>
 		</div>
 	</div>
 </header>
