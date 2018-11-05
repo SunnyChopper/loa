@@ -17,7 +17,7 @@
 					<h4>Quick links</h4>
 					<ul>
 						{{-- <li><a href="/free-tools">Free Tools</a></li> --}}
-						<li><a href="/free-advice">Free Advice</a></li>
+						{{-- <li><a href="/free-advice">Free Advice</a></li> --}}
 						{{-- <li><a href="/courses">Courses</a></li> --}}
 						<li><a href="/shop">Ambition Shop</a></li>
 					</ul>
@@ -27,7 +27,7 @@
 				<div class="single-footer-widget">
 					<h4>Navigation</h4>
 					<ul>
-						<li><a href="/">Home</a></li>
+						<li><a href="/shop">Home</a></li>
 						<li><a href="/contact">Contact</a></li>
 						{{-- <li><a href="/about">About</a></li> --}}
 					</ul>
@@ -65,8 +65,7 @@
 		</div>
 		<div class="footer-bottom row align-items-center justify-content-between">
 			<p class="footer-text m-0 col-lg-6 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Law of Ambition &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+Law of Ambition &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved.</p>
 			<div class="col-lg-6 col-sm-12 footer-social">
 				<a href="https://www.instagram.com/lawofambition"><i class="fa fa-instagram"></i></a>
 				<a href="https://www.facebook.com/LawOfAmbition/"><i class="fa fa-facebook"></i></a>
