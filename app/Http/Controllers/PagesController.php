@@ -134,7 +134,7 @@ class PagesController extends Controller
     	$page_description = "Show off that you're part of Wolf Squad. Take pride in the work and effort that you make.";
 
     	// Dynamic page features
-    	$page_header = "Ambition Shop";
+    	$page_header = "Shop";
 
         // Get all products
         $product_helper = new ProductHelper();

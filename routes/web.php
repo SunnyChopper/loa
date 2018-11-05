@@ -16,7 +16,7 @@ Route::get('/test/payment', 'PagesController@test_payment');
 Route::post('/test/payment/create', 'PagesController@test_payment_charge');
 
 // Public site
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@shop');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/free-tools', 'PagesController@tools');
 Route::get('/free-advice', 'PagesController@blog');
