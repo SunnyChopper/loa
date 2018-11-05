@@ -286,20 +286,21 @@
 #post-body > ul {
 	list-style-type: circle;
 	margin-left: 32px;
+	margin-bottom: 16px;
 }
 
 #post-body > ul > li > p {
 	font-size: 18px;
 	line-height: 32px;
 	color: black;
-	font-family: 'Helvetica', serif;
+	font-family: 'Oxygen', serif;
 }
 
 #post-body > ul > li {
 	font-size: 18px;
 	line-height: 32px;
 	color: black;
-	font-family: 'Helvetica', serif;
+	font-family: 'Oxygen', serif;
 }
 
 #post-body > h3 {
