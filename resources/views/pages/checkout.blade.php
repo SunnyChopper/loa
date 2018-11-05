@@ -231,13 +231,13 @@
 							</div>
 						</div>
 
-						<div class="row p-2 mt-32" style="background-color: white; border-radius: 8px; border-bottom: 4px solid #E0E0E0;">
+						{{-- <div class="row p-2 mt-32" style="background-color: white; border-radius: 8px; border-bottom: 4px solid #E0E0E0;">
 							<div class="col-lg-12 col-md-12 col-sm-12">
 								<p class="text-center mb-0">Expected Arrival Date: <br><b>{{ Carbon\Carbon::parse($expected_shipping_date)->format('M d, Y') }}</b></p>
 							</div>
-						</div>
+						</div> --}}
 
-						<input type="submit" value="Complete Purchase" class="genric-btn primary circle large center-button mt-16 mb-0" style="font-size: 16px;"></a>
+						<input type="submit" value="Complete Checkout" class="genric-btn primary circle large center-button mt-16 mb-0" style="font-size: 16px;"></a>
 					</div>
 				</div>
 			</div>

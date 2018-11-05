@@ -20,17 +20,45 @@
         @if(isset($page_description))
             <meta name="description" content="{{ $page_description }}">
         @else
-            <meta name="description" content="">
+            <meta name="description" content="Law of Ambition is more than just a brand or a person. It's a mindset.">
         @endif
 
         <!-- meta character set -->
         <meta charset="UTF-8">
+
+        <!-- Social Media -->
+        @if(isset($seo_data["og_title"]))
+            <meta name="og:title" content="{{ $seo_data["og_title"] }}">
+        @else
+            <meta name="og:title" content="Law of Ambition">
+        @endif
+
+        @if(isset($seo_data["og_description"]))
+            <meta name="og:description" content="{{ $seo_data["og_description"] }}">
+        @else
+            <meta name="og:description" content="Law of Ambition is more than just a brand or a person. It's a mindset.">
+        @endif
+        
+        @if(isset($seo_data["og_image"]))
+            <meta name="og:image" content="{{ $seo_data["og_image"] }}">
+        @else
+            <meta name="og:image" content="{{ URL::asset('img/Front-Image.jpg') }}">
+        @endif
+
+        @if(isset($seo_data["og_url"]))
+            <meta name="og:url" content="{{ $seo_data["og_url"] }}">
+        @else
+            <meta name="og:url" content="{{ url('/') }}">
+        @endif
 
         @if(isset($page_title))
             <title>{{ $page_title }} - Law of Ambition</title>
         @else
             <title>Law of Ambition</title>
         @endif
+
+        <meta name="twitter:site" content="@lawofambition">
+        <meta name="twitter:card" content="summary_large_image">
 
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
