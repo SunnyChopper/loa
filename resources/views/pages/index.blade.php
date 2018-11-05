@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-	</di6
+	</div>
 
 	<div class="container mt-64 mb-64">
 		<div class="row">
