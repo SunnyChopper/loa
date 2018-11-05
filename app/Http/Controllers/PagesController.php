@@ -122,7 +122,7 @@ class PagesController extends Controller
         $seo_data = array();
         $seo_data["og_title"] = $post->title;
         $seo_data["og_description"] = substr(strip_tags($post->post_body), 0, 128);
-        $seo_data["og_image"] = $post->feautred_image_url;
+        $seo_data["og_image"] = $post->featured_image_url;
         $seo_data["og_url"] = "https://www.lawofambition.com/posts/" . $post->id . "/" . $post->slug;
 
         return view('pages.view-post')->with('page_header', $page_header)->with('post', $post)->with('seo_data', $seo_data);
@@ -181,7 +181,7 @@ class PagesController extends Controller
         $seo_data = array();
         $seo_data["og_title"] = $product->product_name;
         $seo_data["og_description"] = substr(strip_tags($product->product_description), 0, 128);
-        $seo_data["og_image"] = $product->feautred_image_url;
+        $seo_data["og_image"] = $product->featured_image_url;
         $seo_data["og_url"] = "https://www.lawofambition.com/product/" . $product->id;
 
         return view('pages.product')->with('page_header', $page_header)->with('product', $product)->with('seo_data', $seo_data);
