@@ -10,6 +10,7 @@ use App\Product;
 
 use App\Custom\OrderHelper;
 use App\Custom\SiteStatsHelper;
+use App\Custom\MailHelper;
 
 use Validator;
 use Session;
@@ -189,7 +190,20 @@ class CartHelper {
 					$order_helper->create_order($order_info);
 				}
 
-				// TODO: Send thank you email
+				// Send thank you email
+				$mail_data = array(
+					"recipient_email" => $data["order_email"],
+					"recipient_first_name" => $data["order_first_name"],
+					"recipient_last_name" => $data["order_last_name"],
+					"sender_email" => env('MAIL_USERNAME'),
+					"sender_first_name" => env('MAIL_FIRST_NAME'),
+					"sender_last_name" => env('MAIL_LAST_NAME'),
+					"subject" => "Law of Ambition - Order Confirmation"
+				);
+
+				$mail_helper = new MailHelper($mail_data);
+				$mail_helper->send_thank_you_email();
+
 				return "success";
 			} else {
 				return "error";

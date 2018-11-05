@@ -79,6 +79,15 @@ class MailHelper {
 		});
 	}
 
+	public function send_thank_you_email() {
+		$email_data = $this->get_email_data();
+		Mail::send('emails.thank-you-email', $email_data, function($message) use ($email_data) {
+			$message->to($email_data["recipient_email"], $email_data["recipient_first_name"] . " " . $email_data["recipient_last_name"])->subject($email_data["subject"]);
+			$message->from($email_data["sender_email"], $email_data["sender_first_name"] . " " . $email_data["sender_last_name"]);
+			$message->replyTo($email_data["sender_email"], $email_data["sender_first_name"] . " " . $email_data["sender_last_name"]);
+		});
+	}
+
 	/* Private functions */
 	private function get_email_data() {
 		$data = array(
