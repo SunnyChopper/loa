@@ -63,10 +63,10 @@
 				</form>
 
 				<div class="row mt-32">
-					<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
+					<div class="col-lg-4 col-md-4 col-sm-5 col-6">
 						<img src="https://www.veravalonline.com/wp-content/uploads/ssl-secure.png" class="regular-image">
 					</div>
-					<div class="col-lg-5 col-md-6 col-sm-7 col-xs-6">
+					<div class="col-lg-5 col-md-6 col-sm-7 col-6">
 						<img src="https://cdn.shopify.com/s/files/1/2581/7362/files/999999999.png?1496325821189209333" class="regular-image">
 					</div>
 				</div>
