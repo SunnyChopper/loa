@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</di6
 
 	<div class="container mt-64 mb-64">
 		<div class="row">
@@ -79,43 +79,43 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/Atlantic.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/BMW.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/Infusionsoft.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/KSwiss.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/LA-Weekly.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/Lionsgate.png') }}" class="regular-image">
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/NBC.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/Penske.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/YR.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/Rolls-Royce.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/Taylor-Gang.png') }}" class="regular-image">
 				</div>
-				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-6">
 					<img src="{{ URL::asset('img/Tonight-Show.png') }}" class="regular-image">
 				</div>
 			</div>
