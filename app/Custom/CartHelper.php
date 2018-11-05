@@ -177,7 +177,7 @@ class CartHelper {
 					$order_info["order_country"] = $data["order_country"];
 					$order_info["order_zipcode"] = $data["order_zipcode"];
 					$order_info["customer_id"] = $customer["id"];
-					$order_info["quantity"] = $products["quantity"];
+					$order_info["quantity"] = $product["quantity"];
 
             		$site_stats_helper->product_add_purchased($product["product_id"]);
             		if (Auth::guest()) {
