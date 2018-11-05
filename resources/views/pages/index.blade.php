@@ -12,7 +12,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-2 offset-lg-2 col-md-2 offset-md-2 col-sm-6 col-12 mt-8 mb-8">
+				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+					<img src="{{ URL::asset('img/Inc-Logo.png') }}" class="regular-image">
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
 					<img src="{{ URL::asset('img/Entrepreneur-Logo.png') }}" class="regular-image">
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
@@ -23,7 +26,10 @@
 				</div>
 				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
 					<img src="{{ URL::asset('img/Forbes-Logo.png') }}" class="regular-image">
-				</div>	
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-6 col-12 mt-8 mb-8">
+					<img src="{{ URL::asset('img/HuffPost-Logo.png') }}" class="regular-image">
+				</div>
 			</div>
 		</div>
 	</div>
