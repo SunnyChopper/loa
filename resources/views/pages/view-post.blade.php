@@ -13,7 +13,7 @@
 				<p><small>Written by {{ $post->author_first_name }} on {{ $post->created_at->format('F jS, Y') }}</small>
 			</div>
 
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+			{{-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<h4 class="mt-16">Search</h4>
 				<div class="row mt-16">
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
@@ -59,7 +59,7 @@
 						<a href="" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 		</div>
 	</div>
 @endsection
