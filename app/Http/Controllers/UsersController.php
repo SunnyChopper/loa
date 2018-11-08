@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Custom\UserHelper;
 
+use App\User;
+
 use Auth;
 
 class UsersController extends Controller
@@ -30,5 +32,41 @@ class UsersController extends Controller
     	);
 
     	return json_encode($json_array);
+    }
+
+    public function create_user(Request $data) {
+        // Get data
+        $first_name = $data->first_name;
+        $last_name = $data->last_name;
+        $username = $data->username;
+        $password = $data->password;
+        $email = $data->email;
+        $backend_auth = $data->backend_auth;
+
+        // Check if email or username taken
+        if (User::where('username', $username)->count() > 0) {
+            return redirect()->back()->with('username_error', 'Username already exists!');
+        }
+
+        if (User::where('email', $email)->count() > 0) {
+            return redirect()->back()->with('email_error', 'Email already taken!');
+        }
+
+        // Make user array
+        $user_array = array(
+            "first_name" => $first_name,
+            "last_name" => $last_name,
+            "username" => $username,
+            "email" => $email,
+            "password" => $password,
+            "backend_auth" => $backend_auth
+        );
+
+        // Create user
+        $user_helper = new UserHelper();
+        $user_id = $user_helper->create_user($user_array);
+
+        // Redirect to viewing users
+        return redirect(url('/admin/users/view'));
     }
 }
