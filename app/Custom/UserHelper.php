@@ -70,6 +70,12 @@ class UserHelper {
 	public function get_user_by_id($user_id) {
 		return User::where('id', $user_id)->first();
 	}
+
+	public function edit_user_permissions($user_id, $backend_auth) {
+		$user = User::where('id', $user_id)->first();
+		$user->backend_auth = $backend_auth;
+		$user->save();
+	}
 }
 
 ?>

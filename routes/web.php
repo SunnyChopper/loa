@@ -63,6 +63,7 @@ Route::get('/admin/users/id/{user_id}', 'UsersController@get_user_info');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');
+Route::post('/admin/users/edit', 'UsersController@edit_user');
 
 // Product functions
 Route::post('/admin/products/delete', 'ProductsController@delete');

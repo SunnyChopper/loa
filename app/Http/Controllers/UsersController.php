@@ -69,4 +69,17 @@ class UsersController extends Controller
         // Redirect to viewing users
         return redirect(url('/admin/users/view'));
     }
+
+    public function edit_user(Request $data) {
+        // Get data
+        $user_id = $data->user_id;
+        $backend_auth = $data->backend_auth;
+
+        // Edit user permissions
+        $user_helper = new UserHelper();
+        $user_helper->edit_user_permissions($user_id, $backend_auth);
+
+        // Return
+        return redirect()->back();
+    }
 }

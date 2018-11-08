@@ -16,14 +16,14 @@
 						<div class="col-lg-6 col-md-6 col-sm-12 col-12">
 							<div class="form-group">
 								<label>First Name:</label>
-								<input type="text" id="edit_modal_first_name" class="form-control" name="first_name">
+								<input type="text" id="edit_modal_first_name" class="form-control" name="first_name" disabled>
 							</div>
 						</div>
 
 						<div class="col-lg-6 col-md-6 col-sm-12 col-12">
 							<div class="form-group">
 								<label>Last Name:</label>
-								<input type="text" id="edit_modal_last_name" class="form-control" name="last_name">
+								<input type="text" id="edit_modal_last_name" class="form-control" name="last_name" disabled>
 							</div>
 						</div>
 					</div>
@@ -32,7 +32,7 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 							<div class="form-group">
 								<label>Email:</label>
-								<input type="email" id="edit_modal_email" class="form-control" name="email">
+								<input type="email" id="edit_modal_email" class="form-control" name="email" disabled>
 							</div>
 						</div>
 					</div>
