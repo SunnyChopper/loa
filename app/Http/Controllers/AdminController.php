@@ -13,6 +13,7 @@ use App\Custom\BlogPostHelper;
 use App\Custom\ProductHelper;
 use App\Custom\OrderHelper;
 use App\Custom\SiteStatsHelper;
+use App\Custom\UserHelper;
 
 class AdminController extends Controller
 {
@@ -281,6 +282,25 @@ class AdminController extends Controller
         $product = $product_helper->get_product_by_id();
 
         return view('admin.products.edit')->with('page_header', $page_header)->with('product', $product);
+    }
+
+    public function view_users() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "View Users";
+
+        // Get users
+        $user_helper = new UserHelper();
+        $users = $user_helper->get_users_with_pagination(25);
+
+        return view('admin.users.view')->with('page_header', $page_header)->with('users', $users);
     }
 
     private function check_login() {
