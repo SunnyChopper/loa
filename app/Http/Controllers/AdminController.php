@@ -303,6 +303,21 @@ class AdminController extends Controller
         return view('admin.users.view')->with('page_header', $page_header)->with('users', $users);
     }
 
+    public function new_user() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "New User";
+
+        return view('admin.users.new')->with('page_header', $page_header);
+    }
+
     private function check_login() {
         // Get session variables
         if (Auth::guest()) {

@@ -58,6 +58,7 @@ Route::get('/admin/posts/new', 'AdminController@new_blog_post');
 Route::get('/admin/posts/edit/{post_id}', 'AdminController@edit_blog_post');
 Route::get('/admin/posts/stats', 'AdminController@blog_post_stats');
 Route::get('/admin/users/view', 'AdminController@view_users');
+Route::get('/admin/users/new', 'AdminController@new_user');
 Route::get('/admin/users/id/{user_id}', 'UsersController@get_user_info');
 
 // Product functions
