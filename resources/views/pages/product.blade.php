@@ -31,7 +31,7 @@
 								@endforeach
 							</select>
 							<div class="nice-select" tabindex="0" style="border: 1px solid #EDEDED;">
-								<span class="current">Small</span>
+								<span class="current">{{ $options[0] }}</span>
 								<ul class="list">
 									@foreach($options as $option)
 										<li data-value="{{ $option }}" class="option">{{ $option }}</li>

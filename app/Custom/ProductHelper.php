@@ -158,19 +158,20 @@ class ProductHelper {
 
 	public function add_product($data) {
 		$product = new Product;
-		$product->product_name = $data->product_name;
-		$product->product_description = $data->product_description;
-		$product->product_price = $data->product_price;
-		$product->stock = $data->stock;
-		$product->featured_image_url = $data->featured_image_url;
-		$product->image_links = $data->image_links;
-		$product->sku = $data->sku;
-		$product->selectors = $data->selectors;
+		$product->product_name = $data["product_name"];
+		$product->product_description = $data["product_description"];
+		$product->product_price = $data["product_price"];
+		$product->stock = $data["stock"];
+		$product->featured_image_url = $data["featured_image_url"];
+		$product->image_links = $data["image_links"];
+		$product->sku = $data["sku"];
+		$product->selectors = $data["selectors"];
 		$product->shipping_options = "['Free Shipping']";
-		
-		if ($data->digital_product == 1) {
+		$product->num_reviews = 0;
+
+		if ($data["digital_product"] == 1) {
 			$product->digital_product = 1;
-			$product->digital_product_link = $data->digital_product_link;
+			$product->digital_product_link = $data["digital_product_link"];
 		}
 
 		return $product->save();
@@ -185,6 +186,11 @@ class ProductHelper {
 		$product->save();
 	}
 
+	public function get_next_product_id() {
+		// Get count of products
+		$product_count = Product::count();
+		return $product_count + 1;
+	}
 }
 
 ?>

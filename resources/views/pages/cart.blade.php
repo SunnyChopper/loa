@@ -34,7 +34,7 @@
 
 											<td style="vertical-align:middle;">
 												<h4>{{ $product_info["product_name"] }}</h4>
-												<?php $selected = json_decode($product["selectors"]); ?>
+												<?php $selected = json_decode($product["selectors"], true); ?>
 												<p class="mb-0">
 													<?php $option_index = 0; $options = count($selected); ?>
 													@foreach($selected as $option)
