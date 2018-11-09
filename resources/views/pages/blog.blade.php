@@ -24,8 +24,8 @@
 				{{ $posts->links() }}
 			</div>
 
-			{{-- <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<h4 class="mt-16">Search</h4>
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				{{-- <h4 class="mt-16">Search</h4>
 				<div class="row mt-16">
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 						<input type="text" class="form-control">
@@ -37,40 +37,22 @@
 					</div>
 				</div>
 
-				<hr />
+				<hr /> --}}
 
-				<h4 class="mt-16">Recent Posts</h4>
+				<h4 class="mt-16">Top Posts</h4>
 
+				@foreach($top_posts as $top_post)
 				<div class="image-box">
 					<div class="image">
-						<img src="https://assets.entrepreneur.com/content/3x2/2000/20181023203135-GettyImages-922710432.jpeg" class="regular-image"> 
+						<img src="{{ $top_post->featured_image_url }}" class="regular-image"> 
 					</div>
 					<div class="info">
-						<h6 class="mt-0 mb-2">5 Tips to Help Entrepreneurs Successfully Manage Multiple Ventures</h6>
-						<a href="" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
+						<h6 class="mt-0 mb-2">{{ $top_post->title }}</h6>
+						<a href="/posts/{{ $top_post->id }}/{{ $top_post->slug }}" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
 					</div>
 				</div>
-
-				<div class="image-box">
-					<div class="image">
-						<img src="https://assets.entrepreneur.com/content/3x2/2000/20181015203000-shutterstock-1034276521-crop.jpeg" class="regular-image"> 
-					</div>
-					<div class="info">
-						<h6 class="mt-0 mb-2">How Building Relationships Helped Build My Business</h6>
-						<a href="" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
-					</div>
-				</div>
-
-				<div class="image-box">
-					<div class="image">
-						<img src="https://assets.entrepreneur.com/content/3x2/2000/20181025213708-GettyImages-187232514.jpeg" class="regular-image"> 
-					</div>
-					<div class="info">
-						<h6 class="mt-0 mb-2">Twitter's Stock Price Jumped 15 Percent Today. Here's Why.</h6>
-						<a href="" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
-					</div>
-				</div>
-			</div> --}}
+				@endforeach
+			</div>
 		</div>
 	</div>
 @endsection

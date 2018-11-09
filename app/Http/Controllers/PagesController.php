@@ -101,8 +101,9 @@ class PagesController extends Controller
         // Load posts
         $blog_post_helper = new BlogPostHelper();
         $posts = $blog_post_helper->get_posts_with_pagination(10);
+        $top_posts = $blog_post_helper->get_top_posts(3);
 
-    	return view('pages.blog')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts);
+    	return view('pages.blog')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts)->with('top_posts', $top_posts);
     }
 
     public function view_post($post_id, $slug) {

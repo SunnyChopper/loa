@@ -37,7 +37,7 @@
 					</div>
 					<div class="info">
 						<h6 class="mt-0 mb-2">{{ $top_post->title }}</h6>
-						<a href="/post/{{ $top_post->id }}/{{ $top_post->slug }}" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
+						<a href="/posts/{{ $top_post->id }}/{{ $top_post->slug }}" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
 					</div>
 				</div>
 				@endforeach

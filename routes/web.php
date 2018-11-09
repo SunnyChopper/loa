@@ -14,6 +14,10 @@
 // Testing
 Route::get('/test/payment', 'PagesController@test_payment');
 Route::post('/test/payment/create', 'PagesController@test_payment_charge');
+Route::get('/server-info', function() {
+	$tmp_dir = ini_get('upload_tmp_dir') ? ini_get('upload_tmp_dir') : sys_get_temp_dir();
+	echo ini_get('upload_tmp_dir');
+});
 
 // Public site
 Route::get('/', 'PagesController@shop');
@@ -67,6 +71,7 @@ Route::post('/admin/users/edit', 'UsersController@edit_user');
 
 // Product functions
 Route::post('/admin/products/delete', 'ProductsController@delete');
+Route::post('/admin/products/create', 'ProductsController@add_product');
 
 // Order functions
 Route::post('/admin/orders/update', 'OrdersController@update_order');
