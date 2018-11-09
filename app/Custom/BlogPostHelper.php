@@ -118,6 +118,10 @@ class BlogPostHelper {
 			->get();
 	}
 
+	public function get_top_posts($num_posts) {
+		return BlogPost::orderBy('likes', 'desc')->limit($num_posts)->get();
+	}
+
 	public function get_post_by_id($post_id = 0) {
 		if ($post_id == 0) {
 			$post_id = $this->blog_post_id;

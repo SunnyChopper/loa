@@ -125,7 +125,11 @@ class PagesController extends Controller
         $seo_data["og_image"] = $post->featured_image_url;
         $seo_data["og_url"] = "https://www.lawofambition.com/posts/" . $post->id . "/" . $post->slug;
 
-        return view('pages.view-post')->with('page_header', $page_header)->with('post', $post)->with('seo_data', $seo_data);
+        // Get top posts
+        $blog_post_helper = new BlogPostHelper();
+        $top_posts = $blog_post_helper->get_top_posts(3);
+
+        return view('pages.view-post')->with('page_header', $page_header)->with('post', $post)->with('seo_data', $seo_data)->with('top_posts', $top_posts);
     }
 
     public function shop() {
