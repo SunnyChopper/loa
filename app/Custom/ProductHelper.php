@@ -28,6 +28,52 @@ class ProductHelper {
 		return Product::where('id', $this->product_id)->first();
 	}
 
+	public function edit_product($data) {
+		// Get product id
+		$this->product_id = $data["product_id"];
+
+		// Go through each key and check if available
+		if (isset($data["product_name"])) {
+			$this->update_name($data["product_name"]);
+		}
+
+		if (isset($data["product_price"])) {
+			$this->update_price($data["product_price"]);
+		}
+
+		if (isset($data["product_description"])) {
+			$this->update_description($data["product_description"]);
+		}
+
+		if (isset($data["stock"])) {
+			$this->update_stock($data["stock"]);
+		}
+
+		if (isset($data["sku"])) {
+			$this->update_sku($data["sku"]);
+		}
+
+		if (isset($data["selectors"])) {
+			$this->update_selectors($data["selectors"]);
+		}
+
+		if (isset($data["digital_product"])) {
+			$this->update_digital_product($data["digital_product"]);
+		}
+
+		if (isset($data["digital_product_link"])) {
+			$this->update_digital_product_link($data["digital_product_link"]);
+		}
+
+		if (isset($data["featured_image_url"])) {
+			$this->update_featured_image_url($data["featured_image_url"]);
+		}
+
+		if (isset($data["image_links"])) {
+			$this->update_image_links($data["image_links"]);
+		}
+	}
+
 	public function update_name($product_name) {
 		if ($this->product_id == 0) {
 			return "error";
@@ -118,6 +164,18 @@ class ProductHelper {
 		} else {
 			$product = Product::where('id', $this->product_id)->first();
 			$product->selectors = $selectors;
+			$product->save();
+
+			return "success";
+		}
+	}
+
+	public function update_digital_product($digital_product) {
+		if ($this->product_id == 0) {
+			return "error";
+		} else {
+			$product = Product::where('id', $this->product_id)->first();
+			$product->digital_product = $digital_product;
 			$product->save();
 
 			return "success";

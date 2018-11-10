@@ -72,6 +72,7 @@ Route::post('/admin/users/edit', 'UsersController@edit_user');
 // Product functions
 Route::post('/admin/products/delete', 'ProductsController@delete');
 Route::post('/admin/products/create', 'ProductsController@add_product');
+Route::post('/admin/products/update', 'ProductsController@edit_product');
 
 // Order functions
 Route::post('/admin/orders/update', 'OrdersController@update_order');
