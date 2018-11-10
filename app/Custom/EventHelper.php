@@ -21,14 +21,14 @@ class EventHelper {
 		$event_description = $data["event_description"];
 		$event_location = $data["event_location"];
 		$start_time = $data["start_time"];
-		$end_time = $data["end_time"];
+		$end_time = $data["end_date"];
 
 		$event = new Event;
 		$event->event_name = $event_name;
 		$event->event_description = $event_description;
 		$event->location = $event_location;
 		$event->start_time = $start_time;
-		$event->end_time = $end_time;
+		$event->end_date = $end_time;
 		$event->save();
 
 		$this->event_id = $event->id;
@@ -36,6 +36,10 @@ class EventHelper {
 
 	public function get_all_events() {
 		return Event::all();
+	}
+
+	public function get_events_with_pagination($pagination) {
+		return Event::paginate($pagination);
 	}
 
 	public function get_upcoming_events() {

@@ -14,6 +14,7 @@ use App\Custom\ProductHelper;
 use App\Custom\OrderHelper;
 use App\Custom\SiteStatsHelper;
 use App\Custom\UserHelper;
+use App\Custom\EventHelper;
 
 class AdminController extends Controller
 {
@@ -316,6 +317,40 @@ class AdminController extends Controller
         $page_header = "New User";
 
         return view('admin.users.new')->with('page_header', $page_header);
+    }
+
+    public function view_events() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "View Events";
+
+        // Get events
+        $event_helper = new EventHelper();
+        $events = $event_helper->get_events_with_pagination(25);
+
+        return view('admin.events.view')->with('page_header', $page_header)->with('events', $events);
+    }
+
+    public function new_event() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "New Event";
+
+        return view('admin.events.new')->with('page_header', $page_header);
     }
 
     private function check_login() {

@@ -9,6 +9,7 @@ use Validator;
 
 use App\Custom\ProductHelper;
 use App\Custom\CartHelper;
+use App\Custom\EventHelper;
 use App\Custom\SiteStatsHelper;
 use App\Custom\BlogPostHelper;
 use App\Custom\MailHelper;
@@ -167,7 +168,11 @@ class PagesController extends Controller
     	// Dynamic page features
     	$page_header = "Events";
 
-    	return view('pages.events')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+        // Get upcoming events
+        $event_helper = new EventHelper();
+        $upcoming_events = $event_helper->get_upcoming_events();
+
+    	return view('pages.events')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('upcoming_events', $upcoming_events);
     }
 
     public function product($product_id) {

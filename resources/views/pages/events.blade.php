@@ -5,21 +5,27 @@
 	<div class="container mt-64 mb-64">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="well">
-					<h2 class="text-center">Next Event Location</h2>
-					<hr />
-					<h4 class="text-center">Wolf Squad Meetup Los Angeles</h4>
-					<p class="text-center">In the LA area? Meet up with me and the squad at the Five Seasons hotel.</p>
-					<h5 class="text-center">Where is it?</h45>
-					<p class="text-center"><b>1843 Las Colinas Blvd., Los Angeles, CA</b></p>
-					<h5 class="text-center">What date and time?</h45>
-					<p class="text-center"><b>4:00 PM PST on October 28th, 2018</b></p>
-					<a class="genric-btn center primary" href="">I'm Coming! <span class="lnr lnr-arrow-right"></span></a>
-				</div>
+				@if(count($upcoming_events) > 0)
+					<div class="well">
+						<h2 class="text-center">Next Event Location</h2>
+						<hr />
+						<h4 class="text-center">{{ $upcoming_events[0]->event_name }}</h4>
+						<p class="text-center">{{ $upcoming_events[0]->event_description }}</p>
+						<h5 class="text-center">Where is it?</h45>
+						<p class="text-center"><b>{{ $upcoming_events[0]->location }}</b></p>
+						<h5 class="text-center">What date and time?</h45>
+						<p class="text-center"><b>{{ Carbon\Carbon::parse($upcoming_events[0]->start_time)->format('F jS, Y \a\t H:i A') }}</b></p>
+						{{-- <button type="button" class="genric-btn center primary" style="font-size: 16px;">I'm Coming! <span class="lnr lnr-arrow-right"></span></button> --}}
+					</div>
+				@else
+					<div class="well">
+						<h2 class="text-center">No upcoming events...</h2>
+					</div>
+				@endif
 			</div>
 		</div>
 
-		<div class="row mt-64">
+		{{-- <div class="row mt-64">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<h2>Previous Events</h2>
 				<hr />
@@ -81,6 +87,6 @@
 				</section>
 				
 			</div>
-		</div>
+		</div> --}}
 	</div>
 @endsection

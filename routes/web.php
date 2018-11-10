@@ -64,10 +64,15 @@ Route::get('/admin/posts/stats', 'AdminController@blog_post_stats');
 Route::get('/admin/users/view', 'AdminController@view_users');
 Route::get('/admin/users/new', 'AdminController@new_user');
 Route::get('/admin/users/id/{user_id}', 'UsersController@get_user_info');
+Route::get('/admin/events/view', 'AdminController@view_events');
+Route::get('/admin/events/new', 'AdminController@new_event');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');
 Route::post('/admin/users/edit', 'UsersController@edit_user');
+
+// Event functions
+Route::post('/admin/events/create', 'EventsController@create_event');
 
 // Product functions
 Route::post('/admin/products/delete', 'ProductsController@delete');
