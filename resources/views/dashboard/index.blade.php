@@ -32,6 +32,48 @@
 		</div>
 	</div>
 
+	<div style="background-color: #EAEAEA;" class="pt-64 pb-64">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+					<h2 class="text-center">Upcoming Event</h2>
+					<p class="text-center mb-0"><small>Come out and network with the Wolf Squad</small></p>
+					<hr />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<div style="padding: 16px; border: 2px solid #AAAAAA; border-radius: 5px; background: white;">
+						<h3 class="text-center"><b>What is it?</b></h3>
+						<p class="text-center mb-0 mt-16">Come out and network with the Wolf Squad</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<div style="padding: 16px; border: 2px solid #AAAAAA; border-radius: 5px; background: white;">
+						<h3 class="text-center"><b>Where is it?</b></h3>
+						<p class="text-center mb-0 mt-16">813 Trailway Dr, Champaign, IL, 61822</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+					<div style="padding: 16px; border: 2px solid #AAAAAA; border-radius: 5px; background: white;">
+						<h3 class="text-center"><b>When is it?</b></h3>
+						<p class="text-center mb-0 mt-16">8:00 AM on November 17th, 2018</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mt-32">
+				<div class="col-lg-4 offset-lg-4 col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-12">
+					<h4 class="text-center">Get Updates</h4>
+					<p class="text-center mb-8">Click below to sign up and get updates for the event!</p>
+					<button type="button" class="genric-btn primary rounded center-button" style="font-size: 16px;">RSVP for Event</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div style="background-color: black;" class="p-32">
 		<div class="container">
 			<div class="row">
