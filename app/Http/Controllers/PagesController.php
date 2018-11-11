@@ -80,6 +80,13 @@ class PagesController extends Controller
         return view('pages.thank-you-contact')->with('page_header', $page_header);
     }
 
+    public function thank_you_post_rsvp() {
+        // Dynamic page features
+        $page_header = "Thank You";
+
+        return view('pages.thank-you-rsvp')->with('page_header', $page_header);
+    }
+
     public function tools() {
     	// SEO Data
     	$page_title = "Free Tools";

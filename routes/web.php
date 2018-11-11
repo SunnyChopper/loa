@@ -34,6 +34,7 @@ Route::get('/members/register', 'PagesController@register');
 Route::get('/members/logout', 'UsersController@logout');
 Route::post('/contact/submit', 'PagesController@submit_contact');
 Route::get('/contact/success', 'PagesController@thank_you_post_contact');
+Route::get('/events/thank-you', 'PagesController@thank_you_post_rsvp');
 
 // Cart functions
 Route::post('/cart/add', 'CartController@add_to_cart');
@@ -73,6 +74,7 @@ Route::post('/admin/users/edit', 'UsersController@edit_user');
 
 // Event functions
 Route::post('/admin/events/create', 'EventsController@create_event');
+Route::post('/admin/events/rsvp', 'EventSignupsController@create');
 
 // Product functions
 Route::post('/admin/products/delete', 'ProductsController@delete');

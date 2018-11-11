@@ -2,6 +2,7 @@
 
 @section('content')
 	@include('layouts.hero')
+	@include('dashboard.modals.rsvp-event-modal')
 	<div class="container mt-64 mb-64">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -68,7 +69,7 @@
 				<div class="col-lg-4 offset-lg-4 col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-12">
 					<h4 class="text-center">Get Updates</h4>
 					<p class="text-center mb-8">Click below to sign up and get updates for the event!</p>
-					<button type="button" class="genric-btn primary rounded center-button" style="font-size: 16px;">RSVP for Event</button>
+					<button type="button" id="event_id_{{ $events[0]->id }}" class="genric-btn primary rounded center-button rsvp_event_button" style="font-size: 16px;">RSVP for Event</button>
 
 				</div>
 			</div>
@@ -106,4 +107,19 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('page_js')
+	<script type="text/javascript">
+		$(".rsvp_event_button").on('click', function() {
+			// Get the event id
+			var event_id = parseInt($(this).attr('id').replace("event_id_", ""));
+			
+			// Set the modal event id
+			$("#event_id_rsvp_modal").val(event_id);
+
+			// Open modal
+			$("#rsvp_event_modal").modal();
+		});
+	</script>
 @endsection
