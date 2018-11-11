@@ -21,11 +21,13 @@ class CourseHelper {
 		$course_title = $data["course_title"];
 		$course_description = $data["course_description"];
 		$course_video_preview_link = $data["course_video_preview_link"];
+		$course_image_url = $data["course_image_url"];
 
 		$course = new Course;
 		$course->course_title = $course_title;
 		$course->course_description = $course_description;
 		$course->course_video_preview_link = $course_video_preview_link;
+		$course->course_image_url = $course_image_url;
 		$course->course_members = 0;
 		$course->course_num_videos = 0;
 		$course->is_active = 1;
@@ -64,6 +66,10 @@ class CourseHelper {
 
 		// Return the courses
 		return $courses;
+	}
+
+	public function get_next_course_id() {
+		return (Course::count() + 1);
 	}
 }
 
