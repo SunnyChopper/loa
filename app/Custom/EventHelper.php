@@ -35,29 +35,29 @@ class EventHelper {
 	}
 
 	public function get_all_events() {
-		return Event::all();
+		return Event::where('is_active', 1)->get();
 	}
 
 	public function get_events_with_pagination($pagination) {
-		return Event::paginate($pagination);
+		return Event::where('is_active', 1)->paginate($pagination);
 	}
 
 	public function get_upcoming_events() {
 		date_default_timezone_set('America/Los_Angeles');
 		$current_date = date('Y-m-d H:i:s');
-		return Event::where('start_time', '>', $current_date)->get();
+		return Event::where('start_time', '>', $current_date)->where('is_active', 1)->get();
 	}
 
 	public function get_ongoing_events() {
 		date_default_timezone_set('America/Los_Angeles');
 		$current_date = date('Y-m-d H:i:s');
-		return Event::where('start_time', '<', $current_date)->where('end_time', '>', $current_date)->get();
+		return Event::where('start_time', '<', $current_date)->where('end_time', '>', $current_date)->where('is_active', 1)->get();
 	}
 
 	public function get_past_events() {
 		date_default_timezone_set('America/Los_Angeles');
 		$current_date = date('Y-m-d H:i:s');
-		return Event::where('end_time', '<', $current_date)->get();
+		return Event::where('end_time', '<', $current_date)->where('is_active', 1)->get();
 	}
 
 	public function update_event($data) {

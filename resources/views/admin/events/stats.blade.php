@@ -2,7 +2,6 @@
 
 @section('content')
 	@include('layouts.hero')
-	@include('admin.events.modals.delete-event')
 	<div class="container mt-32 mb-32">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -11,10 +10,10 @@
 						<table class="table table-striped" style="text-align: center;">
 							<thead>
 								<th>Name</th>
-								<th>Description</th>
-								<th>Location</th>
-								<th>Start Time</th>
-								<th>End Time</th>
+								<th>Views</th>
+								<th>Attending</th>
+								<th>Guests</th>
+								<th>Members</th>
 								<th></th>
 							</thead>
 							<tbody>
@@ -27,7 +26,7 @@
 										<td style="min-width: 50px;">{{ Carbon\Carbon::parse($event->end_date)->format('M jS, Y \a\t H:i A') }}</td>
 										<td style="min-width: 100px;"> 
 											<a href="/admin/events/edit/{{ $event->id }}" class="genric-btn info small">Edit</a>
-											<button id="{{ $event->id }}" type="button" class="genric-btn danger small delete_event_button">Delete</button>
+											<button id="{{ $event->id }}" type="button" class="genric-btn danger small delete_post_button">Delete</button>
 										</td>
 									</tr>
 								@endforeach
@@ -56,15 +55,15 @@
 
 @section('page_js')
 	<script type="text/javascript">
-		$(".delete_event_button").on('click', function() {
+		$(".delete_post_button").on('click', function() {
 			// Get post ID
-			var event_id = $(this).attr('id');
+			var post_id = $(this).attr('id');
 
 			// Set ID for modal
-			$("#event_id_delete_modal").val(event_id);
+			$("#post_id_delete_modal").val(post_id);
 
 			// Show modal
-			$("#delete_event_modal").modal();
+			$("#delete_post_modal").modal();
 		});
 	</script>
 @endsection

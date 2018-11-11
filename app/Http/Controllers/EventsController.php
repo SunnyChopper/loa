@@ -35,4 +35,16 @@ class EventsController extends Controller
     	// Redirect back
     	return redirect(url('/admin/events/view'));
     }
+
+    public function delete_event(Request $data) {
+        // Get data
+        $event_id = $data->event_id;
+
+        // Create event helper and delete
+        $event_helper = new EventHelper($event_id);
+        $event_helper->delete_event();
+
+        // Return to events
+        return redirect(url('/admin/events/view'));
+    }
 }

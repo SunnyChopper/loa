@@ -74,6 +74,7 @@ Route::post('/admin/users/edit', 'UsersController@edit_user');
 
 // Event functions
 Route::post('/admin/events/create', 'EventsController@create_event');
+Route::post('/admin/events/delete', 'EventsController@delete_event');
 Route::post('/admin/events/rsvp', 'EventSignupsController@create');
 
 // Product functions
