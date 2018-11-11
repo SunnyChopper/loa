@@ -68,10 +68,14 @@ Route::get('/admin/users/id/{user_id}', 'UsersController@get_user_info');
 Route::get('/admin/events/view', 'AdminController@view_events');
 Route::get('/admin/events/new', 'AdminController@new_event');
 Route::get('/admin/events/stats', 'AdminController@event_stats');
+Route::get('/admin/courses/new', 'AdminController@new_course');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');
 Route::post('/admin/users/edit', 'UsersController@edit_user');
+
+// Course functions
+Route::post('/admin/courses/create', 'CoursesController@create');
 
 // Event functions
 Route::get('/events/signups/{event_id}', 'EventSignupsController@get_event_signups');
