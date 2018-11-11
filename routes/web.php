@@ -67,12 +67,14 @@ Route::get('/admin/users/new', 'AdminController@new_user');
 Route::get('/admin/users/id/{user_id}', 'UsersController@get_user_info');
 Route::get('/admin/events/view', 'AdminController@view_events');
 Route::get('/admin/events/new', 'AdminController@new_event');
+Route::get('/admin/events/stats', 'AdminController@event_stats');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');
 Route::post('/admin/users/edit', 'UsersController@edit_user');
 
 // Event functions
+Route::get('/events/signups/{event_id}', 'EventSignupsController@get_event_signups');
 Route::post('/admin/events/create', 'EventsController@create_event');
 Route::post('/admin/events/delete', 'EventsController@delete_event');
 Route::post('/admin/events/rsvp', 'EventSignupsController@create');

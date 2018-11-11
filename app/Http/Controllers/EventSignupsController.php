@@ -30,4 +30,11 @@ class EventSignupsController extends Controller
     	// Redirect to thank you page
     	return redirect(url('/events/thank-you'));
     }
+
+    public function get_event_signups($event_id) {
+        // Get signups
+        $event_signups_helper = new EventSignupHelper();
+        $signups = $event_signups_helper->get_signups_for_event($event_id);
+        return json_encode($signups);
+    }
 }

@@ -2,6 +2,7 @@
 
 @section('content')
 	@include('layouts.hero')
+	@include('admin.events.modals.view-event-signups')
 	<div class="container mt-32 mb-32">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -10,6 +11,7 @@
 						<table class="table table-striped" style="text-align: center;">
 							<thead>
 								<th>Name</th>
+								<th>Description</th>
 								<th>Views</th>
 								<th>Attending</th>
 								<th>Guests</th>
@@ -19,14 +21,14 @@
 							<tbody>
 								@foreach($events as $event)
 									<tr>
-										<td style="min-width: 50px;">{{ $event->event_name }}</td>
-										<td style="min-width: 150px;">{{ $event->event_description }}</td>
-										<td style="min-width: 100px;">{{ $event->location }}</td>
-										<td style="min-width: 50px;">{{ Carbon\Carbon::parse($event->start_time)->format('M jS, Y \a\t H:i A') }}</td>
-										<td style="min-width: 50px;">{{ Carbon\Carbon::parse($event->end_date)->format('M jS, Y \a\t H:i A') }}</td>
-										<td style="min-width: 100px;"> 
-											<a href="/admin/events/edit/{{ $event->id }}" class="genric-btn info small">Edit</a>
-											<button id="{{ $event->id }}" type="button" class="genric-btn danger small delete_post_button">Delete</button>
+										<td>{{ $event->event_name }}</td>
+										<td>{{ $event->event_description }}</td>
+										<td>{{ $site_stats_helper->get_event_views($event->id) }}</td>
+										<td>{{ $site_stats_helper->get_event_attendees($event->id) }}</td>
+										<td>{{ $site_stats_helper->get_event_guest_attendees($event->id) }}</td>
+										<td>{{ $site_stats_helper->get_event_member_attendees($event->id) }}</td>
+										<td> 
+											<button id="{{ $event->id }}" type="button" class="genric-btn primary small view_signups_button">View List</button>
 										</td>
 									</tr>
 								@endforeach
@@ -55,15 +57,31 @@
 
 @section('page_js')
 	<script type="text/javascript">
-		$(".delete_post_button").on('click', function() {
+		$(".view_signups_button").on('click', function() {
 			// Get post ID
-			var post_id = $(this).attr('id');
+			var event_id = $(this).attr('id');
 
-			// Set ID for modal
-			$("#post_id_delete_modal").val(post_id);
+			// Clean out the table
+			$("#event_signups_table_body").html('');
 
-			// Show modal
-			$("#delete_post_modal").modal();
+			// AJAX to get data
+			$.ajax({
+				url: '/events/signups/' + event_id,
+				method: 'GET',
+				success: function(data) {
+					// Get and parse data
+					var signups_data = JSON.parse(data);
+
+					// Populate table
+					for (var i = 0; i < signups_data.length; i++) {
+						var appending_html = "<tr><td>" + signups_data[i]["first_name"] + " " + signups_data[i]["last_name"] + "</td><td>" + signups_data[i]["email"] + "</td></tr>";
+						$("#event_signups_table_body").append(appending_html);
+					}
+
+					// Show modal
+					$("#view_event_modal").modal();
+				}
+			});
 		});
 	</script>
 @endsection

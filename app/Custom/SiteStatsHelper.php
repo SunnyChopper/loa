@@ -227,11 +227,23 @@ class SiteStatsHelper {
 		$event_stats->save();
 	}
 
+	public function get_event_views($event_id) {
+		$this->verify_event_exists($event_id);
+		$event_stats = EventStats::where('event_id', $event_id)->first();
+		return $event_stats->views;
+	}
+
 	public function event_add_attending($event_id) {
 		$this->verify_event_exists($event_id);
 		$event_stats = EventStats::where('event_id', $event_id)->first();
 		$event_stats->attending = $event_stats->attending + 1;
 		$event_stats->save();
+	}
+
+	public function get_event_attendees($event_id) {
+		$this->verify_event_exists($event_id);
+		$event_stats = EventStats::where('event_id', $event_id)->first();
+		return $event_stats->attending;
 	}
 
 	public function event_add_member_attending($event_id) {
@@ -241,11 +253,23 @@ class SiteStatsHelper {
 		$event_stats->save();
 	}
 
+	public function get_event_member_attendees($event_id) {
+		$this->verify_event_exists($event_id);
+		$event_stats = EventStats::where('event_id', $event_id)->first();
+		return $event_stats->members_attending;
+	}
+
 	public function event_add_guest_attending($event_id) {
 		$this->verify_event_exists($event_id);
 		$event_stats = EventStats::where('event_id', $event_id)->first();
 		$event_stats->guests_attending = $event_stats->guests_attending + 1;
 		$event_stats->save();
+	}
+
+	public function get_event_guest_attendees($event_id) {
+		$this->verify_event_exists($event_id);
+		$event_stats = EventStats::where('event_id', $event_id)->first();
+		return $event_stats->guests_attending;
 	}
 
 	public function new_signup($data) {
@@ -300,7 +324,10 @@ class SiteStatsHelper {
 
 	private function verify_event_exists($event_id) {
 		if (EventStats::where('event_id', $event_id)->count() == 0) {
-			$this->new_event($event_id);
+			$data = array(
+				"event_id" => $event_id
+			);
+			$this->new_event($data);
 		}
 	}
 
