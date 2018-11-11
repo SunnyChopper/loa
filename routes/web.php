@@ -68,6 +68,7 @@ Route::get('/admin/users/id/{user_id}', 'UsersController@get_user_info');
 Route::get('/admin/events/view', 'AdminController@view_events');
 Route::get('/admin/events/new', 'AdminController@new_event');
 Route::get('/admin/events/stats', 'AdminController@event_stats');
+Route::get('/admin/courses/view', 'AdminController@view_courses');
 Route::get('/admin/courses/new', 'AdminController@new_course');
 
 // User functions

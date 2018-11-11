@@ -15,6 +15,7 @@ use App\Custom\OrderHelper;
 use App\Custom\SiteStatsHelper;
 use App\Custom\UserHelper;
 use App\Custom\EventHelper;
+use App\Custom\CourseHelper;
 
 class AdminController extends Controller
 {
@@ -373,6 +374,25 @@ class AdminController extends Controller
         $site_stats_helper = new SiteStatsHelper();
 
         return view('admin.events.stats')->with('page_header', $page_header)->with('site_stats_helper', $site_stats_helper)->with('events', $events);
+    }
+
+    public function view_courses() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "View Courses";
+
+        // Get courses
+        $course_helper = new CourseHelper();
+        $courses = $course_helper->get_all_courses();
+
+        return view('admin.courses.view')->with('page_header', $page_header)->with('courses', $courses);
     }
 
     public function new_course() {

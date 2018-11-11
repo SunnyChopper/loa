@@ -77,17 +77,6 @@
 	</div>
 	@endif
 
-	<div style="background-color: black;" class="p-32">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-					<h3 class="white text-center">"Education is not the learning of facts, but the training of the mind to think."</h3>
-					<p class="white text-center mb-0">- Albert Einstein</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="container mt-64 mb-64">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -107,6 +96,31 @@
 			</div>
 		</div>
 	</div>
+
+	<div style="background-color: black;" class="p-32">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+					<h3 class="white text-center">"Education is not the learning of facts, but the training of the mind to think."</h3>
+					<p class="white text-center mb-0">- Albert Einstein</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@if(count($my_courses) > 0)
+		<div class="container pt-64 pb-64">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+					<h2 class="text-center">My Courses</h2>
+					<hr />
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+				</div>
+			</div>
+		</div>
+	@endif
 @endsection
 
 @section('page_js')

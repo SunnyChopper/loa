@@ -35,11 +35,19 @@ class CourseHelper {
 		return $this->course_id;
 	}
 
-	public function get_courses() {
+	public function get_all_courses() {
 		return Course::where('is_active', 1)->get();
 	}
 
-	public function get_courses_for_user_id($user_id) {
+	public function get_coming_soon_courses() {
+		return Course::where('is_active', 1)->where('course_status', 1)->get();
+	}
+
+	public function get_published_courses() {
+		return Course::where('is_active', 1)->where('course_status', 2)->get();
+	}
+
+	public function get_courses_for_user($user_id) {
 		// Get memberships for user
 		$course_memberships = CourseMembership::where('user_id', $user_id)->get();
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Custom\BlogPostHelper;
 use App\Custom\EventHelper;
+use App\Custom\CourseHelper;
 
 use Auth;
 
@@ -30,7 +31,11 @@ class DashboardController extends Controller
         $event_helper = new EventHelper();
         $events = $event_helper->get_upcoming_events();
 
-    	return view('dashboard.index')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts)->with('events', $events);
+        // Get courses for user
+        $course_helper = new CourseHelper();
+        $my_courses = $course_helper->get_courses_for_user(Auth::id());
+
+    	return view('dashboard.index')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts)->with('events', $events)->with('my_courses', $my_courses);
     }
 
     public function tools() {

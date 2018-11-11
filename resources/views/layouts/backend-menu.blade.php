@@ -75,6 +75,7 @@
 @if(\Session::get('backend_auth') == 1 || \Session::get('backend_auth') == 4)
 <li class="menu-has-children"><a href="/admin/stats/view">Stats</a>
 	<ul>
+		<li><a href="/admin/finance/view">Finance</a></li>
 		<li><a href="/admin/stats/view">Summary Stats</a></li>
 		<li><a href="/admin/stats/full">Full Stats</a></li>
 	</ul>
