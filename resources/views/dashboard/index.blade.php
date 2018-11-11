@@ -32,6 +32,7 @@
 		</div>
 	</div>
 
+	@if(count($events) > 0)
 	<div style="background-color: #EAEAEA;" class="pt-64 pb-64">
 		<div class="container">
 			<div class="row">
@@ -46,19 +47,19 @@
 				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 					<div style="padding: 16px; border: 2px solid #AAAAAA; border-radius: 5px; background: white;">
 						<h3 class="text-center"><b>What is it?</b></h3>
-						<p class="text-center mb-0 mt-16">Come out and network with the Wolf Squad</p>
+						<p class="text-center mb-0 mt-16">{{ $events[0]->event_description }}</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 					<div style="padding: 16px; border: 2px solid #AAAAAA; border-radius: 5px; background: white;">
 						<h3 class="text-center"><b>Where is it?</b></h3>
-						<p class="text-center mb-0 mt-16">813 Trailway Dr, Champaign, IL, 61822</p>
+						<p class="text-center mb-0 mt-16">{{ $events[0]->location }}</p>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 					<div style="padding: 16px; border: 2px solid #AAAAAA; border-radius: 5px; background: white;">
 						<h3 class="text-center"><b>When is it?</b></h3>
-						<p class="text-center mb-0 mt-16">8:00 AM on November 17th, 2018</p>
+						<p class="text-center mb-0 mt-16">{{ Carbon\Carbon::parse($events[0]->start_time)->format('H:i A \o\n F jS, Y') }}</p>
 					</div>
 				</div>
 			</div>
@@ -73,6 +74,7 @@
 			</div>
 		</div>
 	</div>
+	@endif
 
 	<div style="background-color: black;" class="p-32">
 		<div class="container">

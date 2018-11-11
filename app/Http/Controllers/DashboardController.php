@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Custom\BlogPostHelper;
+use App\Custom\EventHelper;
 
 use Auth;
 
@@ -25,7 +26,11 @@ class DashboardController extends Controller
         $blog_post_helper = new BlogPostHelper();
         $posts = $blog_post_helper->get_latest_posts();
 
-    	return view('dashboard.index')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts);
+        // Get upcoming events
+        $event_helper = new EventHelper();
+        $events = $event_helper->get_upcoming_events();
+
+    	return view('dashboard.index')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('posts', $posts)->with('events', $events);
     }
 
     public function tools() {
