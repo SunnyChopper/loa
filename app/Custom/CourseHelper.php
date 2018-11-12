@@ -49,6 +49,14 @@ class CourseHelper {
 		return Course::where('is_active', 1)->where('course_status', 2)->get();
 	}
 
+	public function get_course_by_id($course_id = 0) {
+		if ($course_id == 0) {
+			$course_id = $this->course_id;
+		}
+
+		return Course::where('id', $course_id)->first();
+	}
+
 	public function get_courses_for_user($user_id) {
 		// Get memberships for user
 		$course_memberships = CourseMembership::where('user_id', $user_id)->get();
@@ -70,6 +78,33 @@ class CourseHelper {
 
 	public function get_next_course_id() {
 		return (Course::count() + 1);
+	}
+
+	public function update_course($data) {
+		// Get data
+		$course_id = $data["course_id"];
+		$course_title = $data["course_title"];
+		$course_description = $data["course_description"];
+		$course_video_preview_link = $data["course_video_preview_link"];
+		$course_status = $data["course_status"];
+
+		// Check to see if need to update image
+		if (isset($data["course_image_url"])) {
+			$update_course_image = true;
+		} else {
+			$update_course_image = false;
+		}
+
+		// Get course and update
+		$course = Course::where('id', $course_id)->first();
+		$course->course_title = $course_title;
+		$course->course_description = $course_description;
+		$course->course_video_preview_link = $course_video_preview_link;
+		$course->course_status = $course_status;
+		if ($update_course_image == true) {
+			$course->course_image_url = $data["course_image_url"];
+		}
+		$course->save();
 	}
 }
 

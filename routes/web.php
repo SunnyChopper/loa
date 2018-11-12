@@ -70,6 +70,7 @@ Route::get('/admin/events/new', 'AdminController@new_event');
 Route::get('/admin/events/stats', 'AdminController@event_stats');
 Route::get('/admin/courses/view', 'AdminController@view_courses');
 Route::get('/admin/courses/new', 'AdminController@new_course');
+Route::get('/admin/courses/edit/{course_id}', 'AdminController@edit_course');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');
@@ -77,6 +78,7 @@ Route::post('/admin/users/edit', 'UsersController@edit_user');
 
 // Course functions
 Route::post('/admin/courses/create', 'CoursesController@create');
+Route::post('/admin/courses/update', 'CoursesController@update');
 
 // Event functions
 Route::get('/events/signups/{event_id}', 'EventSignupsController@get_event_signups');

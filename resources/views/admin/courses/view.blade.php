@@ -13,7 +13,7 @@
 								<th>Title</th>
 								<th>Description</th>
 								<th>Members</th>
-								<th># of Content</th>
+								<th>Videos</th>
 								<th>Status</th>
 								<th>Created</th>
 								<th></th>
@@ -27,11 +27,13 @@
 										<td>{{ $course->course_num_videos }}</td>
 										@if($course->course_status == 1)
 											<td>In Draft</td>
+										@elseif($course->course_status == 2)
+											<td>Coming Soon</td>
 										@else
 											<td>Published</td>
 										@endif
-										<td style="min-width: 50px;">{{ $course->created_at->format('M d, Y') }}</td>
-										<td style="min-width: 100px;"> 
+										<td style="min-width: 150px;">{{ $course->created_at->format('M d, Y') }}</td>
+										<td style="min-width: 250px;"> 
 											<a href="/admin/courses/edit/{{ $course->id }}" class="genric-btn info small">Edit</a>
 											<button id="{{ $course->id }}" type="button" class="genric-btn danger small delete_course_button">Delete</button>
 										</td>
