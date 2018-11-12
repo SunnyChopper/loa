@@ -8,6 +8,7 @@ use Stripe\Error\Card;
 use Validator;
 
 use App\Custom\ProductHelper;
+use App\Custom\CourseHelper;
 use App\Custom\CartHelper;
 use App\Custom\EventHelper;
 use App\Custom\SiteStatsHelper;
@@ -164,7 +165,11 @@ class PagesController extends Controller
     	// Dynamic page features
     	$page_header = "Courses";
 
-    	return view('pages.courses')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+        // Get courses
+        $course_helper = new CourseHelper();
+        $courses = $course_helper->get_all_courses();
+
+    	return view('pages.courses')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('courses', $courses)->with('course_helper', $course_helper);
     }
 
     public function view_course($course_id) {

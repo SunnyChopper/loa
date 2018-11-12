@@ -47,4 +47,31 @@ class EventsController extends Controller
         // Return to events
         return redirect(url('/admin/events/view'));
     }
+
+    public function update_event(Request $data) {
+        // Get data
+        $event_id = $data->event_id;
+        $event_name = $data->event_name;
+        $event_description = $data->event_description;
+        $event_location = $data->event_location;
+        $start_time = $data->start_time;
+        $end_date = $data->end_date;
+
+        // Create array for event helper
+        $event_data = array(
+            "event_id" => $event_id,
+            "event_name" => $event_name,
+            "event_description" => $event_description,
+            "event_location" => $event_location,
+            "start_time" => $start_time,
+            "end_date" => $end_date
+        );
+
+        // Create event helper and edit event
+        $event_helper = new EventHelper();
+        $event_helper->update_event($event_data);
+
+        // Redirect to main page
+        return redirect(url('/admin/events/view'));
+    }
 }

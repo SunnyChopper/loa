@@ -93,6 +93,10 @@ class CourseHelper {
 		return CourseStats::where('course_id', $course_id)->first()->member_purchases;
 	}
 
+	public function get_number_of_courses_on_display() {
+		return Course::where('course_status', '>', 1)->count();
+	}
+
 	public function get_next_course_id() {
 		return (Course::count() + 1);
 	}

@@ -108,6 +108,20 @@ class DashboardController extends Controller
     	return view('dashboard.settings')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
 
+    public function profile() {
+        // Check if authorized
+        $this->checkAuth();
+
+        // SEO Data
+        $page_title = "Your Profile";
+        $page_description = "Control your experience on Law of Ambition. With Wolf Squad, you get to control your entrepreneur journey.";
+
+        // Dynamic page elements
+        $page_header = "Amy Mendoza";
+
+        return view('dashboard.profile')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    }
+
     public function checkAuth() {
     	if (Auth::guest()) {
     		return redirect(url('/members/login'));

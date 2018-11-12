@@ -112,5 +112,6 @@ Route::get('/members/community', 'DashboardController@community');
 Route::get('/members/courses', 'DashboardController@courses');
 Route::get('/members/shop', 'DashboardController@shop');
 Route::get('/members/settings', 'DashboardController@settings');
+Route::get('/members/profile', 'DashboardController@profile');
 
 Auth::routes();
