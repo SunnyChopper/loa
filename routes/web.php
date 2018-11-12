@@ -28,6 +28,7 @@ Route::get('/posts/{post_id}/{slug}', 'PagesController@view_post');
 Route::get('/shop', 'PagesController@shop');
 Route::get('/product/{product_id}', 'PagesController@product');
 Route::get('/courses', 'PagesController@courses');
+Route::get('/courses/view/{course_id}', 'PagesController@view_course');
 Route::get('/events', 'PagesController@events');
 Route::get('/members/login', 'PagesController@login');
 Route::get('/members/register', 'PagesController@register');
@@ -66,6 +67,7 @@ Route::get('/admin/users/view', 'AdminController@view_users');
 Route::get('/admin/users/new', 'AdminController@new_user');
 Route::get('/admin/users/id/{user_id}', 'UsersController@get_user_info');
 Route::get('/admin/events/view', 'AdminController@view_events');
+Route::get('/admin/events/edit/{event_id}', 'AdminController@edit_event');
 Route::get('/admin/events/new', 'AdminController@new_event');
 Route::get('/admin/events/stats', 'AdminController@event_stats');
 Route::get('/admin/courses/view', 'AdminController@view_courses');
@@ -83,6 +85,7 @@ Route::post('/admin/courses/update', 'CoursesController@update');
 
 // Event functions
 Route::get('/events/signups/{event_id}', 'EventSignupsController@get_event_signups');
+Route::post('/admin/events/update', 'EventsController@update_event');
 Route::post('/admin/events/create', 'EventsController@create_event');
 Route::post('/admin/events/delete', 'EventsController@delete_event');
 Route::post('/admin/events/rsvp', 'EventSignupsController@create');

@@ -354,6 +354,25 @@ class AdminController extends Controller
         return view('admin.events.new')->with('page_header', $page_header);
     }
 
+    public function edit_event($event_id) {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Edit Event";
+
+        // Load event
+        $event_helper = new EventHelper($event_id);
+        $event = $event_helper->get_event();
+
+        return view('admin.events.edit')->with('page_header', $page_header)->with('event', $event);
+    }
+
     public function event_stats() {
         // Check for login
         $check_login = $this->check_login();

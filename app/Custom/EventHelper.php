@@ -60,20 +60,28 @@ class EventHelper {
 		return Event::where('end_time', '<', $current_date)->where('is_active', 1)->get();
 	}
 
+	public function get_event($event_id = 0) {
+		if ($event_id == 0) {
+			$event_id = $this->event_id;
+		}
+
+		return Event::where('id', $event_id)->first();
+	}
+
 	public function update_event($data) {
 		$event_id = $data["event_id"];
 		$event_name = $data["event_name"];
 		$event_description = $data["event_description"];
 		$event_location = $data["event_location"];
 		$start_time = $data["start_time"];
-		$end_time = $data["end_time"];
+		$end_time = $data["end_date"];
 
 		$event = Event::where('id', $event_id)->first();
 		$event->event_name = $event_name;
 		$event->event_description = $event_description;
 		$event->location = $event_location;
 		$event->start_time = $start_time;
-		$event->end_time = $end_time;
+		$event->end_date = $end_time;
 		$event->save();
 	}
 

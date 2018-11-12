@@ -167,6 +167,17 @@ class PagesController extends Controller
     	return view('pages.courses')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
 
+    public function view_course($course_id) {
+        // SEO Data
+        $page_title = "Courses";
+        $page_description = "Become a better entrepreneur with these online courses. The more you invest in yourself, the better.";
+
+        // Dynamic page features
+        $page_header = "Course Title";
+
+        return view('pages.view-course')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    }
+
     public function events() {
     	// SEO Data
     	$page_title = "Events";
