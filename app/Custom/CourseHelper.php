@@ -4,6 +4,7 @@ namespace App\Custom;
 
 use App\Course;
 use App\CourseMembership;
+use App\CourseStats;
 
 use Auth;
 
@@ -74,6 +75,22 @@ class CourseHelper {
 
 		// Return the courses
 		return $courses;
+	}
+
+	public function get_views_for_course($course_id) {
+		return CourseStats::where('course_id', $course_id)->first()->views;
+	}
+
+	public function get_purchased_for_course($course_id) {
+		return CourseStats::where('course_id', $course_id)->first()->purchased;
+	}
+
+	public function get_guest_purchases_for_course($course_id) {
+		return CourseStats::where('course_id', $course_id)->first()->guest_purchases;
+	}
+
+	public function get_member_purchases_for_course($course_id) {
+		return CourseStats::where('course_id', $course_id)->first()->member_purchases;
 	}
 
 	public function get_next_course_id() {

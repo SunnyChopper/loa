@@ -429,6 +429,25 @@ class AdminController extends Controller
         return view('admin.courses.edit')->with('page_header', $page_header)->with('course', $course);
     }
 
+    public function course_stats() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Course Stats";
+
+        // Get course
+        $course_helper = new CourseHelper();
+        $courses = $course_helper->get_published_courses();
+
+        return view('admin.courses.stats')->with('page_header', $page_header)->with('courses', $courses);
+    }
+
     private function check_login() {
         // Get session variables
         if (Auth::guest()) {
