@@ -17,6 +17,7 @@ class CoursesController extends Controller
     	$course_title = $data->course_title;
     	$course_video_preview_link = $data->course_video_preview_link;
     	$course_description = $data->course_description;
+        $course_price = $data->course_price;
         $course_image = $data->file('course_image');
 
         // Upload image for course image URL
@@ -30,7 +31,8 @@ class CoursesController extends Controller
     		"course_title" => $course_title,
     		"course_video_preview_link" => $course_video_preview_link,
     		"course_description" => $course_description,
-            "course_image_url" => $course_image_url
+            "course_image_url" => $course_image_url,
+            "course_price" => $course_price
     	);
 
     	// Create course
@@ -49,6 +51,7 @@ class CoursesController extends Controller
         $course_description = $data->course_description;
         $course_video_preview_link = $data->course_video_preview_link;
         $course_status = $data->course_status;
+        $course_price = $data->course_price;
 
         // Check to see if image updated
         if ($data->hasFile('course_image')) {
@@ -70,7 +73,8 @@ class CoursesController extends Controller
             "course_title" => $course_title,
             "course_video_preview_link" => $course_video_preview_link,
             "course_description" => $course_description,
-            "course_status" => $course_status
+            "course_status" => $course_status,
+            "course_price" => $course_price
         );
 
         // Check to see if need to add image

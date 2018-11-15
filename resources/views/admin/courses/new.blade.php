@@ -18,14 +18,19 @@
 
 							<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 								<div class="form-group">
-									<label>YouTube ID of Course Preview:</label>
-									<input type="text" name="course_video_preview_link" class="form-control" required>
+									<label>Course Price:</label>
+									<input type="number" name="course_price" class="form-control" min="0.00" step="0.01" required>
 								</div>
 							</div>
 						</div>
 
 						<div class="row">
-							
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<div class="form-group">
+									<label>YouTube ID of Course Preview:</label>
+									<input type="text" name="course_video_preview_link" class="form-control" required>
+								</div>
+							</div>
 						</div>
 
 						<div class="row">

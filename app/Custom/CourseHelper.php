@@ -23,6 +23,7 @@ class CourseHelper {
 		$course_description = $data["course_description"];
 		$course_video_preview_link = $data["course_video_preview_link"];
 		$course_image_url = $data["course_image_url"];
+		$course_price = $data["course_price"];
 
 		$course = new Course;
 		$course->course_title = $course_title;
@@ -31,6 +32,7 @@ class CourseHelper {
 		$course->course_image_url = $course_image_url;
 		$course->course_members = 0;
 		$course->course_num_videos = 0;
+		$course->course_price = $course_price;
 		$course->is_active = 1;
 
 		$this->course_id = $course->save();
@@ -108,6 +110,7 @@ class CourseHelper {
 		$course_description = $data["course_description"];
 		$course_video_preview_link = $data["course_video_preview_link"];
 		$course_status = $data["course_status"];
+		$course_price = $data["course_price"];
 
 		// Check to see if need to update image
 		if (isset($data["course_image_url"])) {
@@ -122,6 +125,7 @@ class CourseHelper {
 		$course->course_description = $course_description;
 		$course->course_video_preview_link = $course_video_preview_link;
 		$course->course_status = $course_status;
+		$course->course_price = $course_price;
 		if ($update_course_image == true) {
 			$course->course_image_url = $data["course_image_url"];
 		}
