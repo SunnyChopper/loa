@@ -3,12 +3,13 @@
 namespace App\Custom;
 
 use App\BookDiscussion;
+use App\DiscussionPost;
 use App\DiscussionPostLike;
 use App\DiscussionPostComment;
 
 use Auth;
 
-class VotingHelper {
+class BookDiscussionHelper {
 	/* Private variables */
 	private $book_discussion_id;
 
@@ -42,8 +43,70 @@ class VotingHelper {
 		return $book_discussion->id;	
 	}
 
+	public function create_book_discussion_post($data) {
+		// Get data
+		$book_discussion_id = $data["book_discussion_id"];
+		$post_owner_id = $data["post_owner_id"];
+		$post_body = $data["post_body"];
+
+		// Create book discussion post
+		$discussion_post = new DiscussionPost;
+		$discussion_post->book_discussion_id = $book_discussion_id;
+		$discussion_post->post_owner_id = $post_owner_id;
+		$discussion_post->post_body = $post_body;
+		$discussion_post->save();
+
+		return $discussion_post->id;
+	}
+
+	public function create_discussion_post_comment($data) {
+		// Get data
+		$post_id = $data["post_id"];
+		$comment_body = $data["comment_body"];
+		$comment_user_id = $data["comment_user_id"];
+
+		// Create comment
+		$comment = new DiscussionPostComment;
+		$comment->post_id = $post_id;
+		$comment->comment_body = $comment_body;
+		$comment->comment_user_id = $comment_user_id;
+		$comment->save();
+
+		return $comment->id;
+	}
+
+	public function create_discussion_post_like($data) {
+		// Get data
+		$post_id = $data["post_id"];
+		$user_id = $data["user_id"];
+
+		// Create like
+		$like = new DiscussionPostLike;
+		$like->post_id = $post_id;
+		$like->user_id = $user_id;
+		$like->save();
+
+		return $like->id;
+	}
+
 	public function get_current_book_discussion() {
 		return BookDiscussion::where('start_date', '>=', Carbon\Carbon::now())->where('end_date', '>', Carbon\Carbon::now())->first();
+	}
+
+	public function get_discussion_posts_with_id($book_discussion_id) {
+		return DiscussionPost::where('book_discussion_id', $book_discussion_id)->get();
+	}
+
+	public function get_discussion_posts_for_user($user_id) {
+		return DiscussionPost::where('post_owner_id', $user_id)->get();
+	}
+
+	public function get_comments_for_post($post_id) {
+		return DiscussionPostComment::where('post_id', $post_id)->get();
+	}
+
+	public function get_likes_for_user($user_id) {
+		return DiscussionPostLike::where('user_id', $user_id)->get();
 	}
 }
 
