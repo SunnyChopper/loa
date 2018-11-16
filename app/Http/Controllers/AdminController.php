@@ -467,6 +467,21 @@ class AdminController extends Controller
         return view('admin.courses.stats')->with('page_header', $page_header)->with('courses', $courses);
     }
 
+    public function new_book_discussion() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "New Book Discussion";
+
+        return view('admin.discussions.new')->with('page_header', $page_header);
+    }
+
     private function check_login() {
         // Get session variables
         if (Auth::guest()) {

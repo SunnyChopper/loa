@@ -89,7 +89,7 @@
 						@endif
 
 						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2)
-							<a href="">
+							<a href="/admin/events/new">
 								<li class="list-group-item admin-action mt-8">
 									<h4 class="mb-0" style="display: inline-block;">Create New Event</h4>
 									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
@@ -101,6 +101,15 @@
 							<a href="">
 								<li class="list-group-item admin-action mt-8">
 									<h4 class="mb-0" style="display: inline-block;">Create Voting Poll</h4>
+									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
+								</li>
+							</a>
+						@endif
+
+						@if(Session::get('backend_auth') == 1 || Session::get('backend_auth') == 2)
+							<a href="/admin/discussions/new">
+								<li class="list-group-item admin-action mt-8">
+									<h4 class="mb-0" style="display: inline-block;">Create Book Discussion</h4>
 									<p class="mb-0" style="float: right; display: inline-block;"><span class="lnr lnr-arrow-right green" style="font-size: 20px;"></span></p>
 								</li>
 							</a>

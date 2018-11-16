@@ -74,6 +74,7 @@ Route::get('/admin/courses/view', 'AdminController@view_courses');
 Route::get('/admin/courses/new', 'AdminController@new_course');
 Route::get('/admin/courses/edit/{course_id}', 'AdminController@edit_course');
 Route::get('/admin/courses/stats', 'AdminController@course_stats');
+Route::get('/admin/discussions/new', 'AdminController@new_book_discussion');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');
