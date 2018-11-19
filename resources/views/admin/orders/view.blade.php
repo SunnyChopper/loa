@@ -9,7 +9,7 @@
 				<div style="overflow: auto;">
 					<table class="table table-striped" style="text-align: center;">
 						<thead>
-							<th>Order ID</th>
+							<th>Order Group</th>
 							<th>Name</th>
 							<th>Product</th>
 							<th>Quantity</th>
@@ -23,7 +23,7 @@
 									$product = $product_helper->get_product_by_id();
 								?>
 								<tr>
-									<td>{{ $order->id }}</td>
+									<td>{{ $order->order_group }}</td>
 									<td>{{ $order->order_first_name }} {{ $order->order_last_name }}</td>
 									<td>{{ $product->product_name }}</td>
 									<td>{{ $order->quantity }}</td>

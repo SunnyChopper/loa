@@ -162,6 +162,11 @@ class CartHelper {
 				// Successfully created charge, now, let's create orders for each product
 				$products = $this->get_current_products();
 				$site_stats_helper = new SiteStatsHelper();
+
+				// Get order group ID
+				$order_helper = new OrderHelper();
+				$order_group = $order_helper->get_next_order_group();
+
 				foreach ($products as $product) {
 					// Create dictionary for OrderHelper
 					$order_info = array();
@@ -178,6 +183,7 @@ class CartHelper {
 					$order_info["order_zipcode"] = $data["order_zipcode"];
 					$order_info["customer_id"] = $customer["id"];
 					$order_info["quantity"] = $product["quantity"];
+					$order_info["order_group"] = $order_group;
 
             		$site_stats_helper->product_add_purchased($product["product_id"]);
             		if (Auth::guest()) {

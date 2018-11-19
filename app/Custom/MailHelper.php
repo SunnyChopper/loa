@@ -88,18 +88,27 @@ class MailHelper {
 		});
 
 		// Send notification emails
-		Mail::send('emails.luis-notification-email', $email_data, function($message) use ($email_data) {
-			$message->to("luis@lawofambition.com", "Luis Garcia")->subject("💵 Law of Ambition - New Order 💵");
-			$message->from(env('MAIL_USERNAME'), "Law of Ambition");
-			$message->cc("ishy.singh@gmail.com", "Sunny Singh");
-		});
+		// Mail::send('emails.luis-notification-email', $email_data, function($message) use ($email_data) {
+		// 	$message->to("luis@lawofambition.com", "Luis Garcia")->subject("💵 Law of Ambition - New Order 💵");
+		// 	$message->from(env('MAIL_USERNAME'), "Law of Ambition");
+		// 	$message->cc("ishy.singh@gmail.com", "Sunny Singh");
+		// });
 	}
 
 	public function send_new_user_email() {
 		$email_data = $this->get_email_data();
 		Mail::send('emails.new-user-email', $email_data, function($message) use ($email_data) {
 			$message->subject($email_data["subject"]);
-			$message->to($email_data["recipient_email"], $email_data["first_name"] . " " . $email_data["last_name"]);
+			$message->to($email_data["recipient_email"], $email_data["recipient_first_name"] . " " . $email_data["recipient_last_name"]);
+			$message->from(env('MAIL_USERNAME'), "Law of Ambition");
+		});
+	}
+
+	public function send_tracking_number_email() {
+		$email_data = $this->get_email_data();
+		Mail::send('emails.tracking-number-email', $email_data, function($message) use ($email_data) {
+			$message->subject($email_data["subject"]);
+			$message->to($email_data["recipient_email"], $email_data["recipient_first_name"] . " " . $email_data["recipient_last_name"]);
 			$message->from(env('MAIL_USERNAME'), "Law of Ambition");
 		});
 	}

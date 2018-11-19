@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Stripe\Error\Card;
 
+use App\Custom\ProductHelper;
+use App\Custom\MailHelper;
+
 use App\Product;
 use App\Order;
 
@@ -31,6 +34,7 @@ class OrderHelper {
 	private $order_zipcode;
 	private $order_status;
 	private $order_tracking_num;
+	private $order_group;
 	private $quantity;
 	private $created_at;
 	private $updated_at;
@@ -55,6 +59,7 @@ class OrderHelper {
 		$this->order_zipcode = "";
 		$this->order_status = 0;
 		$this->order_tracking_num = "";
+		$this->order_group = 0;
 		$this->quantity = 0;
 		$this->created_at = "";
 		$this->updated_at = "";
@@ -78,6 +83,7 @@ class OrderHelper {
 		$this->quantity = $data["quantity"];
 		$this->order_status = 1;
 		$this->order_tracking_num = "";
+		$this->order_group = $data["order_group"];
 
 		// Set guest variables
 		if (Auth::guest()) {
@@ -113,6 +119,7 @@ class OrderHelper {
 		$order->order_status = $this->order_status;
 		$order->order_tracking_num = $this->order_tracking_num;
 		$order->quantity = $this->quantity;
+		$order->order_group = $this->order_group;
 		$order->save();
 
 		// Update variables
@@ -188,15 +195,54 @@ class OrderHelper {
 		if ($this->order_id == 0) {
 			return "error";
 		} else {
+			// Update order
 			$order = Order::where('id', $this->order_id)->first();
 			$order->order_tracking_num = $tracking_num;
 			$order->save();
+
+			// Get information about product
+			$product_helper = new ProductHelper($order->product_id);
+			$product = $product_helper->get_product_by_id();
+
+			// Send email to customer
+			$to_email = $order->order_email;
+			$to_first_name = $order->order_first_name;
+			$to_last_name = $order->order_last_name;
+
+			$body = "<p style='text-align: center;'>We've shipped out your <b>" . $product->product_name . "</b>.</p>";
+			$body .= "<p style='text-align: center;'>Your tracking number: <b>" . $tracking_num . "</b></p>";
+			$body .= "<p style='text-align: center;'><small>If you have any questions about your order, reply to this email.</small></p>"; 
+
+			$email_data = array(
+				"recipient_first_name" => $to_first_name,
+				"recipient_last_name" => $to_last_name,
+				"recipient_email" => $to_email,
+				"sender_first_name" => "Luis",
+				"sender_last_name" => "Garcia",
+				"sender_email" => "info@lawofambition.com",
+				"subject" => "📦 Your Order Has Been Shipped 📦",
+				"body" => $body
+			);
+
+			$mail_helper = new MailHelper($email_data);
+			$mail_helper->send_tracking_number_email();
 
 			$this->updated_at = $order->updated_at;
 			return "success";
 		}
 	}
 
+	public function get_next_order_group() {
+		// Check to see if any rows
+		if (Order::count() == 0) {
+			return 1;
+		} else {
+			// Get last row
+			$last_order = Order::orderBy('created_at', 'desc')->first();
+			$order_group = $last_order->order_group;
+			return intval($order_group) + 1;
+		}
+	}
 }
 
 ?>
