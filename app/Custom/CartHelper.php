@@ -11,6 +11,7 @@ use App\Product;
 use App\Custom\OrderHelper;
 use App\Custom\SiteStatsHelper;
 use App\Custom\MailHelper;
+use App\Custom\PromoCodeHelper;
 
 use Validator;
 use Session;
@@ -22,6 +23,8 @@ class CartHelper {
 	private $num_items;
 	private $product_array;
 	private $cart_total;
+	private $old_total;
+	private $promo_code;
 
 	/* Initializer */
 	public function __construct() {
@@ -41,6 +44,18 @@ class CartHelper {
 			$this->cart_total = Session::get('cart_total');
 		} else {
 			$this->cart_total = 0;
+		}
+
+		if (Session::has('old_total')) {
+			$this->old_total = Session::get('old_total');
+		} else {
+			$this->old_total = 0;
+		}
+
+		if (Session::has('promo_code')) {
+			$this->promo_code = Session::get('promo_code');
+		} else {
+			$this->promo_code = "";
 		}
 
 		$this->save();
@@ -116,7 +131,80 @@ class CartHelper {
 		$this->num_items = 0;
 		$this->product_array = array();
 		$this->cart_total = 0;
+		$this->old_total = 0;
+		$this->promo_code = "";
 
+		$this->save();
+	}
+
+	public function attach_promo_code($promo_code) {
+		// Check to see if promo code already attached
+		if ($this->does_cart_already_have_promo_code() != true) {
+			// Check to see if promo code exists
+			$promo_code_helper = new PromoCodeHelper();
+			if ($promo_code_helper->does_promo_code_exist($promo_code) == true) {
+				// Yes, it exists, get the info and edit cart
+				$promo_code = $promo_code_helper->get_promo_code($promo_code);
+				$code_type = $promo_code->code_type;
+				if ($code_type == 1) {
+					// This means percent off. We need to calculate and update total.
+					$percent_off = $promo_code->percent_off;
+					$cart_total = $this->cart_total;
+					$amount_removed = $cart_total * $percent_off;
+					$new_total = $cart_total - $amount_removed;
+
+					// Update variables
+					$this->old_total = $cart_total;
+					$this->cart_total = $new_total;
+					$this->promo_code = $promo_code;
+
+					// Update cart
+					$this->save();
+
+					return $new_total;
+				} else {
+					// This means dollars off.
+					$dollars_off = $promo_code->dollars_off;
+					$minimum_amount = $promo_code->minimum_amount;
+					$cart_total = $this->cart_total;
+					if ($cart_total < $minimum_amount) {
+						return "Cart total does not meet minimum requirement for this promo code.";
+					} else {
+						// Get new total
+						$new_total = $cart_total - $dollars_off;
+
+						// Update variables
+						$this->old_total = $cart_total;
+						$this->cart_total = $new_total;
+						$this->promo_code = $promo_code;
+
+						// Update cart
+						$this->save();
+
+						return $new_total;
+					}
+				}
+			} else {
+				return "Promo code does not exist.";
+			}
+		} else {
+			return "Promo code already attached to cart.";
+		}
+	}
+
+	public function remove_promo_code() {
+		// Get promo code information to undo
+		$promo_code_helper = new PromoCodeHelper();
+		$promo_code = $promo_code_helper->get_promo_code($this->promo_code);
+		$code_type = $promo_code->code_type;
+		
+		// Revert back to old total
+		$this->cart_total = $this->old_total;
+
+		// Remove promo code
+		$this->promo_code = "";
+
+		// Update cart
 		$this->save();
 	}
 
@@ -235,10 +323,6 @@ class CartHelper {
 		return $this->get_current_total();
 	}
 
-	public function get_selectors() {
-
-	}
-
 	/* Private helper functions */
 	private function update_total_of_cart() {
 		// Get products
@@ -331,6 +415,14 @@ class CartHelper {
 		return $duplicate_product;
 	}
 
+	private function does_cart_already_have_promo_code() {
+		if ($this->promo_code != "") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	private function get_current_products() {
 		if (Session::has('cart_product_array')) {
 			$product_array = Session::get('cart_product_array');
@@ -364,6 +456,8 @@ class CartHelper {
 		Session::put('cart_num_items', $this->num_items);
 		Session::put('cart_product_array', $this->product_array);
 		Session::put('cart_total', $this->cart_total);
+		Session::put('old_total', $this->old_total);
+		Session::put('promo_code', $this->promo_code);
 	}
 }
 

@@ -52,6 +52,9 @@
 		<li><a href="/admin/products/view">View Products</a></li>
 		<li><a href="/admin/products/new">New Product</a></li>
 		<li><a href="/admin/products/stats">Product Stats</a></li>
+		<li><a href="/admin/promo/view">View Promo Codes</a></li>
+		<li><a href="/admin/promo/new">New Promo Code</a></li>
+		<li><a href="/admin/promo/stats">Promo Code Stats</a></li>
 	</ul>
 </li>
 @endif

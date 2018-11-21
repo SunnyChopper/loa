@@ -75,6 +75,14 @@ Route::get('/admin/courses/new', 'AdminController@new_course');
 Route::get('/admin/courses/edit/{course_id}', 'AdminController@edit_course');
 Route::get('/admin/courses/stats', 'AdminController@course_stats');
 Route::get('/admin/discussions/new', 'AdminController@new_book_discussion');
+Route::get('/admin/promo/view', 'AdminController@view_promo_codes');
+Route::get('/admin/promo/new', 'AdminController@new_promo_code');
+Route::get('/admin/promo/edit/{promo_code_id}', 'AdminController@edit_promo_code');
+
+// Promo code functions
+Route::post('/admin/promo/create', 'PromoCodesController@create');
+Route::post('/admin/promo/delete', 'PromoCodesController@delete');
+Route::post('/admin/promo/update', 'PromoCodesController@update');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');

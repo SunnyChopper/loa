@@ -16,6 +16,7 @@ use App\Custom\SiteStatsHelper;
 use App\Custom\UserHelper;
 use App\Custom\EventHelper;
 use App\Custom\CourseHelper;
+use App\Custom\PromoCodeHelper;
 
 class AdminController extends Controller
 {
@@ -480,6 +481,59 @@ class AdminController extends Controller
         $page_header = "New Book Discussion";
 
         return view('admin.discussions.new')->with('page_header', $page_header);
+    }
+
+    public function view_promo_codes() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Promo Codes";
+
+        // Get courses
+        $promo_code_helper = new PromoCodeHelper();
+        $promo_codes = $promo_code_helper->get_all_active_promo_codes();
+
+        return view('admin.promo-codes.view')->with('page_header', $page_header)->with('promo_codes', $promo_codes);
+    }
+
+    public function new_promo_code() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "New Promo Code";
+
+        return view('admin.promo-codes.new')->with('page_header', $page_header);
+    }
+
+    public function edit_promo_code($promo_code_id) {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Edit Promo Code";
+
+        // Get promo code
+        $promo_code_helper = new PromoCodeHelper($promo_code_id);
+        $code = $promo_code_helper->get_promo_code_by_id($promo_code_id);
+
+        return view('admin.promo-codes.edit')->with('page_header', $page_header)->with('code', $code);
     }
 
     private function check_login() {

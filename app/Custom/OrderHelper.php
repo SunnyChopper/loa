@@ -155,7 +155,7 @@ class OrderHelper {
 	}
 
 	public function load_all_orders() {
-		return Order::paginate(25);
+		return Order::orderBy('created_at', 'desc')->paginate(10);
 	}
 
 	public function load_open_orders() {
