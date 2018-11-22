@@ -536,6 +536,28 @@ class AdminController extends Controller
         return view('admin.promo-codes.edit')->with('page_header', $page_header)->with('code', $code);
     }
 
+    public function view_promo_stats() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Promo Code Stats";
+
+        // Get promo codes
+        $promo_code_helper = new PromoCodeHelper();
+        $promo_codes = $promo_code_helper->get_all_active_promo_codes();
+
+        // Site stats helper for page
+        $site_stats_helper = new SiteStatsHelper();
+
+        return view('admin.promo-codes.stats')->with('page_header', $page_header)->with('promo_codes', $promo_codes)->with('site_stats_helper', $site_stats_helper);
+    }
+
     private function check_login() {
         // Get session variables
         if (Auth::guest()) {

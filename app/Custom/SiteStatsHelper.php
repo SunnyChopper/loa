@@ -316,13 +316,13 @@ class SiteStatsHelper {
 
 	public function promo_code_add_member_addition($promo_code_id) {
 		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
-		$promo_code_stats->member_num_times_added = $promo_code_stats->member_num_times_added + 1;
+		$promo_code_stats->members_num_times_added = $promo_code_stats->members_num_times_added + 1;
 		$promo_code_stats->save();
 	}
 
 	public function promo_code_get_member_addition($promo_code_id) {
 		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
-		return $promo_code_stats->member_num_times_added;
+		return $promo_code_stats->members_num_times_added;
 	}
 
 	public function promo_code_add_guest_removal($promo_code_id) {
@@ -338,13 +338,13 @@ class SiteStatsHelper {
 
 	public function promo_code_add_member_removal($promo_code_id) {
 		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
-		$promo_code_stats->member_num_times_removed = $promo_code_stats->member_num_times_removed + 1;
+		$promo_code_stats->members_num_times_removed = $promo_code_stats->members_num_times_removed + 1;
 		$promo_code_stats->save();
 	}
 
 	public function promo_code_get_member_removal($promo_code_id) {
 		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
-		return $promo_code_stats->member_num_times_removed;
+		return $promo_code_stats->members_num_times_removed;
 	}
 
 	public function promo_code_add_guest_usage($promo_code_id) {

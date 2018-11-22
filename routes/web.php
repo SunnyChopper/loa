@@ -80,6 +80,7 @@ Route::get('/admin/discussions/new', 'AdminController@new_book_discussion');
 Route::get('/admin/promo/view', 'AdminController@view_promo_codes');
 Route::get('/admin/promo/new', 'AdminController@new_promo_code');
 Route::get('/admin/promo/edit/{promo_code_id}', 'AdminController@edit_promo_code');
+Route::get('/admin/promo/stats', 'AdminController@view_promo_stats');
 
 // Promo code functions
 Route::post('/admin/promo/create', 'PromoCodesController@create');
