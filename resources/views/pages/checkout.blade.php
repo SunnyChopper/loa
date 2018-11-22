@@ -203,31 +203,48 @@
 						<p class="text-center mb-0"><small>Fields with <span class="red">*</span> are required</small></p>
 						<hr />
 						<div class="row mb-8">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+							<div class="col-lg-8 col-md-8 col-sm-6 col-6">
 								<h5 style="float: left;"><b>Subtotal: </b></h5>
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5 style="float: right;">${{ $total }}</h5>
+							<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+								<h5 style="float: right;">${{ sprintf('%.2f', $cart_helper->get_old_total()) }}</h5>
 							</div>
 						</div>
 						<hr />
 
 						<div class="row mb-8">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+							<div class="col-lg-8 col-md-8 col-sm-6 col-6">
 								<h5 style="float: left;"><b>Shipping: </b></h5>
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+							<div class="col-lg-4 col-md-4 col-sm-6 col-6">
 								<h5 style="float: right;">$0.00</h5>
 							</div>
 						</div>
 						<hr />
 
+						@if($cart_helper->does_promo_code_exist_in_cart() == true)
+							<?php $promo_code = $promo_code_helper->get_promo_code($cart_helper->get_promo_code()->code); ?>
+							<div class="row mb-8">
+								<div class="col-lg-8 col-md-8 col-sm-6 col-6">
+									<h5 style="float: left;"><b>Today's Savings: </b></h5>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+									@if($promo_code->code_type == 1)
+										<h5 style="float: right;" class="mb-0">${{ sprintf('%.2f', $promo_code->percent_off * $cart_helper->get_old_total()) }}</h5>
+									@else
+										<h5 style="float: right;" class="mb-0">${{ sprintf('%.2f', $promo_code->dollars_off) }}</h5>
+									@endif
+								</div>
+							</div>
+							<hr />
+						@endif
+
 						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+							<div class="col-lg-8 col-md-8 col-sm-6 col-6">
 								<h5 style="float: left;"><b>Today's Total: </b></h5>
 							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-								<h5 style="float: right;">${{ $total }}</h5>
+							<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+								<h5 style="float: right;">${{ sprintf('%.2f', $cart_helper->get_total()) }}</h5>
 							</div>
 						</div>
 

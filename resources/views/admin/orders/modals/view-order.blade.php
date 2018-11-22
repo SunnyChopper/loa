@@ -41,6 +41,10 @@
 							</div>
 
 							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<p><b>Promo Code: </b> <span id="full_order_promo_code"></span></p>
+							</div>
+
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 								<p><b>Order Status: </b> <span id="full_order_order_status"></span></p>
 							</div>
 

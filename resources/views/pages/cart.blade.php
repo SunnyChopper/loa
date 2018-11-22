@@ -54,11 +54,26 @@
 									</form>
 								@endforeach
 
+								@if($cart_helper->does_promo_code_exist_in_cart() == true)
+									<tr>
+										<td></td>
+										<td></td>
+										<td align="center" style="vertical-align:middle;"><p class="mb-0"><b>Savings Today</b></p></td>
+										<?php $promo_code = $promo_code_helper->get_promo_code($cart_helper->get_promo_code()->code); ?>
+										@if($promo_code->code_type == 1)
+											<td align="center" style="vertical-align:middle;"><p class="mb-0"><b>-${{ sprintf('%.2f', $promo_code->percent_off * $cart_helper->get_old_total()) }}</b></p></td>
+										@else
+											<td align="center" style="vertical-align:middle;"><p class="mb-0"><b>-${{ sprintf('%.2f', $promo_code->dollars_off) }}</b></p></td>
+										@endif
+										<td></td>
+									</tr>
+								@endif
+
 								<tr>
 									<td></td>
 									<td></td>
 									<td align="center" style="vertical-align:middle;"><p class="mb-0"><b>Total</b></p></td>
-									<td align="center" style="vertical-align:middle;"><p class="mb-0"><b>${{ $cart_helper->get_total() }}</b></p></td>
+									<td align="center" style="vertical-align:middle;"><p class="mb-0"><b>${{ sprintf('%.2f', $cart_helper->get_total()) }}</b></p></td>
 									<td></td>
 								</tr>
 							</tbody>
@@ -79,15 +94,44 @@
 			<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
 				<div class="well">
 					<h3 class="text-center">Checkout</h3>
+					@if($cart_helper->does_promo_code_exist_in_cart() == true)
+						<?php $promo_code = $promo_code_helper->get_promo_code($cart_helper->get_promo_code()->code); ?>
+						@if($promo_code->code_type == 1)
+							<p class="mb-0 mt-0 text-center green"><small>You saved {{ $promo_code->percent_off * 100 }}% today!</small></p>
+						@else
+							<p class="mb-0 mt-0 text-center green"><small>You saved ${{ $promo_code->dollars_off }} today!</small></p>
+						@endif
+					@else
+					@endif
 					<hr />
-					<div class="row">
-						<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-							<h5 style="float: left;"><b>Today's Total: </b></h5>
+					@if($cart_helper->does_promo_code_exist_in_cart() == false)
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+								<h5 style="float: left;"><b>Today's Total: </b></h5>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+								<h5 style="float: right;">${{ $cart_helper->get_total() }}</h5>
+							</div>
 						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-							<h5 style="float: right;">${{ $cart_helper->get_total() }}</h5>
+					@else
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-6 col-6">
+								<h5 style="float: left;"><b>Today's Old Total: </b></h5>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+								<h5 style="float: right;"><strike>${{ $cart_helper->get_old_total() }}</strike></h5>
+							</div>
 						</div>
-					</div>
+
+						<div class="row mt-16">
+							<div class="col-lg-8 col-md-8 col-sm-6 col-6">
+								<h5 style="float: left;"><b>Today's New Total: </b></h5>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+								<h5 style="float: right;">${{ sprintf('%.2f', $cart_helper->get_total()) }}</h5>
+							</div>
+						</div>
+					@endif
 
 					@if(count($products) > 0)
 						<a href="/checkout" class="genric-btn primary circle large center-button mt-32 mb-16" style="font-size: 16px;">Continue to Checkout <span class="lnr lnr-arrow-right"></span></a>
@@ -98,6 +142,60 @@
 						<button class="genric-btn disabled circle large center-button mt-32 mb-16" style="font-size: 16px;" disabled="">Add Items to Cart </a>
 					@endif
 				</div>
+
+				@if($cart_helper->does_promo_code_exist_in_cart() == false)
+					<div class="well">
+						<h4 class="text-center">Got a Promo Code?</h4>
+						<form action="/promo/attach" method="POST">
+							{{ csrf_field() }}
+							<div class="form-group row mt-8">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+									<input type="text" name="promo_code" class="form-control{{ Session::has('promo_code_error') ? ' is-invalid' : '' }}" required>
+								</div>
+							</div>
+
+							@if(Session::has('promo_code_error'))
+								<p class="red text-center mt-0 mb-0"><span role="alert">{{ Session::get('promo_code_error') }}</span></p>
+							@endif
+
+							@if(Session::has('promo_code_success'))
+								<p class="green text-center mt-0 mb-0"><span role="alert">{{ Session::get('promo_code_success') }}</span></p>
+							@endif
+
+							<div class="form-group row mt-8 mb-0">
+								<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 col-12">
+									<input type="submit" value="Submit" class="genric-btn info center-button circle" style="font-size: 14px;" required>
+								</div>
+							</div>
+						</form>
+					</div>
+				@else
+					<div class="well">
+						<h4 class="text-center">Got a Promo Code?</h4>
+						<form action="/promo/delete" method="POST">
+							{{ csrf_field() }}
+							<div class="form-group row mt-8">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+									<input type="text" name="promo_code" class="form-control{{ Session::has('promo_code_error') ? ' is-invalid' : '' }}" value="{{ $cart_helper->get_promo_code()->code }}" disabled>
+								</div>
+							</div>
+
+							@if(Session::has('promo_code_error'))
+								<p class="red text-center mt-0 mb-0"><span role="alert">{{ Session::get('promo_code_error') }}</span></p>
+							@endif
+
+							@if(Session::has('promo_code_success'))
+								<p class="green text-center mt-0 mb-0"><span role="alert">{{ Session::get('promo_code_success') }}</span></p>
+							@endif
+
+							<div class="form-group row mt-8 mb-0">
+								<div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-12 col-12">
+									<input type="submit" value="Remove Promo Code" class="genric-btn danger center-button circle" style="font-size: 14px;" required>
+								</div>
+							</div>
+						</form>
+					</div>
+				@endif
 			</div>
 		</div>
 	</div>

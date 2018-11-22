@@ -113,12 +113,23 @@
 					$("#full_order_order_email").html(order_data["order_email"]);
 					$("#full_order_order_address").html(order_data["order_address"] + ", " + order_data["order_city"] + " " + order_data["order_state"] + ", " + order_data["order_zipcode"]);
 					$("#full_order_order_status").html(order_status);
-					$("#full_order_order_tracking_num").html(order_data["order_tracking_num"]);
+					if(order_data["order_tracking_num"] != "") {
+						$("#full_order_order_tracking_num").html(order_data["order_tracking_num"]);
+					} else {
+						$("#full_order_order_tracking_num").html('None');
+					}
+					
 					$("#full_order_digital_product").html(digital_product);
 					$("#full_order_order_ip").html(order_data["order_ip"]);
 					$("#full_order_is_guest").html(is_guest);
 					$("#full_order_user_id").html(order_data["user_id"]);
 					$("#full_order_quantity").html(order_data["quantity"]);
+					
+					if(order_data["promo_code"] != "") {
+						$("#full_order_promo_code").html(order_data["promo_code"]);
+					} else {
+						$("#full_order_promo_code").html('None');
+					}
 
 					// Show modal
 					$("#view_full_order_modal").modal();

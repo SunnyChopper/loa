@@ -42,6 +42,8 @@ Route::post('/cart/add', 'CartController@add_to_cart');
 Route::get('/cart/delete/all', 'CartController@delete_all_from_cart');
 Route::post('/cart/delete/product', 'CartController@delete_from_cart');
 Route::post('/cart/checkout', 'CartController@checkout');
+Route::post('/promo/attach', 'CartController@attach_promo_code');
+Route::post('/promo/delete', 'CartController@remove_promo_code');
 
 // E-commerce
 Route::get('/cart', 'PagesController@cart');

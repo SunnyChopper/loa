@@ -15,6 +15,7 @@ use App\Custom\SiteStatsHelper;
 use App\Custom\BlogPostHelper;
 use App\Custom\MailHelper;
 use App\Custom\SupportTicketHelper;
+use App\Custom\PromoCodeHelper;
 
 class PagesController extends Controller
 {
@@ -231,7 +232,10 @@ class PagesController extends Controller
         // Product helper for page
         $product_helper = new ProductHelper();
 
-        return view('pages.cart')->with('page_header', $page_header)->with('products', $products)->with('product_helper', $product_helper)->with('cart_helper', $cart_helper);
+        // Promo code helper for page
+        $promo_code_helper = new PromoCodeHelper();
+
+        return view('pages.cart')->with('page_header', $page_header)->with('products', $products)->with('product_helper', $product_helper)->with('cart_helper', $cart_helper)->with('promo_code_helper', $promo_code_helper);
     }
 
     public function getFutureBusinessDay($num_business_days, $today_ymd = null, $holiday_dates_ymd = []) {
@@ -260,7 +264,13 @@ class PagesController extends Controller
         // Get date three business days from now
         $expected_shipping_date = $this->getFutureBusinessDay(env('SHIPPING_DAYS'));
 
-        return view('pages.checkout')->with('page_header', $page_header)->with('total', $total)->with('expected_shipping_date', $expected_shipping_date);
+        // Get cart helper for page
+        $cart_helper = new CartHelper();
+
+        // Promo code helper for page
+        $promo_code_helper = new PromoCodeHelper();
+
+        return view('pages.checkout')->with('page_header', $page_header)->with('total', $total)->with('expected_shipping_date', $expected_shipping_date)->with('cart_helper', $cart_helper)->with('promo_code_helper', $promo_code_helper);
     }
 
     public function thank_you() {

@@ -99,6 +99,12 @@ class OrderHelper {
 			$this->digital = 1;
 		}
 
+		// Check to see if promo code attached
+		if (isset($data["promo_code"])) {
+			$promo_code = $data["promo_code"];
+			$promo_code_id = $data["promo_code_id"];
+		}
+
 		// Finally, create the order
 		$order = new Order;
 		$order->is_guest = $this->is_guest;
@@ -120,6 +126,14 @@ class OrderHelper {
 		$order->order_tracking_num = $this->order_tracking_num;
 		$order->quantity = $this->quantity;
 		$order->order_group = $this->order_group;
+
+		// Attach promo code if necessary
+		if (isset($data["promo_code"])) {
+			$order->promo_code = $promo_code;
+			$order->promo_code_id = $promo_code_id;
+		}
+
+		// Save order
 		$order->save();
 
 		// Update variables

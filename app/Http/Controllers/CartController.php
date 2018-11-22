@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Custom\ProductHelper;
 use App\Custom\CartHelper;
 use App\Custom\SiteStatsHelper;
+use App\Custom\PromoCodeHelper;
 
 class CartController extends Controller
 {
@@ -79,6 +80,40 @@ class CartController extends Controller
 
     	// Redirect to cart
     	return redirect()->back();
+    }
+
+    public function attach_promo_code(Request $data) {
+        // Get data
+        $promo_code = $data->promo_code;
+
+        // Promo code helper to check if promo code exists
+        $promo_code_helper = new PromoCodeHelper();
+        if ($promo_code_helper->does_promo_code_exist($promo_code)) {
+            // Create cart helper
+            $cart_helper = new CartHelper();
+
+            // Attach promo code
+            $error = $cart_helper->attach_promo_code($promo_code);
+
+            // Return back with success message
+            if ($error == NULL) {
+                return redirect()->back()->with('promo_code_success', 'Successfully attached promo code!');
+            } else {
+                return redirect()->back()->with('promo_code_error', $error);
+            }
+        } else {
+            return redirect()->back()->with('promo_code_error', 'Promo code does not exist!');
+        }
+    }
+
+    public function remove_promo_code() {
+        // Create cart helper
+        $cart_helper = new CartHelper();
+
+        // Remove
+        $cart_helper->remove_promo_code();
+
+        return redirect()->back();
     }
 
     public function getFutureBusinessDay($num_business_days, $today_ymd = null, $holiday_dates_ymd = []) {

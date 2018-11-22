@@ -139,7 +139,7 @@ class CartHelper {
 
 	public function attach_promo_code($promo_code) {
 		// Check to see if promo code already attached
-		if ($this->does_cart_already_have_promo_code() != true) {
+		if ($this->does_promo_code_exist_in_cart() != true) {
 			// Check to see if promo code exists
 			$promo_code_helper = new PromoCodeHelper();
 			if ($promo_code_helper->does_promo_code_exist($promo_code) == true) {
@@ -160,15 +160,13 @@ class CartHelper {
 
 					// Update cart
 					$this->save();
-
-					return $new_total;
 				} else {
 					// This means dollars off.
 					$dollars_off = $promo_code->dollars_off;
 					$minimum_amount = $promo_code->minimum_amount;
 					$cart_total = $this->cart_total;
 					if ($cart_total < $minimum_amount) {
-						return "Cart total does not meet minimum requirement for this promo code.";
+						return "Cart total does not meet minimum requirement of $" . $minimum_amount .  " for this promo code.";
 					} else {
 						// Get new total
 						$new_total = $cart_total - $dollars_off;
@@ -180,8 +178,6 @@ class CartHelper {
 
 						// Update cart
 						$this->save();
-
-						return $new_total;
 					}
 				}
 			} else {
@@ -196,7 +192,6 @@ class CartHelper {
 		// Get promo code information to undo
 		$promo_code_helper = new PromoCodeHelper();
 		$promo_code = $promo_code_helper->get_promo_code($this->promo_code);
-		$code_type = $promo_code->code_type;
 		
 		// Revert back to old total
 		$this->cart_total = $this->old_total;
@@ -273,6 +268,13 @@ class CartHelper {
 					$order_info["quantity"] = $product["quantity"];
 					$order_info["order_group"] = $order_group;
 
+					// Check to see if promo code attached
+					if ($this->does_promo_code_exist_in_cart()) {
+						$order_info["promo_code"] = $this->get_promo_code()->code;
+						$promo_code_id = $this->get_promo_code()->id;
+						$order_info["promo_code_id"] = $promo_code_id;
+					}
+
             		$site_stats_helper->product_add_purchased($product["product_id"]);
             		if (Auth::guest()) {
             			$site_stats_helper->product_add_guest_purchase($product["product_id"]);
@@ -321,6 +323,30 @@ class CartHelper {
 
 	public function get_total() {
 		return $this->get_current_total();
+	}
+
+	public function get_promo_code() {
+		return $this->get_current_promo_code();
+	}
+
+	public function get_old_total() {
+		return $this->get_current_old_total();
+	}
+
+	public function does_promo_code_exist_in_cart() {
+		if (Session::has('promo_code')) {
+			if (Session::get('promo_code') != "") {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			if ($this->promo_code != "") {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 
 	/* Private helper functions */
@@ -450,7 +476,23 @@ class CartHelper {
 		}
 	}
 
+	private function get_current_promo_code() {
+		if (Session::has('promo_code')) {
+			$promo_code = Session::get('promo_code');
+			return $promo_code;
+		} else {
+			return "";
+		}
+	}
 
+	private function get_current_old_total() {
+		if (Session::has('old_total')) {
+			$old_total = Session::get('old_total');
+			return $old_total;
+		} else {
+			return 0;
+		}
+	}
 
 	private function save() {
 		Session::put('cart_num_items', $this->num_items);

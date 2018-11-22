@@ -62,7 +62,9 @@ class OrdersController extends Controller
     		"order_city" => $order->order_city,
     		"quantity" => $order->quantity,
             "product_name" => $product->product_name,
-            "featured_image_url" => $product->featured_image_url
+            "featured_image_url" => $product->featured_image_url,
+            "promo_code" => $order->promo_code,
+            "promo_code_id" => $order->promo_code_id
     	);
 
     	return json_encode($json_array);
