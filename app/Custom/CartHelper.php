@@ -142,9 +142,9 @@ class CartHelper {
 		if ($this->does_promo_code_exist_in_cart() != true) {
 			// Check to see if promo code exists
 			$promo_code_helper = new PromoCodeHelper();
-			if ($promo_code_helper->does_promo_code_exist($promo_code) == true) {
+			if ($promo_code_helper->does_promo_code_exist(strtoupper($promo_code)) == true) {
 				// Yes, it exists, get the info and edit cart
-				$promo_code = $promo_code_helper->get_promo_code($promo_code);
+				$promo_code = $promo_code_helper->get_promo_code(strtoupper($promo_code));
 				$code_type = $promo_code->code_type;
 				if ($code_type == 1) {
 					// This means percent off. We need to calculate and update total.
@@ -157,6 +157,14 @@ class CartHelper {
 					$this->old_total = $cart_total;
 					$this->cart_total = $new_total;
 					$this->promo_code = $promo_code;
+
+					// Create addition in stats helper
+	                $site_stats_helper = new SiteStatsHelper();
+	                if (Auth::guest()) {
+	                    $site_stats_helper->promo_code_add_guest_addition($promo_code->id);
+	                } else {
+	                	$site_stats_helper->promo_code_add_member_addition($promo_code->id);
+	                }
 
 					// Update cart
 					$this->save();
@@ -176,6 +184,14 @@ class CartHelper {
 						$this->cart_total = $new_total;
 						$this->promo_code = $promo_code;
 
+						// Create addition in stats helper
+		                $site_stats_helper = new SiteStatsHelper();
+		                if (Auth::guest()) {
+		                    $site_stats_helper->promo_code_add_guest_addition($promo_code->id);
+		                } else {
+		                	$site_stats_helper->promo_code_add_member_addition($promo_code->id);
+		                }
+
 						// Update cart
 						$this->save();
 					}
@@ -192,6 +208,14 @@ class CartHelper {
 		// Get promo code information to undo
 		$promo_code_helper = new PromoCodeHelper();
 		$promo_code = $promo_code_helper->get_promo_code($this->promo_code);
+
+		// Create removal in stats helper
+	    $site_stats_helper = new SiteStatsHelper();
+        if (Auth::guest()) {
+            $site_stats_helper->promo_code_add_guest_removal($promo_code->id);
+        } else {
+        	$site_stats_helper->promo_code_add_member_removal($promo_code->id);
+        }
 		
 		// Revert back to old total
 		$this->cart_total = $this->old_total;
@@ -273,6 +297,24 @@ class CartHelper {
 						$order_info["promo_code"] = $this->get_promo_code()->code;
 						$promo_code_id = $this->get_promo_code()->id;
 						$order_info["promo_code_id"] = $promo_code_id;
+
+						// Create usage in stats helper
+					    $site_stats_helper = new SiteStatsHelper();
+				        if (Auth::guest()) {
+				            $site_stats_helper->promo_code_add_guest_usage($promo_code_id);
+				        } else {
+				        	$site_stats_helper->promo_code_add_member_usage($promo_code_id);
+				        }
+
+				        // Calculate revenue lost
+				        $cart_total = $this->cart_total;
+				        $old_total = $this->old_total;
+				        $revenue_lost = doubleval($old_total) - doubleval($cart_total);
+				        if (Auth::guest()) {
+				            $site_stats_helper->promo_code_add_guest_revenue_lost($promo_code_id, $revenue_lost);
+				        } else {
+				        	$site_stats_helper->promo_code_add_member_revenue_lost($promo_code_id, $revenue_lost);
+				        }
 					}
 
             		$site_stats_helper->product_add_purchased($product["product_id"]);

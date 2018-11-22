@@ -4,6 +4,8 @@ namespace App\Custom;
 
 use App\PromoCode;
 
+use App\Custom\SiteStatsHelper;
+
 use Auth;
 
 class PromoCodeHelper {
@@ -23,7 +25,7 @@ class PromoCodeHelper {
 
 		// Create promo code
 		$promo_code = new PromoCode;
-		$promo_code->code = $code;
+		$promo_code->code = strtoupper($code);
 		$promo_code->code_type = $code_type;
 
 		if ($code_type == 1) {
@@ -39,6 +41,16 @@ class PromoCodeHelper {
 		$promo_code->save();
 
 		$this->id = $promo_code->id;
+
+		// Create a promo code stats object
+        $site_stats_helper = new SiteStatsHelper();
+        $stats_data = array(
+            "promo_code_id" => $this->id,
+            "promo_code" => strtoupper($code)
+        );
+        $site_stats_helper->new_promo_code($stats_data);
+
+		return $this->id;
 	}
 
 	public function update_promo_code($data) {
@@ -49,7 +61,7 @@ class PromoCodeHelper {
 
 		// Get promo code
 		$promo_code = PromoCode::where('id', $id)->first();
-		$promo_code->code = $code;
+		$promo_code->code = strtoupper($code);
 		$promo_code->code_type = $code_type;
 
 		if ($code_type == 1) {
@@ -65,6 +77,13 @@ class PromoCodeHelper {
 		$promo_code->save();
 
 		$this->id = $promo_code->id;
+
+		// Update a promo code stats object
+		$site_stats_helper = new SiteStatsHelper();
+		$data = array( "promo_code" => strtoupper($code) );
+		$site_stats_helper->update_promo_code($data);
+
+		return $this->id;
 	}
 
 	public function delete_promo_code($promo_code_id) {

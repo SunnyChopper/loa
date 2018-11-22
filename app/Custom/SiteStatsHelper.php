@@ -11,6 +11,7 @@ use App\EventStats;
 use App\ProductStats;
 use App\SignupStats;
 use App\ToolStats;
+use App\PromoCodeStats;
 
 use Session;
 
@@ -289,6 +290,122 @@ class SiteStatsHelper {
 		$signup_stats->save();
 	}
 
+	public function new_promo_code($data) {
+		$promo_code_stats = new PromoCodeStats;
+		$promo_code_stats->promo_code_id = $data["promo_code_id"];
+		$promo_code_stats->promo_code = $data["promo_code"];
+		$promo_code_stats->save();
+	}
+
+	public function update_promo_code($data) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $data["promo_code_id"])->first();
+		$promo_code_stats->promo_code = $data["promo_code"];
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_add_guest_addition($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->guest_num_times_added = $promo_code_stats->guest_num_times_added + 1;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_get_guest_addition($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->guest_num_times_added;
+	}
+
+	public function promo_code_add_member_addition($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->member_num_times_added = $promo_code_stats->member_num_times_added + 1;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_get_member_addition($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->member_num_times_added;
+	}
+
+	public function promo_code_add_guest_removal($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->guest_num_times_removed = $promo_code_stats->guest_num_times_removed + 1;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_get_guest_removal($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->guest_num_times_removed;
+	}
+
+	public function promo_code_add_member_removal($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->member_num_times_removed = $promo_code_stats->member_num_times_removed + 1;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_get_member_removal($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->member_num_times_removed;
+	}
+
+	public function promo_code_add_guest_usage($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->guest_usage = $promo_code_stats->guest_usage + 1;
+		$promo_code_stats->total_usage = $promo_code_stats->total_usage + 1;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_get_guest_usage($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->guest_usage;
+	}
+
+	public function promo_code_add_member_usage($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->member_usage = $promo_code_stats->member_usage + 1;
+		$promo_code_stats->total_usage = $promo_code_stats->total_usage + 1;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_get_member_usage($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->member_usage;
+	}
+
+	public function promo_code_get_total_usage($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->total_usage;
+	}
+
+	public function promo_code_add_guest_revenue_lost($promo_code_id, $revenue_lost) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->guest_revenue_lost = $promo_code_stats->guest_revenue_lost + $revenue_lost;
+		$promo_code_stats->total_revenue_lost = $promo_code_stats->total_revenue_lost + $revenue_lost;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_add_member_revenue_lost($promo_code_id, $revenue_lost) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		$promo_code_stats->member_revenue_lost = $promo_code_stats->member_revenue_lost + $revenue_lost;
+		$promo_code_stats->total_revenue_lost = $promo_code_stats->total_revenue_lost + $revenue_lost;
+		$promo_code_stats->save();
+	}
+
+	public function promo_code_get_guest_revenue_lost($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->guest_revenue_lost;
+	}
+
+	public function promo_code_get_member_revenue_lost($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->member_revenue_lost;
+	}
+
+	public function promo_code_get_total_revenue_lost($promo_code_id) {
+		$promo_code_stats = PromoCodeStats::where('promo_code_id', $promo_code_id)->first();
+		return $promo_code_stats->total_revenue_lost;
+	}
+
+	/* Private functions */
 	private function verify_blog_post_exists($post_id) {
 		if (BlogPostStats::where('post_id', $post_id)->count() == 0) {
 			$this->new_blog_post($post_id);

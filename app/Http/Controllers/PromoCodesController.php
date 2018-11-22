@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Custom\PromoCodeHelper;
+use App\Custom\SiteStatsHelper;
 
 class PromoCodesController extends Controller
 {
@@ -32,7 +33,7 @@ class PromoCodesController extends Controller
 
     	// Promo code helper
     	$promo_code_helper = new PromoCodeHelper();
-    	$promo_code_helper->create_promo_code($promo_code_data);
+    	$promo_code_id = $promo_code_helper->create_promo_code($promo_code_data);
 
     	return redirect(url('/admin/promo/view'));
     }
