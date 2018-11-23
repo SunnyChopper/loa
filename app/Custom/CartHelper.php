@@ -79,6 +79,7 @@ class CartHelper {
 
 		// Update total
 		$this->update_total_of_cart();
+		$this->update_total_with_promo_code();
 	}
 
 	public function delete_from_cart($data) {
@@ -124,6 +125,7 @@ class CartHelper {
 
 			// Update total
 			$this->update_total_of_cart();
+			$this->update_total_with_promo_code();
 		}
 	}
 
@@ -398,7 +400,7 @@ class CartHelper {
 			$total += $product["subtotal"];
 		}
 
-		// Check if promo code attached
+		// Check if promo code attached and delete if total drops below minimum amount
 		if ($this->does_cart_already_have_promo_code() == true) {
 			// Yes, it does, check to see if still above minimum amount
 			$promo_code = $this->promo_code;
@@ -412,6 +414,55 @@ class CartHelper {
 		// Update and save
 		$this->cart_total = $total;
 		$this->save();
+	}
+
+	private function update_total_with_promo_code() {
+		// Check if promo code attached
+		if ($this->does_cart_already_have_promo_code() == true) {
+			// Make new old total
+			$this->old_total = $this->cart_total;
+			$promo_code = $this->promo_code;
+			if ($promo_code->code_type == 1) {
+				$percent_off = $promo_code->percent_off;
+				$cart_total = $this->cart_total;
+				$amount_removed = $cart_total * $percent_off;
+				$new_total = $cart_total - $amount_removed;
+
+				// Update variables
+				$this->old_total = $cart_total;
+				$this->cart_total = $new_total;
+				$this->promo_code = $promo_code;
+
+				// Update cart
+				$this->save();
+			} else {
+				$dollars_off = $promo_code->dollars_off;
+				$minimum_amount = $promo_code->minimum_amount;
+				$cart_total = $this->cart_total;
+				if ($cart_total < $minimum_amount) {
+					return "Cart total does not meet minimum requirement of $" . $minimum_amount .  " for this promo code.";
+				} else {
+					// Get new total
+					$new_total = $cart_total - $dollars_off;
+
+					// Update variables
+					$this->old_total = $cart_total;
+					$this->cart_total = $new_total;
+					$this->promo_code = $promo_code;
+
+					// Create addition in stats helper
+	                $site_stats_helper = new SiteStatsHelper();
+	                if (Auth::guest()) {
+	                    $site_stats_helper->promo_code_add_guest_addition($promo_code->id);
+	                } else {
+	                	$site_stats_helper->promo_code_add_member_addition($promo_code->id);
+	                }
+
+					// Update cart
+					$this->save();
+				}
+			}
+		}
 	}
 
 	private function insert_product($product_info) {
