@@ -207,7 +207,11 @@
 								<h5 style="float: left;"><b>Subtotal: </b></h5>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-								<h5 style="float: right;">${{ sprintf('%.2f', $cart_helper->get_old_total()) }}</h5>
+								@if($cart_helper->does_promo_code_exist_in_cart() == true)
+									<h5 style="float: right;">${{ sprintf('%.2f', $cart_helper->get_old_total()) }}</h5>
+								@else
+									<h5 style="float: right;">${{ sprintf('%.2f', $cart_helper->get_total()) }}</h5>
+								@endif
 							</div>
 						</div>
 						<hr />
