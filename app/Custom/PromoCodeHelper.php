@@ -93,7 +93,7 @@ class PromoCodeHelper {
 	}
 
 	public function get_promo_code($promo_code) {
-		return PromoCode::where('code', $promo_code)->first();
+		return PromoCode::where('code', $promo_code)->where('is_active', 1)->first();
 	}
 
 	public function get_promo_code_by_id($promo_code_id = 0) {

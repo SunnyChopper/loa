@@ -166,6 +166,27 @@
 	Special Divs
 \*-------------------------------*/
 
+.discussion-post {
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.discussion-profile {
+	background-color: #EEEEEE;
+	padding: 24px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.discussion-body {
+	padding: 24px;
+	border-top: 3px solid #EEEEEE;
+	border-right: 3px solid #EEEEEE;
+	border-bottom: 3px solid #EEEEEE;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
 .voting_option_box:hover {
 	background-color: #EEEEEE;
 	cursor: pointer;
@@ -401,6 +422,10 @@
 
 .rounded-image {
 	border-radius: 8px;
+}
+
+.circle-image {
+	border-radius: 100%;
 }
 
 /*-------------------------------*\

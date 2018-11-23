@@ -88,11 +88,11 @@ class MailHelper {
 		});
 
 		// Send notification emails
-		// Mail::send('emails.luis-notification-email', $email_data, function($message) use ($email_data) {
-		// 	$message->to("luis@lawofambition.com", "Luis Garcia")->subject("💵 Law of Ambition - New Order 💵");
-		// 	$message->from(env('MAIL_USERNAME'), "Law of Ambition");
-		// 	$message->cc("ishy.singh@gmail.com", "Sunny Singh");
-		// });
+		Mail::send('emails.luis-notification-email', $email_data, function($message) use ($email_data) {
+			$message->to("luis@redwolfent.com", "Luis Garcia")->subject("💵 Law of Ambition - New Order 💵");
+			$message->from(env('MAIL_USERNAME'), "Law of Ambition");
+			$message->cc("ishy.singh@gmail.com", "Sunny Singh");
+		});
 	}
 
 	public function send_new_user_email() {

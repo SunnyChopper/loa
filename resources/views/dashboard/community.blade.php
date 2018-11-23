@@ -18,14 +18,18 @@
 					<p class="text-center">Every week we read a book and discuss about it. Click the button below to enter the discussion room for this book.</p>
 					<div class="row">
 						<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
-							<img src="http://killingmarketing.com/wp-content/uploads/2017/05/PULIZZI-cover-768x1154.png" class="regular-image">
+							<img src="{{ $book->book_image_url }}" class="regular-image">
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-							<h4 class="text-center mt-8">Killing Marketing</h4>
-							<p class="text-center"><small>By Joe Pulizzi and Robert Rose</small></p>
+							<h4 class="text-center mt-8">{{ $book->book_title }}</h4>
+							<p class="text-center"><small>By {{ $book->author }}</small></p>
 						</div>
 					</div>
-					<a href="/discussion/1" class="genric-btn primary center-button rounded" style="font-size: 14px;">Join Discussion</a>
+					<div class="row">
+						<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
+							<a href="/discussion/{{ $book->id }}" class="genric-btn primary center-button rounded" style="font-size: 14px;">Join Discussion</a>
+						</div>
+					</div>
 				</div>
 			</div>
 

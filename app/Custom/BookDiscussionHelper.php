@@ -92,7 +92,8 @@ class BookDiscussionHelper {
 	}
 
 	public function get_current_book_discussion() {
-		return BookDiscussion::where('start_date', '>=', Carbon::now())->where('end_date', '>', Carbon::now())->first();
+		$today = date("Y-m-d");
+		return BookDiscussion::where('start_date', '<=', $today)->where('end_date', '>', $today)->first();
 	}
 
 	public function get_discussion_posts_with_id($book_discussion_id) {

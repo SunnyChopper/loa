@@ -205,16 +205,12 @@ class CartHelper {
 	}
 
 	public function remove_promo_code() {
-		// Get promo code information to undo
-		$promo_code_helper = new PromoCodeHelper();
-		$promo_code = $promo_code_helper->get_promo_code($this->promo_code);
-
 		// Create removal in stats helper
 	    $site_stats_helper = new SiteStatsHelper();
         if (Auth::guest()) {
-            $site_stats_helper->promo_code_add_guest_removal($promo_code->id);
+            $site_stats_helper->promo_code_add_guest_removal($this->promo_code->id);
         } else {
-        	$site_stats_helper->promo_code_add_member_removal($promo_code->id);
+        	$site_stats_helper->promo_code_add_member_removal($this->promo_code->id);
         }
 		
 		// Revert back to old total
@@ -400,6 +396,17 @@ class CartHelper {
 		$total = 0;
 		foreach ($products as $product) {
 			$total += $product["subtotal"];
+		}
+
+		// Check if promo code attached
+		if ($this->does_cart_already_have_promo_code() == true) {
+			// Yes, it does, check to see if still above minimum amount
+			$promo_code = $this->promo_code;
+			if ($promo_code->code_type == 2) {
+				if ($total < $promo_code->minimum_amount) {
+					$this->remove_promo_code();
+				}
+			}
 		}
 
 		// Update and save

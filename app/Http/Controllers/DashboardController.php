@@ -64,7 +64,11 @@ class DashboardController extends Controller
     	// Dynamic page elements
     	$page_header = "Community";
 
-    	return view('dashboard.community')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+        // Get current book
+        $book_discussion_helper = new BookDiscussionHelper();
+        $book = $book_discussion_helper->get_current_book_discussion();
+
+    	return view('dashboard.community')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('book', $book);
     }
 
     public function courses() {
@@ -117,6 +121,7 @@ class DashboardController extends Controller
         $page_title = "Your Profile";
         $page_description = "Control your experience on Law of Ambition. With Wolf Squad, you get to control your entrepreneur journey.";
 
+        // TODO: Create title dynamic to name
         // Dynamic page elements
         $page_header = "Amy Mendoza";
 
