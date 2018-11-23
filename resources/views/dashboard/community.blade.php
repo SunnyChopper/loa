@@ -25,7 +25,7 @@
 							<p class="text-center"><small>By Joe Pulizzi and Robert Rose</small></p>
 						</div>
 					</div>
-					<button class="genric-btn primary center-button rounded" style="font-size: 14px;">Join Discussion</button>
+					<a href="/discussion/1" class="genric-btn primary center-button rounded" style="font-size: 14px;">Join Discussion</a>
 				</div>
 			</div>
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Custom\BlogPostHelper;
 use App\Custom\EventHelper;
 use App\Custom\CourseHelper;
+use App\Custom\BookDiscussionHelper;
 
 use Auth;
 
@@ -120,6 +121,24 @@ class DashboardController extends Controller
         $page_header = "Amy Mendoza";
 
         return view('dashboard.profile')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+    }
+
+    public function view_book_discussion($book_discussion_id) {
+        // Check if authorized
+        $this->checkAuth();
+
+        // Get current book discussion
+        $book_discussion_helper = new BookDiscussionHelper();
+        $book_discussion = $book_discussion_helper->get_current_book_discussion();
+        $posts = $book_discussion_helper->get_discussion_posts_with_id($book_discussion_id);
+
+        // SEO Data
+        $page_title = $book_discussion->book_title . " - Book Discussion";
+
+        // Dynamic page elements
+        $page_header = $book_discussion->book_title;
+
+        return view('dashboard.book-discussion.view-posts')->with('page_title', $page_title)->with('page_header', $page_header)->with('posts', $posts)->with('book', $book_discussion);
     }
 
     public function checkAuth() {

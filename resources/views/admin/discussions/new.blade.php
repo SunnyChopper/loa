@@ -37,7 +37,7 @@
 							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 								<div class="form-group">
 									<label>Book Description:</label>
-									<textarea name="book_description" form="create_course_form" class="form-control" rows="5"></textarea>
+									<textarea name="book_description" form="create_discussion_form" class="form-control" rows="5"></textarea>
 								</div>
 							</div>
 						</div>

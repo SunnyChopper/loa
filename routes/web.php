@@ -82,6 +82,9 @@ Route::get('/admin/promo/new', 'AdminController@new_promo_code');
 Route::get('/admin/promo/edit/{promo_code_id}', 'AdminController@edit_promo_code');
 Route::get('/admin/promo/stats', 'AdminController@view_promo_stats');
 
+// Order functions
+Route::post('/admin/discussions/create', 'BookDiscussionController@create');
+
 // Promo code functions
 Route::post('/admin/promo/create', 'PromoCodesController@create');
 Route::post('/admin/promo/delete', 'PromoCodesController@delete');
@@ -125,5 +128,6 @@ Route::get('/members/courses', 'DashboardController@courses');
 Route::get('/members/shop', 'DashboardController@shop');
 Route::get('/members/settings', 'DashboardController@settings');
 Route::get('/members/profile', 'DashboardController@profile');
+Route::get('/discussion/{book_discussion_id}', 'DashboardController@view_book_discussion');
 
 Auth::routes();

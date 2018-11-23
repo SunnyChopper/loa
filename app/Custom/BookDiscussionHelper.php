@@ -2,6 +2,8 @@
 
 namespace App\Custom;
 
+use Illuminate\Support\Carbon;
+
 use App\BookDiscussion;
 use App\DiscussionPost;
 use App\DiscussionPostLike;
@@ -90,7 +92,7 @@ class BookDiscussionHelper {
 	}
 
 	public function get_current_book_discussion() {
-		return BookDiscussion::where('start_date', '>=', Carbon\Carbon::now())->where('end_date', '>', Carbon\Carbon::now())->first();
+		return BookDiscussion::where('start_date', '>=', Carbon::now())->where('end_date', '>', Carbon::now())->first();
 	}
 
 	public function get_discussion_posts_with_id($book_discussion_id) {
@@ -107,6 +109,10 @@ class BookDiscussionHelper {
 
 	public function get_likes_for_user($user_id) {
 		return DiscussionPostLike::where('user_id', $user_id)->get();
+	}
+
+	public function get_next_book_discussion_id() {
+		return DiscussionPostLike::count() + 1;
 	}
 }
 
