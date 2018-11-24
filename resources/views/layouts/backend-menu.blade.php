@@ -23,13 +23,15 @@
 </li>
 @endif
 
-<!-- Course Content -->
-@if(\Session::get('backend_auth') == 1 || \Session::get('backend_auth') == 5)
-<li class="menu-has-children"><a href="/admin/content/view">Course Content</a>
+<!-- Voting Polls -->
+@if(\Session::get('backend_auth') == 1 || \Session::get('backend_auth') == 2)
+<li class="menu-has-children"><a href="/admin/content/view">Community</a>
 	<ul>
-		<li><a href="/admin/content/view">View Course Content</a></li>
-		<li><a href="/admin/content/new">New Course Content</a></li>
-		<li><a href="/admin/content/stats">Course Content Stats</a></li>
+		<li><a href="/admin/discussions/view">View Book Discussions</a></li>
+		<li><a href="/admin/discussions/new">New Book Discussion</a></li>
+		<li><a href="/admin/discussions/stats">Book Discussion Stats</a></li>
+		<li><a href="/admin/voting/view">View Voting Polls</a></li>
+		<li><a href="/admin/voting/new">New Voting Poll</a></li>
 	</ul>
 </li>
 @endif

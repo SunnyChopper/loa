@@ -81,6 +81,8 @@ Route::get('/admin/promo/view', 'AdminController@view_promo_codes');
 Route::get('/admin/promo/new', 'AdminController@new_promo_code');
 Route::get('/admin/promo/edit/{promo_code_id}', 'AdminController@edit_promo_code');
 Route::get('/admin/promo/stats', 'AdminController@view_promo_stats');
+Route::get('/admin/voting/view', 'AdminController@view_voting_polls');
+Route::get('/admin/voting/new', 'AdminController@new_voting_poll');
 
 // Order functions
 Route::post('/admin/discussions/create', 'BookDiscussionController@create');
@@ -91,8 +93,9 @@ Route::post('/admin/promo/delete', 'PromoCodesController@delete');
 Route::post('/admin/promo/update', 'PromoCodesController@update');
 
 // Voting functions
-Route::post('/vote/create', 'VotingController@create_user');
-Route::post('/admin/users/edit', 'UsersController@edit_user');
+Route::post('/vote/create', 'VotingController@create_vote');
+Route::post('/poll/create', 'VotingController@create_voting_poll');
+Route::post('/poll/delete', 'VotingController@delete_voting_poll');
 
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');

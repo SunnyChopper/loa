@@ -61,13 +61,13 @@ class VotingHelper {
 		// Get data
 		$start_date = $data["start_date"];
 		$end_date = $data["end_date"];
-		$option_1_vote = $data["option_1_vote"];
+		$option_1_vote = $data["option_1"];
 		$option_1_description = $data["option_1_description"];
-		$option_2_vote = $data["option_2_vote"];
+		$option_2_vote = $data["option_2"];
 		$option_2_description = $data["option_2_description"];
-		$option_3_vote = $data["option_3_vote"];
+		$option_3_vote = $data["option_3"];
 		$option_3_description = $data["option_3_description"];
-		$option_4_vote = $data["option_4_vote"];
+		$option_4_vote = $data["option_4"];
 		$option_4_description = $data["option_4_description"];
 
 		// Create voting poll
@@ -76,12 +76,16 @@ class VotingHelper {
 		$voting_poll->end_date = $end_date;
 		$voting_poll->voting_option_1_vote = $option_1_vote;
 		$voting_poll->voting_option_1_description = $option_1_description;
+		$voting_poll->voting_option_1_votes = 0;
 		$voting_poll->voting_option_2_vote = $option_2_vote;
 		$voting_poll->voting_option_2_description = $option_2_description;
+		$voting_poll->voting_option_2_votes = 0;
 		$voting_poll->voting_option_3_vote = $option_3_vote;
 		$voting_poll->voting_option_3_description = $option_3_description;
+		$voting_poll->voting_option_3_votes = 0;
 		$voting_poll->voting_option_4_vote = $option_4_vote;
 		$voting_poll->voting_option_4_description = $option_4_description;
+		$voting_poll->voting_option_4_votes = 0;
 		$voting_poll->save();
 
 		return $voting_poll->id;
@@ -89,7 +93,7 @@ class VotingHelper {
 
 	public function does_voting_poll_exist() {
 		// Check to see if any active voting polls
-		if (VotingPoll::where('start_date', '<=', Carbon::now())->where('end_date', '>', Carbon::now())->count() > 0) {
+		if (VotingPoll::where('start_date', '<=', Carbon::now())->where('end_date', '>', Carbon::now())->where('is_active', 1)->count() > 0) {
 			return true;
 		} else {
 			return false;
@@ -124,9 +128,19 @@ class VotingHelper {
 		return $this->get_current_voting_poll();
 	}
 
+	public function get_all_polls() {
+		return VotingPoll::where('is_active', 1)->get();
+	}
+
+	public function delete_voting_poll($voting_poll_id) {
+		$poll = VotingPoll::where('id', $voting_poll_id)->first();
+		$poll->is_active = 0;
+		$poll->save();
+	}
+
 	/* Private functions */
 	private function get_current_voting_poll() {
-		return VotingPoll::where('start_date', '<=', Carbon\Carbon::now())->where('end_date', '>', Carbon\Carbon::now())->first();
+		return VotingPoll::where('start_date', '<=', Carbon::now())->where('end_date', '>', Carbon::now())->where('is_active', 1)->first();
 	}
 }
 

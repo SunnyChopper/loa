@@ -48,29 +48,37 @@
 									<li class="list-group-item voting_option_box" id="voting_option_1">
 										<input type="radio" id="option_1" name="selected_voting_option" value="1" style="display: inline-block;">
 										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_1_vote }}</p>
-										<hr />
-										<p class="mb-0">{{ $poll->voting_option_1_description }}</p>
+										@if($poll->voting_option_1_description != "")
+											<hr />
+											<p class="mb-0">{{ $poll->voting_option_1_description }}</p>
+										@endif
 									</li>
 
 									<li class="list-group-item voting_option_box" id="voting_option_2">
 										<input type="radio" id="option_2" name="selected_voting_option" value="2" style="display: inline-block;">
 										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_2_vote }}</p>
-										<hr />
-										<p class="mb-0">{{ $poll->voting_option_2_description }}</p>
+										@if($poll->voting_option_2_description != "")
+											<hr />
+											<p class="mb-0">{{ $poll->voting_option_2_description }}</p>
+										@endif
 									</li>
 
 									<li class="list-group-item voting_option_box" id="voting_option_3">
 										<input type="radio" id="option_3" name="selected_voting_option" value="3" style="display: inline-block;">
 										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_3_vote }}</p>
-										<hr />
-										<p class="mb-0">{{ $poll->voting_option_3_description }}</p>
+										@if($poll->voting_option_3_description != "")
+											<hr />
+											<p class="mb-0">{{ $poll->voting_option_3_description }}</p>
+										@endif
 									</li>
 
 									<li class="list-group-item voting_option_box" id="voting_option_4">
 										<input type="radio" id="option_4" name="selected_voting_option" value="4" style="display: inline-block;">
 										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_4_vote }}</p>
-										<hr />
-										<p class="mb-0">{{ $poll->voting_option_4_description }}</p>
+										@if($poll->voting_option_4_description != "")
+											<hr />
+											<p class="mb-0">{{ $poll->voting_option_4_description }}</p>
+										@endif
 									</li>
 								</ul>
 								<p class="text-center mt-8 mb-2 green" id="success" style="display: none;"></p>

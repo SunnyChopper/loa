@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -16,6 +17,7 @@ use App\Custom\SiteStatsHelper;
 use App\Custom\UserHelper;
 use App\Custom\EventHelper;
 use App\Custom\CourseHelper;
+use App\Custom\VotingHelper;
 use App\Custom\PromoCodeHelper;
 
 class AdminController extends Controller
@@ -556,6 +558,40 @@ class AdminController extends Controller
         $site_stats_helper = new SiteStatsHelper();
 
         return view('admin.promo-codes.stats')->with('page_header', $page_header)->with('promo_codes', $promo_codes)->with('site_stats_helper', $site_stats_helper);
+    }
+
+    public function view_voting_polls() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Voting Polls";
+
+        // Get polls
+        $voting_helper = new VotingHelper();
+        $polls = $voting_helper->get_all_polls();
+
+        return view('admin.voting-polls.view')->with('page_header', $page_header)->with('polls', $polls);
+    }
+
+    public function new_voting_poll() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "New Voting Poll";
+
+        return view('admin.voting-polls.new')->with('page_header', $page_header);
     }
 
     private function check_login() {
