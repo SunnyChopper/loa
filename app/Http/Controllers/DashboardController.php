@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Custom\BlogPostHelper;
 use App\Custom\EventHelper;
 use App\Custom\CourseHelper;
+use App\Custom\VotingHelper;
 use App\Custom\BookDiscussionHelper;
 
 use Auth;
@@ -68,7 +69,10 @@ class DashboardController extends Controller
         $book_discussion_helper = new BookDiscussionHelper();
         $book = $book_discussion_helper->get_current_book_discussion();
 
-    	return view('dashboard.community')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('book', $book);
+        // Get voting poll helper for page
+        $voting_helper = new VotingHelper();
+
+    	return view('dashboard.community')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('book', $book)->with('voting_helper', $voting_helper);
     }
 
     public function courses() {

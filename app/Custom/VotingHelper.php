@@ -5,6 +5,8 @@ namespace App\Custom;
 use App\VotingPoll;
 use App\Vote;
 
+use Illuminate\Support\Carbon;
+
 use Auth;
 
 class VotingHelper {
@@ -87,7 +89,7 @@ class VotingHelper {
 
 	public function does_voting_poll_exist() {
 		// Check to see if any active voting polls
-		if (VotingPoll::where('start_date', '<=', Carbon\Carbon::now())->where('end_date', '>', Carbon\Carbon::now())->count() > 0) {
+		if (VotingPoll::where('start_date', '<=', Carbon::now())->where('end_date', '>', Carbon::now())->count() > 0) {
 			return true;
 		} else {
 			return false;
@@ -116,6 +118,10 @@ class VotingHelper {
 
 		// Return the vote
 		return Vote::where('voting_poll_id', $voting_poll_id)->where('user_id', $user_id)->first();
+	}
+
+	public function get_poll() {
+		return $this->get_current_voting_poll();
 	}
 
 	/* Private functions */

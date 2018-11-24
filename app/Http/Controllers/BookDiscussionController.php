@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Custom\BookDiscussionHelper;
 use App\Custom\UploadHelper;
 
+use Auth;
+
 class BookDiscussionController extends Controller
 {
     public function create(Request $data) {
@@ -44,5 +46,42 @@ class BookDiscussionController extends Controller
 
     	// Return to all
     	return redirect(url('/admin/discussions/view'));
+    }
+
+    public function create_post(Request $data) {
+        // Book discussion helper
+        $book_discussion_helper = new BookDiscussionHelper();
+
+        // Get data
+        $book_discussion_id = $data->book_discussion_id;
+        $post_owner_id = Auth::id();
+        $post_body = $data->post_body;
+
+        // Create book discussion post data
+        $post_data = array(
+            "book_discussion_id" => $book_discussion_id,
+            "post_owner_id" => $post_owner_id,
+            "post_body" => $post_body
+        );
+
+        // Create
+        $book_discussion_helper->create_book_discussion_post($post_data);
+
+        // Return to book discussion page
+        return redirect(url('/discussion/' . $book_discussion_id));
+    }
+
+    public function delete_post(Request $data) {
+        // Book discussion helper
+        $book_discussion_helper = new BookDiscussionHelper();
+
+        // Get data
+        $post_id = $data->post_id;
+
+        // Create
+        $book_discussion_helper->delete_book_discussion_post($post_id);
+
+        // Return to book discussion page
+        return redirect(url('/discussion/' . $book_discussion_id));
     }
 }

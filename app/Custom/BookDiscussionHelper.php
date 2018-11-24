@@ -91,6 +91,12 @@ class BookDiscussionHelper {
 		return $like->id;
 	}
 
+	public function delete_book_discussion_post($post_id) {
+		$post = DiscussionPost::where('id', $post_id)->first();
+		$post->is_active = 0;
+		$post->save();
+	}
+
 	public function get_current_book_discussion() {
 		$today = date("Y-m-d");
 		return BookDiscussion::where('start_date', '<=', $today)->where('end_date', '>', $today)->first();

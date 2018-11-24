@@ -90,6 +90,10 @@ Route::post('/admin/promo/create', 'PromoCodesController@create');
 Route::post('/admin/promo/delete', 'PromoCodesController@delete');
 Route::post('/admin/promo/update', 'PromoCodesController@update');
 
+// Voting functions
+Route::post('/vote/create', 'VotingController@create_user');
+Route::post('/admin/users/edit', 'UsersController@edit_user');
+
 // User functions
 Route::post('/admin/users/create', 'UsersController@create_user');
 Route::post('/admin/users/edit', 'UsersController@edit_user');

@@ -33,43 +33,56 @@
 				</div>
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-sm-12 col-12">
-				<div class="well">
-					<h4 class="text-center">Vote on the Next Video</h4>
-					<hr />
-					<p class="text-center">I want to make content that will benefit the maximum amount of people. Vote below what you would like to see and then </p>
-					<ul class="list-group">
-						<li class="list-group-item voting_option_box" id="voting_option_1">
-							<input type="radio" id="option_1" name="selected_voting_option" value="1" style="display: inline-block;">
-							<p class="mb-0" style="display: inline-block; margin-left: 4px;">Voting Option 1</p>
-							<hr />
-							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</li>
+			
+				<div class="col-lg-6 col-md-6 col-sm-12 col-12">
+					<div class="well">
+						<h4 class="text-center">Vote on the Next Video</h4>
+						@if($voting_helper->does_voting_poll_exist() == true)
+							@if($voting_helper->has_user_voted() == true)
+								<p class="text-center mt-16 mb-0">You have already voted for this week.</p>
+							@else
+								<?php $poll = $voting_helper->get_poll(); ?>
+								<input type="hidden" name="voting_poll_id" value="{{ $poll->id }}">
+								{{ csrf_field() }}
+								<ul class="list-group" id="voting_options">
+									<li class="list-group-item voting_option_box" id="voting_option_1">
+										<input type="radio" id="option_1" name="selected_voting_option" value="1" style="display: inline-block;">
+										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_1_vote }}</p>
+										<hr />
+										<p class="mb-0">{{ $poll->voting_option_1_description }}</p>
+									</li>
 
-						<li class="list-group-item voting_option_box" id="voting_option_2">
-							<input type="radio" id="option_2" name="selected_voting_option" value="2" style="display: inline-block;">
-							<p class="mb-0" style="display: inline-block; margin-left: 4px;">Voting Option 2</p>
-							<hr />
-							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</li>
+									<li class="list-group-item voting_option_box" id="voting_option_2">
+										<input type="radio" id="option_2" name="selected_voting_option" value="2" style="display: inline-block;">
+										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_2_vote }}</p>
+										<hr />
+										<p class="mb-0">{{ $poll->voting_option_2_description }}</p>
+									</li>
 
-						<li class="list-group-item voting_option_box" id="voting_option_3">
-							<input type="radio" id="option_3" name="selected_voting_option" value="3" style="display: inline-block;">
-							<p class="mb-0" style="display: inline-block; margin-left: 4px;">Voting Option 3</p>
-							<hr />
-							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</li>
+									<li class="list-group-item voting_option_box" id="voting_option_3">
+										<input type="radio" id="option_3" name="selected_voting_option" value="3" style="display: inline-block;">
+										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_3_vote }}</p>
+										<hr />
+										<p class="mb-0">{{ $poll->voting_option_3_description }}</p>
+									</li>
 
-						<li class="list-group-item voting_option_box" id="voting_option_4">
-							<input type="radio" id="option_4" name="selected_voting_option" value="4" style="display: inline-block;">
-							<p class="mb-0" style="display: inline-block; margin-left: 4px;">Voting Option 4</p>
-							<hr />
-							<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						</li>
-					</ul>
-					<button type="button" class="genric-btn submit_vote_button primary rounded mt-16 center-button" style="font-size: 14px;">Submit Vote</button>
+									<li class="list-group-item voting_option_box" id="voting_option_4">
+										<input type="radio" id="option_4" name="selected_voting_option" value="4" style="display: inline-block;">
+										<p class="mb-0" style="display: inline-block; margin-left: 4px;">{{ $poll->voting_option_4_vote }}</p>
+										<hr />
+										<p class="mb-0">{{ $poll->voting_option_4_description }}</p>
+									</li>
+								</ul>
+								<p class="text-center mt-8 mb-2 green" id="success" style="display: none;"></p>
+								<p class="text-center mt-8 mb-2 red" id="error" style="display: none;"></p>
+								<button type="button" class="genric-btn submit_vote_button primary rounded mt-16 center-button" style="font-size: 14px;">Submit Vote</button>
+							@endif
+						@else
+							<p class="text-center mb-0 mt-16">No active polls right now. Check back later.</p>
+						@endif
+					</div>
 				</div>
-			</div>
+			
 		</div>
 	</div>
 @endsection
@@ -90,6 +103,35 @@
 
 		$("#voting_option_4").on('click', function() {
 			$("#option_4").prop("checked", true);
+		});
+
+		$(".submit_vote_button").on('click', function() {
+			// Get option
+			var selected_option = $('input[name=selected_voting_option]:checked').val();
+
+			// Create AJAX request
+			$.ajax({
+				url: '/vote/create',
+				data: {
+					'voting_poll_id': $('input[name=voting_poll_id]').val(),
+					'option': selected_option,
+					'_token': $('input[name=_token]').val()
+				},
+				type: "POST",
+				success: function(data) {
+					if (data != "error") {
+						// Hide the options
+						$("#voting_options").hide();
+
+						// Show feedback
+						$("#success").show();
+						$("#success").html('Successfully voted.');
+
+						// Disable button
+						$(".submit_vote_button").attr('disabled', true);
+					}
+				}
+			});
 		});
 	</script>
 @endsection
