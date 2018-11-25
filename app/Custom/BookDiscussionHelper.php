@@ -64,7 +64,7 @@ class BookDiscussionHelper {
 		$discussion_post->save();
 
 		// Update book discussion number of posts
-		$book_discussion = DiscussionPost::where('id', $book_discussion_id)->first();
+		$book_discussion = BookDiscussion::where('id', $book_discussion_id)->first();
 		$book_discussion->num_posts = $book_discussion->num_posts + 1;
 		$book_discussion->save();
 
