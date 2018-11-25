@@ -166,6 +166,11 @@
 	Special Divs
 \*-------------------------------*/
 
+.center-table-cell {
+	display: table-cell;
+	vertical-align: middle !important;
+}
+
 .discussion-post {
 	margin-top: 16px;
 	margin-bottom: 16px;

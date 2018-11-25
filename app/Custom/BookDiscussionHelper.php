@@ -22,6 +22,8 @@ class BookDiscussionHelper {
 
 	/* Public functions */
 	public function create_book_discussion($data) {
+		date_default_timezone_set("America/Los_Angeles");
+
 		// Get data
 		$start_date = $data["start_date"];
 		$end_date = $data["end_date"];
@@ -60,6 +62,11 @@ class BookDiscussionHelper {
 		$discussion_post->post_body = $post_body;
 		$discussion_post->is_active = 1;
 		$discussion_post->save();
+
+		// Update book discussion number of posts
+		$book_discussion = DiscussionPost::where('id', $book_discussion_id)->first();
+		$book_discussion->num_posts = $book_discussion->num_posts + 1;
+		$book_discussion->save();
 
 		return $discussion_post->id;
 	}
@@ -103,6 +110,10 @@ class BookDiscussionHelper {
 	public function get_current_book_discussion() {
 		$today = date("Y-m-d");
 		return BookDiscussion::where('start_date', '<=', $today)->where('end_date', '>', $today)->first();
+	}
+
+	public function get_book_discussions() {
+		return BookDiscussion::where('is_active', 1)->get();
 	}
 
 	public function get_discussion_posts_with_id_and_pagination($book_discussion_id, $pagination) {

@@ -18,6 +18,7 @@ use App\Custom\UserHelper;
 use App\Custom\EventHelper;
 use App\Custom\CourseHelper;
 use App\Custom\VotingHelper;
+use App\Custom\BookDiscussionHelper;
 use App\Custom\PromoCodeHelper;
 
 class AdminController extends Controller
@@ -468,6 +469,25 @@ class AdminController extends Controller
         $courses = $course_helper->get_published_courses();
 
         return view('admin.courses.stats')->with('page_header', $page_header)->with('courses', $courses);
+    }
+
+    public function view_book_discussions() {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Book Discussions";
+
+        // Get book discussions
+        $book_discussion_helper = new BookDiscussionHelper();
+        $book_discussions = $book_discussion_helper->get_book_discussions();
+
+        return view('admin.discussions.view')->with('page_header', $page_header)->with('book_discussions', $book_discussions);
     }
 
     public function new_book_discussion() {
