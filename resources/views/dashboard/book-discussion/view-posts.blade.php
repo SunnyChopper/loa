@@ -7,14 +7,20 @@
 		<div class="row">
 			<div class="col-lg-9 col-md-9 col-sm-12 col-12">
 				<div class="discussion-post">
-					<form>
+					<form id="create_discussion_post_form" action="/discussion/post/create" method="POST">
+						{{ csrf_field() }}
+						<input type="hidden" name="book_discussion_id" value="{{ $book->id }}">
 						<div class="row mb-16">
 							<div class="col-lg-2 col-md-2 col-sm-3 col-3">
-								<img src="https://i.pinimg.com/originals/b3/9f/24/b39f242593d0b7edd8e9b5da9dc640db.jpg" class="regular-image circle-image">
+								@if($user->profile_image_url != "")
+									<img src="{{ $user->profile_image_url }}" class="regular-image circle-image">
+								@else
+									<img src="https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png" class="regular-image circle-image">
+								@endif
 							</div>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-12">
 								<h5 class="mb-2">Create New Post</h5>
-								<textarea name="post_body" rows="3" class="form-control"></textarea>
+								<textarea name="post_body" rows="3" form="create_discussion_post_form" class="form-control"></textarea>
 							</div>
 						</div>
 
@@ -28,56 +34,49 @@
 
 				<hr class="mt-32 mb-32" />
 				
-				<div class="row discussion-post">
-					<div class="col-lg-2 col-md-2 col-sm-4 col-4 discussion-profile">
-						<a href=""><img src="https://i.pinimg.com/originals/b3/9f/24/b39f242593d0b7edd8e9b5da9dc640db.jpg" class="regular-image circle-image"></a>
-						<p class="mb-0 mt-2 text-center"><a href="" class="black-link">Amy Mendoza</a></p>
-						<p class="mb-2 text-center"><small>8 likes</small></p>
-						<button class="genric-btn small info center-button">Like</button>
-					</div>
-					<div class="col-lg-10 col-md-10 col-sm-8 col-8 discussion-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						<p class="mb-0"><small>November 20th, 2018 at 12:43PM</small></p>
-					</div>
-				</div>
+				@if(count($posts) > 0)
+					@foreach($posts as $post)
+						<div class="row discussion-post">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-4 discussion-profile">
+								@if($user_helper->get_user_profile_image_url_by_id($post->post_owner_id) != "")
+									<a href=""><img src="{{ $user_helper->get_user_profile_image_url_by_id($post->post_owner_id) }}" class="regular-image circle-image"></a>
+								@else
+									<img src="https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png" class="regular-image circle-image">
+								@endif
+								<p class="mb-0 mt-2 text-center"><a href="" class="black-link">{{ $user_helper->get_user_first_name_by_id($post->post_owner_id)  }} {{ $user_helper->get_user_last_name_by_id($post->post_owner_id) }}</a></p>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-8 discussion-body">
+								<p>{{ $post->post_body }}</p>
+								<p class="mb-0"><small>{{ $post->created_at->format('M jS, Y \a\t h:i A') }}</small></p>
+							</div>
+						</div>
+					@endforeach
 
-				<div class="row discussion-post">
-					<div class="col-lg-2 col-md-2 col-sm-4 col-4 discussion-profile">
-						<a href=""><img src="https://i.pinimg.com/originals/b3/9f/24/b39f242593d0b7edd8e9b5da9dc640db.jpg" class="regular-image circle-image"></a>
-						<p class="mb-0 mt-2 text-center"><a href="" class="black-link">Amy Mendoza</a></p>
-						<p class="mb-2 text-center"><small>8 likes</small></p>
-						<button class="genric-btn small info center-button">Like</button>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+							{{ $posts->links() }}
+						</div>
 					</div>
-					<div class="col-lg-10 col-md-10 col-sm-8 col-8 discussion-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						<p class="mb-0"><small>November 20th, 2018 at 12:43PM</small></p>
-					</div>
-				</div>
+				@else
+					<h4 style="color: #C0C0C0;" class="text-center mt-64">No posts yet...be the first one!</h4>
+				@endif
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-sm-12 col-12">
 				<div class="well">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-							<img src="http://killingmarketing.com/wp-content/uploads/2017/05/PULIZZI-cover-768x1154.png" class="regular-image">
-							<h5 class="text-center mt-16 mb-0">Killing Marketing</h5>
-							<p class="text-center"><small>November 8th to November 31st</small></p>
-							<hr />
-							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-							<a href="" class="genric-btn rounded small primary center-button">Get Book</a>
+							<img src="{{ $book->book_image_url }}" class="regular-image">
+							<h5 class="text-center mt-16 mb-0">{{ $book->book_title }}</h5>
+							<p class="text-center"><small>{{ Carbon\Carbon::parse($book->start_date)->format('M jS') }} to {{ Carbon\Carbon::parse($book->end_date)->format('M jS') }}</small></p>
+							@if($book->book_description != "")
+								<hr />
+								<p class="text-center">{{ $book->book_description }}</p>
+							@endif
+
+							@if($book->book_amazon_link != "")
+								<a href="{{  }}" class="genric-btn rounded small primary center-button">Get Book</a>
+							@endif
 						</div>
 					</div>
 				</div>

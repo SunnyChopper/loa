@@ -8,6 +8,7 @@ use App\Custom\BlogPostHelper;
 use App\Custom\EventHelper;
 use App\Custom\CourseHelper;
 use App\Custom\VotingHelper;
+use App\Custom\UserHelper;
 use App\Custom\BookDiscussionHelper;
 
 use Auth;
@@ -16,7 +17,9 @@ class DashboardController extends Controller
 {
     public function index() {
     	// Check if authorized
-    	$this->checkAuth();
+    	if ($this->checkAuth() == 0) {
+            return redirect(url('/members/login'));
+        }
 
     	// SEO Data
     	$page_title = "Dashboard";
@@ -42,7 +45,9 @@ class DashboardController extends Controller
 
     public function tools() {
     	// Check if authorized
-    	$this->checkAuth();
+    	if ($this->checkAuth() == 0) {
+            return redirect(url('/members/login'));
+        }
 
     	// SEO Data
     	$page_title = "Tools";
@@ -55,9 +60,6 @@ class DashboardController extends Controller
     }
 
     public function community() {
-    	// Check if authorized
-    	$this->checkAuth();
-
     	// SEO Data
     	$page_title = "Community";
     	$page_description = "It's not just about what you know but who you know. Get help from the Wolf Squad community.";
@@ -77,7 +79,9 @@ class DashboardController extends Controller
 
     public function courses() {
     	// Check if authorized
-    	$this->checkAuth();
+    	if ($this->checkAuth() == 0) {
+            return redirect(url('/members/login'));
+        }
 
     	// SEO Data
     	$page_title = "Courses";
@@ -91,7 +95,9 @@ class DashboardController extends Controller
 
     public function shop() {
     	// Check if authorized
-    	$this->checkAuth();
+    	if ($this->checkAuth() == 0) {
+            return redirect(url('/members/login'));
+        }
 
     	// SEO Data
     	$page_title = "Shop";
@@ -105,7 +111,9 @@ class DashboardController extends Controller
 
     public function settings() {
     	// Check if authorized
-    	$this->checkAuth();
+    	if ($this->checkAuth() == 0) {
+            return redirect(url('/members/login'));
+        }
 
     	// SEO Data
     	$page_title = "Settings";
@@ -119,27 +127,45 @@ class DashboardController extends Controller
 
     public function profile() {
         // Check if authorized
-        $this->checkAuth();
+        if ($this->checkAuth() == 0) {
+            return redirect(url('/members/login'));
+        }
 
         // SEO Data
         $page_title = "Your Profile";
         $page_description = "Control your experience on Law of Ambition. With Wolf Squad, you get to control your entrepreneur journey.";
 
-        // TODO: Create title dynamic to name
-        // Dynamic page elements
-        $page_header = "Amy Mendoza";
+        // Get user
+        $user_helper = new UserHelper();
+        $user = Auth::user();
 
-        return view('dashboard.profile')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
+        // Get courses
+        $enrolled_courses = $user_helper->get_course_memberships_by_id($user->id);
+        $enrolled_tools = $user_helper->get_tool_memberships_by_id($user->id);
+
+        // Course helper
+        $course_helper = new CourseHelper();
+
+        // Dynamic page elements
+        $page_header = $user->first_name . " " . $user->last_name;
+
+        return view('dashboard.profile')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header)->with('user', $user)->with('courses', $enrolled_courses)->with('tools', $enrolled_tools)->with('course_helper', $course_helper);
     }
 
     public function view_book_discussion($book_discussion_id) {
         // Check if authorized
-        $this->checkAuth();
+        if ($this->checkAuth() == 0) {
+            return redirect(url('/members/login'));
+        }
 
         // Get current book discussion
         $book_discussion_helper = new BookDiscussionHelper();
         $book_discussion = $book_discussion_helper->get_current_book_discussion();
-        $posts = $book_discussion_helper->get_discussion_posts_with_id($book_discussion_id);
+        $posts = $book_discussion_helper->get_discussion_posts_with_id_and_pagination($book_discussion_id, 2);
+
+        // Get User and user helper
+        $user_helper = new UserHelper();
+        $user = Auth::user();
 
         // SEO Data
         $page_title = $book_discussion->book_title . " - Book Discussion";
@@ -147,14 +173,14 @@ class DashboardController extends Controller
         // Dynamic page elements
         $page_header = $book_discussion->book_title;
 
-        return view('dashboard.book-discussion.view-posts')->with('page_title', $page_title)->with('page_header', $page_header)->with('posts', $posts)->with('book', $book_discussion);
+        return view('dashboard.book-discussion.view-posts')->with('page_title', $page_title)->with('page_header', $page_header)->with('posts', $posts)->with('book', $book_discussion)->with('user', $user)->with('user_helper', $user_helper);
     }
 
     public function checkAuth() {
     	if (Auth::guest()) {
-    		return redirect(url('/members/login'));
+    		return 0;
     	} else {
-    		return true;
+    		return 1;
     	}
     }
 }

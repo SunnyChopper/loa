@@ -46,6 +46,8 @@ class BookDiscussionHelper {
 	}
 
 	public function create_book_discussion_post($data) {
+		date_default_timezone_set("America/Los_Angeles");
+
 		// Get data
 		$book_discussion_id = $data["book_discussion_id"];
 		$post_owner_id = $data["post_owner_id"];
@@ -56,6 +58,7 @@ class BookDiscussionHelper {
 		$discussion_post->book_discussion_id = $book_discussion_id;
 		$discussion_post->post_owner_id = $post_owner_id;
 		$discussion_post->post_body = $post_body;
+		$discussion_post->is_active = 1;
 		$discussion_post->save();
 
 		return $discussion_post->id;
@@ -100,6 +103,10 @@ class BookDiscussionHelper {
 	public function get_current_book_discussion() {
 		$today = date("Y-m-d");
 		return BookDiscussion::where('start_date', '<=', $today)->where('end_date', '>', $today)->first();
+	}
+
+	public function get_discussion_posts_with_id_and_pagination($book_discussion_id, $pagination) {
+		return DiscussionPost::where('book_discussion_id', $book_discussion_id)->paginate($pagination);
 	}
 
 	public function get_discussion_posts_with_id($book_discussion_id) {

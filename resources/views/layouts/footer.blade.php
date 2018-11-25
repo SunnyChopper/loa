@@ -16,10 +16,11 @@
 				<div class="single-footer-widget">
 					<h4>Quick links</h4>
 					<ul>
-						{{-- <li><a href="/free-tools">Free Tools</a></li> --}}
-						{{-- <li><a href="/free-advice">Free Advice</a></li> --}}
-						{{-- <li><a href="/courses">Courses</a></li> --}}
-						<li><a href="/shop">Shop</a></li>
+						@if(Auth::guest())
+							<li><a href="/shop">Shop</a></li>
+							<li><a href="/members/login">Login</a></li>
+							<li><a href="/members/register">Register</a></li>
+						@endif
 					</ul>
 				</div>
 			</div>

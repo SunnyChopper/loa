@@ -20,7 +20,7 @@ Route::get('/server-info', function() {
 });
 
 // Public site
-Route::get('/', 'PagesController@shop');
+Route::get('/', 'PagesController@index');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/free-tools', 'PagesController@tools');
 Route::get('/free-advice', 'PagesController@blog');
@@ -86,6 +86,9 @@ Route::get('/admin/voting/new', 'AdminController@new_voting_poll');
 
 // Order functions
 Route::post('/admin/discussions/create', 'BookDiscussionController@create');
+
+// Book discussion functions
+Route::post('/discussion/post/create', 'BookDiscussionController@create_post');
 
 // Promo code functions
 Route::post('/admin/promo/create', 'PromoCodesController@create');

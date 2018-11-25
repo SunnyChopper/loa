@@ -88,6 +88,11 @@
 			<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
 				<ul class="list-group">
 					<li class="list-group-item">
+						<h4 class="mb-2">Finished making vBeta1.1 of website and releasing community section</h4>
+						<p class="mb-0">The next version of the beta site is done. Weekly book discussions, voting polls and members backend.</p>
+						<p class="mb-0"><small>November 24th, 2018</small></p>
+					</li>
+					<li class="list-group-item">
 						<h4 class="mb-2">Finished making vBeta of website</h4>
 						<p class="mb-0">The beta version of the website has been complete, moving onto making more tools, courses, and content.</p>
 						<p class="mb-0"><small>November 4th, 2018</small></p>

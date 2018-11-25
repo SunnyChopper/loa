@@ -9,6 +9,9 @@ use Carbon\Carbon;
 use App\Custom\MailHelper;
 
 use App\User;
+use App\CourseMembership;
+use App\ToolMembership;
+use App\DiscussionPost;
 
 class UserHelper {
 	/* Public functions */
@@ -67,8 +70,36 @@ class UserHelper {
 		return $users;
 	}
 
+	public function get_course_memberships_by_id($user_id) {
+		return CourseMembership::where('user_id', $user_id)->get();
+	}
+
+	public function get_tool_memberships_by_id($user_id) {
+		return ToolMembership::where('user_id', $user_id)->get();
+	}
+
+	public function get_user_posts_by_id($user_id) {
+		return DiscussionPost::where('post_owner_id', $user_id)->get();
+	}
+
 	public function get_user_by_id($user_id) {
 		return User::where('id', $user_id)->first();
+	}
+
+	public function get_user_first_name_by_id($user_id) {
+		return User::where('id', $user_id)->first()->first_name;
+	}
+
+	public function get_user_last_name_by_id($user_id) {
+		return User::where('id', $user_id)->first()->last_name;
+	}
+
+	public function get_user_email_by_id($user_id) {
+		return User::where('id', $user_id)->first()->email;
+	}
+
+	public function get_user_profile_image_url_by_id($user_id) {
+		return User::where('id', $user_id)->first()->profile_image_url;
 	}
 
 	public function edit_user_permissions($user_id, $backend_auth) {

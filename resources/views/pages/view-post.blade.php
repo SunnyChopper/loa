@@ -28,7 +28,7 @@
 
 				<hr /> --}}
 
-				<h4 class="mt-16">Top Posts</h4>
+				{{-- <h4 class="mt-16">Top Posts</h4>
 
 				@foreach($top_posts as $top_post)
 				<div class="image-box">
@@ -40,7 +40,7 @@
 						<a href="/posts/{{ $top_post->id }}/{{ $top_post->slug }}" class="genric-btn small primary">Read More <span class="lnr lnr-arrow-right"></span></a>
 					</div>
 				</div>
-				@endforeach
+				@endforeach --}}
 			</div>
 		</div>
 	</div>
