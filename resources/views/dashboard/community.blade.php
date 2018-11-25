@@ -20,24 +20,28 @@
 					<h4 class="text-center">Book of the Week</h4>
 					<hr />
 					<p class="text-center">Every week we read a book and discuss about it. Click the button below to enter the discussion room for this book.</p>
-					<div class="row">
-						<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
-							<img src="{{ $book->book_image_url }}" class="regular-image">
+					@if(isset($book->book_image_url))
+						<div class="row">
+							<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
+								<img src="{{ $book->book_image_url }}" class="regular-image">
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+								<h4 class="text-center mt-8">{{ $book->book_title }}</h4>
+								<p class="text-center"><small>By {{ $book->author }}</small></p>
+							</div>
 						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-							<h4 class="text-center mt-8">{{ $book->book_title }}</h4>
-							<p class="text-center"><small>By {{ $book->author }}</small></p>
+						<div class="row">
+							<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
+								@if(Auth::guest())
+									<a class="genric-btn disable center-button rounded" style="font-size: 14px;">Please login to join</a>
+								@else
+									<a href="/discussion/{{ $book->id }}" class="genric-btn primary center-button rounded" style="font-size: 14px;">Join Discussion</a>
+								@endif
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
-							@if(Auth::guest())
-								<a class="genric-btn disable center-button rounded" style="font-size: 14px;">Please login to join</a>
-							@else
-								<a href="/discussion/{{ $book->id }}" class="genric-btn primary center-button rounded" style="font-size: 14px;">Join Discussion</a>
-							@endif
-						</div>
-					</div>
+					@else
+						<h4 class="text-center">No Book Discussion this Week!</h4>
+					@endif
 				</div>
 			</div>
 
