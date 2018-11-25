@@ -113,15 +113,15 @@ class BookDiscussionHelper {
 	}
 
 	public function get_book_discussions() {
-		return BookDiscussion::where('is_active', 1)->get();
+		return BookDiscussion::where('is_active', 1)->orderBy('created_at', 'DESC')->get();
 	}
 
 	public function get_discussion_posts_with_id_and_pagination($book_discussion_id, $pagination) {
-		return DiscussionPost::where('book_discussion_id', $book_discussion_id)->paginate($pagination);
+		return DiscussionPost::where('book_discussion_id', $book_discussion_id)->orderBy('created_at', 'DESC')->paginate($pagination);
 	}
 
 	public function get_discussion_posts_with_id($book_discussion_id) {
-		return DiscussionPost::where('book_discussion_id', $book_discussion_id)->get();
+		return DiscussionPost::where('book_discussion_id', $book_discussion_id)->orderBy('created_at', 'DESC')->get();
 	}
 
 	public function get_discussion_posts_for_user($user_id) {
