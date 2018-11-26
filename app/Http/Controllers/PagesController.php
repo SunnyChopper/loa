@@ -146,7 +146,7 @@ class PagesController extends Controller
     public function shop() {
     	// SEO Data
     	$page_title = "Shop";
-    	$page_description = "Show off that you're part of Wolf Squad. Take pride in the work and effort that you make.";
+    	$page_description = "Show off that you're part of Wolf Pack. Take pride in the work and effort that you make.";
 
     	// Dynamic page features
     	$page_header = "Shop";
@@ -187,7 +187,7 @@ class PagesController extends Controller
     public function events() {
     	// SEO Data
     	$page_title = "Events";
-    	$page_description = "Come out and meet me and other Wolf Squad members. Network and grow your alliance.";
+    	$page_description = "Come out and meet me and other Wolf Pack members. Network and grow your alliance.";
 
     	// Dynamic page features
     	$page_header = "Events";
@@ -284,10 +284,10 @@ class PagesController extends Controller
     public function login() {
     	// SEO Data
     	$page_title = "Login";
-    	$page_description = "Login into the Wolf Squad and start to upgrade your mindsets as an entrepreneur.";
+    	$page_description = "Login into the Wolf Pack and start to upgrade your mindsets as an entrepreneur.";
 
     	// Dynamic page features
-    	$page_header = "Wolf Squad Awaits You";
+    	$page_header = "Wolf Pack Awaits You";
 
     	return view('pages.login')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
@@ -295,10 +295,10 @@ class PagesController extends Controller
     public function register() {
     	// SEO Data
     	$page_title = "Register";
-    	$page_description = "Start your journey with Wolf Squad. Upgrade your business mindset.";
+    	$page_description = "Start your journey with Wolf Pack. Upgrade your business mindset.";
 
     	// Dynamic page features
-    	$page_header = "Join Wolf Squad";
+    	$page_header = "Join Wolf Pack";
 
     	return view('pages.register')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
