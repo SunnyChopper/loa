@@ -17,11 +17,11 @@
 				<div class="col-lg-4">
 					<div class="single-feature">
 						<div class="title">
-							<h4>Wolf Squad</h4>
+							<h4>The Wolf Pack</h4>
 						</div>
 						<div class="desc-wrap">
 							<p>The Law of Ambition is more than just the mindsets and what I teach, it's a community of hustlers. Best part, it's free.</p>
-							<a href="/members/register">Join Wolf Squad</a>
+							<a href="/members/register">Join the Pack</a>
 						</div>
 					</div>
 				</div>

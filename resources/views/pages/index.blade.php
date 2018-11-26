@@ -44,9 +44,9 @@
 				<hr />
 				<p>Every single day that you're not feeling ambitious about your goals and dreams, you're wasting your days. Without any ambition, any drive, you will not achieve at the levels that you want to start achieving at.</p>
 				<p>My name is Luis Garcia and I believe that there's a natural law that determines how fast you will accomplish your goals: the law of ambition.</p>
-				<p>Wolf Squad is the community of members who also believe in this mindset that it takes heart and ambition to accomplish your goals. It's a community of like-minded individuals who want to succeed just like you and I.</p>
-				<p>I welcome you to the Wolf Squad. Click the button below to get started.</p>
-				<a href="/members/register" class="genric-btn primary" style="font-size: 16px;">Join Wolf Squad</a>
+				<p>The Wolf Pack is the community of members who also believe in this mindset that it takes heart and ambition to accomplish your goals. It's a community of like-minded individuals who want to succeed just like you and I.</p>
+				<p>I welcome you to the Wolf Pack. Click the button below to get started.</p>
+				<a href="/members/register" class="genric-btn primary" style="font-size: 16px;">Join the Pack</a>
 			</div>
 		</div>
 	</div>

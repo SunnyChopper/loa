@@ -82,7 +82,7 @@
 				@else
 					<div class="well">
 						<h5 class="text-center">Empty Cart...</h5>
-						<p class="text-center">Let's add some awesome Wolf Squad products</p>
+						<p class="text-center">Click below to browse products</p>
 						<div class="row">
 							<a href="/shop" class="genric-btn primary small center-button rounded">View Ambition Shop</a>
 						</div>
