@@ -415,7 +415,7 @@ class AdminController extends Controller
         $course_helper = new CourseHelper();
         $courses = $course_helper->get_all_courses();
 
-        return view('admin.courses.view')->with('page_header', $page_header)->with('courses', $courses);
+        return view('admin.courses.view')->with('page_header', $page_header)->with('courses', $courses)->with('course_helper', $course_helper);
     }
 
     public function new_course() {

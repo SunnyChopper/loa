@@ -33,9 +33,11 @@
 											<td>Published</td>
 										@endif
 										<td style="min-width: 150px;">{{ $course->created_at->format('M d, Y') }}</td>
-										<td style="min-width: 250px;"> 
-											<a href="/admin/courses/edit/{{ $course->id }}" class="genric-btn info small">Edit</a>
-											<button id="{{ $course->id }}" type="button" class="genric-btn danger small delete_course_button">Delete</button>
+										<td style="min-width: 250px;">
+											@if($course_helper->is_user_an_instructor($course->id, Auth::id()))
+												<a href="/admin/courses/edit/{{ $course->id }}" class="genric-btn info small">Edit</a>
+												<button id="{{ $course->id }}" type="button" class="genric-btn danger small delete_course_button">Delete</button>
+											@endif
 										</td>
 									</tr>
 								@endforeach

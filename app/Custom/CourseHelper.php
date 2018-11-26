@@ -19,11 +19,17 @@ class CourseHelper {
 
 	/* Public functions */
 	public function create_course($data) {
+		// Basic data
 		$course_title = $data["course_title"];
 		$course_description = $data["course_description"];
 		$course_video_preview_link = $data["course_video_preview_link"];
 		$course_image_url = $data["course_image_url"];
 		$course_price = $data["course_price"];
+
+		// Auth data
+		$user = Auth::user();
+		$user_id = $user->id;
+		$instructor_ids = '["' . $user_id . '"]';
 
 		$course = new Course;
 		$course->course_title = $course_title;
@@ -33,11 +39,25 @@ class CourseHelper {
 		$course->course_members = 0;
 		$course->course_num_videos = 0;
 		$course->course_price = $course_price;
+		$course->instructor_ids = $instructor_ids;
 		$course->is_active = 1;
 
 		$this->course_id = $course->save();
 
 		return $this->course_id;
+	}
+
+	public function is_user_an_instructor($course_id, $user_id) {
+		$course = Course::where('id', $course_id)->first();
+		$json_string = $course->instructor_ids;
+		$instructor_ids = json_decode($json_string, true);
+		$id_match = false;
+		for($i = 0; $i < count($instructor_ids); $i++) {
+			if (intval($instructor_ids[$i]) == intval($user_id)) {
+				$id_match = true;
+			}
+		}
+		return $id_match;
 	}
 
 	public function get_all_courses() {
@@ -79,6 +99,12 @@ class CourseHelper {
 		return $courses;
 	}
 
+	public function get_instructor_ids($course_id) {
+		$course = Course::where('id', $course_id)->first();
+		$json_string = $course->instructor_ids;
+		return json_decode($json_string, true);
+	}
+
 	public function get_views_for_course($course_id) {
 		return CourseStats::where('course_id', $course_id)->first()->views;
 	}
@@ -101,6 +127,15 @@ class CourseHelper {
 
 	public function get_next_course_id() {
 		return (Course::count() + 1);
+	}
+
+	public function add_instructor_to_course($course_id, $user_id) {
+		$course = Course::where('id', $course_id)->first();
+		$instructor_ids = json_decode($course->instructor_ids, true);
+		array_push($instructor_ids, $user_id);
+		$json_string = json_encode($instructor_ids);
+		$course->instructor_ids = $json_string;
+		$course->save();
 	}
 
 	public function update_course($data) {
