@@ -77,6 +77,7 @@ Route::get('/admin/courses/new', 'AdminController@new_course');
 Route::get('/admin/courses/edit/{course_id}', 'AdminController@edit_course');
 Route::get('/admin/courses/stats', 'AdminController@course_stats');
 Route::get('/admin/discussions/view', 'AdminController@view_book_discussions');
+Route::get('/admin/discussions/edit/{book_discussion_id}', 'AdminController@edit_book_discussion');
 Route::get('/admin/discussions/new', 'AdminController@new_book_discussion');
 Route::get('/admin/promo/view', 'AdminController@view_promo_codes');
 Route::get('/admin/promo/new', 'AdminController@new_promo_code');
@@ -85,10 +86,11 @@ Route::get('/admin/promo/stats', 'AdminController@view_promo_stats');
 Route::get('/admin/voting/view', 'AdminController@view_voting_polls');
 Route::get('/admin/voting/new', 'AdminController@new_voting_poll');
 
-// Order functions
-Route::post('/admin/discussions/create', 'BookDiscussionController@create');
-
 // Book discussion functions
+Route::post('/admin/discussions/create', 'BookDiscussionController@create');
+Route::post('/admin/discussions/update', 'BookDiscussionController@update');
+
+// Book discussion post functions
 Route::post('/discussion/post/create', 'BookDiscussionController@create_post');
 
 // Promo code functions

@@ -39,7 +39,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 					<h2 class="text-center">Upcoming Event</h2>
-					<p class="text-center mb-0"><small>Come out and network with the Wolf Squad</small></p>
+					<p class="text-center mb-0"><small>Come out and network with the Wolf Pack</small></p>
 					<hr />
 				</div>
 			</div>

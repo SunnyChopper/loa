@@ -490,6 +490,25 @@ class AdminController extends Controller
         return view('admin.discussions.view')->with('page_header', $page_header)->with('book_discussions', $book_discussions);
     }
 
+    public function edit_book_discussion($book_discussion_id) {
+        // Check for login
+        $check_login = $this->check_login();
+        if ($check_login == 1) {
+            return redirect(url('/admin'));
+        } elseif ($check_login == 2) {
+            return redirect(url('/members/login'));
+        } 
+
+        // Dynamic page features
+        $page_header = "Edit Book Discussion";
+
+        // Get book
+        $book_discussion_helper = new BookDiscussionHelper();
+        $book = $book_discussion_helper->get_book_discussion_by_id($book_discussion_id);
+
+        return view('admin.discussions.edit')->with('page_header', $page_header)->with('book', $book);
+    }
+
     public function new_book_discussion() {
         // Check for login
         $check_login = $this->check_login();

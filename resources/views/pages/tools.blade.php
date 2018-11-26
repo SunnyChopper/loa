@@ -35,7 +35,7 @@
 
 					<div class="info">
 						<h4 class="text-center">Accountability Tool</h4>
-						<p class="text-center mb-0 mt-8">Often times, we all need someone to push us and hold us accountable to make sure we get that project done. This is where Wolf Squad can help you do exactly that.</p>
+						<p class="text-center mb-0 mt-8">Often times, we all need someone to push us and hold us accountable to make sure we get that project done. This is where Wolf Pack can help you do exactly that.</p>
 						<button type="button" class="genric-btn primary center-button mt-16" style="font-size: 14px; width: 100%;">Learn More</button>
 					</div>
 				</div>

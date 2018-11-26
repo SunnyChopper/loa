@@ -62,7 +62,7 @@ class DashboardController extends Controller
     public function community() {
     	// SEO Data
     	$page_title = "Community";
-    	$page_description = "It's not just about what you know but who you know. Get help from the Wolf Squad community.";
+    	$page_description = "It's not just about what you know but who you know. Get help from the Wolf Pack community.";
 
     	// Dynamic page elements
     	$page_header = "Community";
@@ -101,7 +101,7 @@ class DashboardController extends Controller
 
     	// SEO Data
     	$page_title = "Shop";
-    	$page_description = "Show off that you're part of Wolf Squad. Take pride in the work and effort that you make.";
+    	$page_description = "Show off that you're part of Wolf Pack. Take pride in the work and effort that you make.";
 
     	// Dynamic page elements
     	$page_header = "Ambition Shop";
@@ -117,7 +117,7 @@ class DashboardController extends Controller
 
     	// SEO Data
     	$page_title = "Settings";
-    	$page_description = "Control your experience on Law of Ambition. With Wolf Squad, you get to control your entrepreneur journey.";
+    	$page_description = "Control your experience on Law of Ambition. With Wolf Pack, you get to control your entrepreneur journey.";
 
     	// Dynamic page elements
     	$page_header = "Settings";
@@ -133,7 +133,7 @@ class DashboardController extends Controller
 
         // SEO Data
         $page_title = "Your Profile";
-        $page_description = "Control your experience on Law of Ambition. With Wolf Squad, you get to control your entrepreneur journey.";
+        $page_description = "Control your experience on Law of Ambition. With Wolf Pack, you get to control your entrepreneur journey.";
 
         // Get user
         $user_helper = new UserHelper();

@@ -27,7 +27,7 @@
 							<td class="center-table-cell">{{ Carbon\Carbon::parse($discussion->start_date)->format('M jS, Y') }}</td>
 							<td class="center-table-cell">{{ Carbon\Carbon::parse($discussion->end_date)->format('M jS, Y') }}</td>
 							<td class="center-table-cell">
-								<a href="/admin/discussion/edit/{{ $discussion->id }}" class="genric-btn rounded info">Edit</a>
+								<a href="/admin/discussions/edit/{{ $discussion->id }}" class="genric-btn rounded info">Edit</a>
 								<button class="genric-btn danger rounded">Delete</button>
 							</td>
 						</tr>

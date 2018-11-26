@@ -101,6 +101,29 @@ class BookDiscussionHelper {
 		return $like->id;
 	}
 
+	public function update($data) {
+		// Get data
+		$book_discussion_id = $data["book_discussion_id"];
+		$book_title = $data["book_title"];
+		$book_description = $data["book_description"];
+		$author = $data["author"];
+		$amazon_referral_link = $data["amazon_referral_link"];
+		$book_image_url = $data["book_image_url"];
+		$start_date = $data["start_date"];
+		$end_date = $data["end_date"];
+
+		// Update
+		$book = BookDiscussion::where('id', $book_discussion_id)->first();
+		$book->book_title = $book_title;
+		$book->book_description = $book_description;
+		$book->author = $author;
+		$book->amazon_referral_link = $amazon_referral_link;
+		$book->book_image_url = $book_image_url;
+		$book->start_date = $start_date;
+		$book->end_date = $end_date;
+		$book->save();
+	}
+
 	public function delete_book_discussion_post($post_id) {
 		$post = DiscussionPost::where('id', $post_id)->first();
 		$post->is_active = 0;
@@ -114,6 +137,10 @@ class BookDiscussionHelper {
 
 	public function get_book_discussions() {
 		return BookDiscussion::where('is_active', 1)->orderBy('created_at', 'DESC')->get();
+	}
+
+	public function get_book_discussion_by_id($book_discussion_id) {
+		return BookDiscussion::where('id', $book_discussion_id)->first();
 	}
 
 	public function get_discussion_posts_with_id_and_pagination($book_discussion_id, $pagination) {
