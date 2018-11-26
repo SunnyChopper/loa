@@ -9,10 +9,10 @@
 
 				@if(Auth::guest())
 					<div class="well">
-						<h4 class="text-center">You must be logged in to post.</h4>
+						<h4 class="text-center mb-16">You must be logged in to post.</h4>
 						<div class="row">
-							<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
-								<a href="/members/register" class="genric-btn primary rounded center-button">Register</a>
+							<div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-12 col-12">
+								<a href="/members/register" class="genric-btn primary rounded center-button" style="font-size: 14px;">Register</a>
 							</div>
 						</div>
 					</div>
