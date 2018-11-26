@@ -86,8 +86,8 @@
 								<p class="text-center">{{ $book->book_description }}</p>
 							@endif
 
-							@if($book->book_amazon_link != "")
-								<a href="{{  }}" class="genric-btn rounded small primary center-button">Get Book</a>
+							@if($book->amazon_referral_link != "")
+								<a href="{{ $book->amazon_referral_link }}" class="genric-btn rounded small primary center-button">Get Book</a>
 							@endif
 						</div>
 					</div>
