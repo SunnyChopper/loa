@@ -1,0 +1,6 @@
+.env
+storage/
+storage
+vendor/
+vendor
+.DS_Store
