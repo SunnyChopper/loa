@@ -153,11 +153,6 @@ class DashboardController extends Controller
     }
 
     public function view_book_discussion($book_discussion_id) {
-        // Check if authorized
-        if ($this->checkAuth() == 0) {
-            return redirect(url('/members/login'));
-        }
-
         // Get current book discussion
         $book_discussion_helper = new BookDiscussionHelper();
         $book_discussion = $book_discussion_helper->get_current_book_discussion();

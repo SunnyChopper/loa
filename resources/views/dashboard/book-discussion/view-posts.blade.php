@@ -6,31 +6,43 @@
 	<div class="container mt-32 mb-32">
 		<div class="row">
 			<div class="col-lg-9 col-md-9 col-sm-12 col-12">
-				<div class="discussion-post">
-					<form id="create_discussion_post_form" action="/discussion/post/create" method="POST">
-						{{ csrf_field() }}
-						<input type="hidden" name="book_discussion_id" value="{{ $book->id }}">
-						<div class="row mb-16">
-							<div class="col-lg-2 col-md-2 col-sm-3 col-3">
-								@if($user->profile_image_url != "")
-									<img src="{{ $user->profile_image_url }}" class="regular-image circle-image">
-								@else
-									<img src="https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png" class="regular-image circle-image">
-								@endif
-							</div>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-12">
-								<h5 class="mb-2">Create New Post</h5>
-								<textarea name="post_body" rows="3" form="create_discussion_post_form" class="form-control"></textarea>
-							</div>
-						</div>
 
+				@if(Auth::guest())
+					<div class="well">
+						<h4 class="text-center">You must be logged in to post.</h4>
 						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-								<input type="submit" value="Create Post" class="genric-btn primary small rounded mb-0" style="float: right;">
+							<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12">
+								<a href="/members/register" class="genric-btn primary rounded center-button">Register</a>
 							</div>
 						</div>
-					</form>
-				</div>
+					</div>
+				@else
+					<div class="discussion-post">
+						<form id="create_discussion_post_form" action="/discussion/post/create" method="POST">
+							{{ csrf_field() }}
+							<input type="hidden" name="book_discussion_id" value="{{ $book->id }}">
+							<div class="row mb-16">
+								<div class="col-lg-2 col-md-2 col-sm-3 col-3">
+									@if($user->profile_image_url != "")
+										<img src="{{ $user->profile_image_url }}" class="regular-image circle-image">
+									@else
+										<img src="https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png" class="regular-image circle-image">
+									@endif
+								</div>
+								<div class="col-lg-10 col-md-10 col-sm-12 col-12">
+									<h5 class="mb-2">Create New Post</h5>
+									<textarea name="post_body" rows="3" form="create_discussion_post_form" class="form-control"></textarea>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+									<input type="submit" value="Create Post" class="genric-btn primary small rounded mb-0" style="float: right;">
+								</div>
+							</div>
+						</form>
+					</div>
+				@endif
 
 				<hr class="mt-32 mb-32" />
 				
