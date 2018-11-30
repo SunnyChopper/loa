@@ -18,8 +18,8 @@
 					<ul>
 						@if(Auth::guest())
 							<li><a href="/shop">Shop</a></li>
-							<li><a href="/members/login">Login</a></li>
-							<li><a href="/members/register">Register</a></li>
+							{{-- <li><a href="/members/login">Login</a></li>
+							<li><a href="/members/register">Register</a></li> --}}
 						@endif
 					</ul>
 				</div>

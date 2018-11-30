@@ -42,16 +42,16 @@
 						{{-- <li><a href="/free-tools">Free Tools</a></li>
 						<li><a href="/free-advice">Free Advice</a></li>
 						<li><a href="/courses">Courses</a></li>
-						<li><a href="/events">Events</a></li> --}}
+						<li><a href="/events">Events</a></li>
 						<li><a href="/members/community">Community</a></li>
-						<li><a href="/shop">Shop</a></li>
+						<li><a href="/shop">Shop</a></li> --}}
 						<li><a href="/contact">Contact</a></li>
-						<li class="menu-has-children"><a href="/members/login">Members</a>
+						{{-- <li class="menu-has-children"><a href="/members/login">Members</a>
 							<ul>
 								<li><a href="/members/register">Register</a></li>
 								<li><a href="/members/login">Login</a></li>
 							</ul>
-						</li>
+						</li> --}}
 					@elseif(\Session::has('backend_auth'))
 						@include('layouts.backend-menu')
 					@else

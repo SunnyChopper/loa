@@ -164,6 +164,8 @@ class DashboardController extends Controller
 
         // SEO Data
         $page_title = $book_discussion->book_title . " - Book Discussion";
+        $seo_data = array();
+        $seo_data["og_title"] = $book_discussion->book_title;
 
         // Dynamic page elements
         $page_header = $book_discussion->book_title;

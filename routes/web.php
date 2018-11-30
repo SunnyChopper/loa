@@ -20,7 +20,7 @@ Route::get('/server-info', function() {
 });
 
 // Public site
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PagesController@shop');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/free-tools', 'PagesController@tools');
 Route::get('/free-advice', 'PagesController@blog');
