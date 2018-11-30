@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Stripe\Error\Card;
 use Validator;
@@ -277,7 +278,10 @@ class PagesController extends Controller
         // Dynamic page features
         $page_header = "Order Confirmed";
 
-        return view('pages.thank-you')->with('page_header', $page_header);
+        // Product helper
+        $product_helper = new ProductHelper();
+
+        return view('pages.thank-you')->with('page_header', $page_header)->with('product_helper', $product_helper);
     }
 
 

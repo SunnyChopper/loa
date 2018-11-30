@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use App\Custom\ProductHelper;
 use App\Custom\CartHelper;
@@ -155,11 +156,15 @@ class CartController extends Controller
     	$result = $cart_helper->checkout($checkout_data);
     	if ($result === "success") {
     		$product_helper = new ProductHelper();
-    		$expected_arrival_date = $this->getFutureBusinessDay(3);
     		$page_header = "Thank You!";
     		$products = $cart_helper->get_products_in_cart();
     		$cart_helper->delete_all_from_cart();
-    		return redirect(url('/thank-you'))->with('products', $products)->with('product_helper', $product_helper)->with('expected_arrival_date', $expected_arrival_date)->with('page_header', $page_header);
+
+            // Store purchased products in Session
+            Session::put('purchased_products', $products);
+            Session::save();
+
+    		return redirect(url('/thank-you'))->with('page_header', $page_header);
     	} else {
     		return $result;
     	}

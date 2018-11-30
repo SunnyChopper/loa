@@ -254,7 +254,7 @@ class CartHelper {
 			$card = $stripe->cards()->create($customer["id"], $token["id"]);
 
 			// Get total
-			$total = $this->get_current_total();
+			$total = $this->get_total();
 
 			$charge = $stripe->charges()->create([
 				'customer' => $customer["id"],

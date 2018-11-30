@@ -19,12 +19,11 @@
 						<th>Product</th>
 						<th></th>
 						<th style="text-align: center;">Quantity</th>
-						<th style="text-align: center;">Expected Arrival Date</th>
+						{{-- <th style="text-align: center;">Expected Arrival Date</th> --}}
 					</thead>
 					<tbody>
-						@foreach(session('products') as $product)
+						@foreach(Session::get('purchased_products') as $product)
 							<?php
-								$product_helper = session('product_helper');
 								$product_helper->set_product_id($product["product_id"]);
 								$product_info = $product_helper->get_product_by_id();
 							?>
@@ -49,7 +48,7 @@
 								</td>
 
 								<td align="center" style="vertical-align:middle;"><p>{{ $product["quantity"] }}</p></td>
-								<td align="center" style="vertical-align:middle;"><p class="text-center">{{ Carbon\Carbon::parse(session('expected_arrival_date'))->format('M d, Y') }}</p></td>
+								{{-- <td align="center" style="vertical-align:middle;"><p class="text-center">{{ Carbon\Carbon::parse(session('expected_arrival_date'))->format('M d, Y') }}</p></td> --}}
 							</tr>
 						@endforeach
 					</tbody>
