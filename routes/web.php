@@ -36,6 +36,7 @@ Route::get('/members/logout', 'UsersController@logout');
 Route::post('/contact/submit', 'PagesController@submit_contact');
 Route::get('/contact/success', 'PagesController@thank_you_post_contact');
 Route::get('/events/thank-you', 'PagesController@thank_you_post_rsvp');
+Route::get('/join', 'PagesController@join_group');
 
 // Cart functions
 Route::post('/cart/add', 'CartController@add_to_cart');

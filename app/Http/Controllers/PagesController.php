@@ -307,6 +307,10 @@ class PagesController extends Controller
     	return view('pages.register')->with('page_title', $page_title)->with('page_description', $page_description)->with('page_header', $page_header);
     }
 
+    public function join_group() {
+        return view('pages.join-group');
+    }
+
     /* Private functions */
     private function split_name($name) {
         $name = trim($name);
