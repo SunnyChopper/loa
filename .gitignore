@@ -1,8 +1,0 @@
-.env
-storage/framework/*
-storage/logs/*
-storage/*
-vendor/*
-vendor/composer/*
-vendor
-.DS_Store

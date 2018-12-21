@@ -91,19 +91,27 @@
 				color: rgb(46, 204, 113);
 				border: 1px solid rgb(46, 204, 113);
 			}
+
+            body {
+                background: #666666; 
+                background: -moz-radial-gradient(center, ellipse cover, #666666 2%, #4c4c4c 100%);
+                background: -webkit-radial-gradient(center, ellipse cover, #666666 2%,#4c4c4c 100%);
+                background: radial-gradient(ellipse at center, #666666 2%,#4c4c4c 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#4c4c4c',GradientType=1 );
+            }
 		</style>
 	</head>
 	<body style="display: flex;">
 		<div style="display: block; margin: auto;">
 			<div class="container">
-				<img src="{{ URL::asset('img/logo.png') }}" class="regular-image center-button" style="filter: brightness(0%); width: 60%;">
-				<h1 class="text-center mt-16" style="font-family: 'Raleway', sans-serif;">Join the Private Facebook Group</h1>
-				<p class="text-center" style="font-family: 'Oxygen', sans-serif;">Simply enter your email below and unlock the link</p>
+				<img src="{{ URL::asset('img/logo.png') }}" class="regular-image center-button" style="width: 60%;">
+				<h1 class="text-center mt-16" style="font-family: 'Raleway', sans-serif; color: white;">Join the Private Facebook Group</h1>
+				<p class="text-center" style="font-family: 'Oxygen', sans-serif; color: white;">Simply enter your email below and unlock the link</p>
 				<form id="submission_form">
 					<div class="row">
 						<div class="col-lg-8 offset-lg-2 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
 							<input type="text" id="email" class="form-control" placeholder="Email" style="text-align: center;" required>
-							<p id="error" style="text-align: center; margin-top: 8px; margin-bottom: -8px; color: #cf000f;"></p>
+							<p id="error" style="text-align: center; margin-top: 8px; margin-bottom: -8px; color: red;"></p>
 						</div>
 						<div class="col-lg-8 offset-lg-2 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12 mt-16">
 							<a href="" id="facebook_link" class="genric-btn success rounded center-button" style="font-size: 18px; width: fit-content; background-color: rgb(46, 204, 113);">Click Here to Join</a>
@@ -130,11 +138,26 @@
 					} else {
 						$("#submit_button").attr('disabled', true);
 						$("#submit_button").val('Processing...');
-						setTimeout(function() {
-							$("#email").hide();
-	    					$("#submit_button").hide();
-							$("#facebook_link").show();
-						}, 1500);
+
+                        $.ajax({
+                            url: '/api/newsletter/subscribe',
+                            method: 'POST',
+                            data: {
+                                email: $("#email").val()
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                $("#email").hide();
+                                $("#submit_button").hide();
+                                $("#facebook_link").show();
+                            },
+                            error: function(data) {
+                                $("#error").show();
+                                $("#error").html('Error occurred. Please try again later...');
+                                $("#submit_button").attr('disabled', false);
+                                $("#submit_button").val('Try Again');
+                            }
+                        });
 					}
 				});
 			});

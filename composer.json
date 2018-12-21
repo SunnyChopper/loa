@@ -12,6 +12,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "spatie/laravel-newsletter": "^4.2",
         "stripe/stripe-php": "^6.19"
     },
     "require-dev": {
