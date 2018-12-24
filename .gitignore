@@ -1,0 +1,7 @@
+.env
+storage/framework/*
+storage/logs/*
+storage/*
+.DS_Store
+storage/*
+storage/framework
