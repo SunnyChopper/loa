@@ -143,7 +143,7 @@
                             url: '/api/newsletter/subscribe',
                             method: 'POST',
                             data: {
-                                _token: {{ csrf_token() }},
+                                _token: "{{ csrf_token() }}",
                                 email: $("#email").val()
                             },
                             success: function(data) {
