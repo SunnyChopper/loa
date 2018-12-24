@@ -114,7 +114,7 @@
 							<p id="error" style="text-align: center; margin-top: 8px; margin-bottom: -8px; color: red;"></p>
 						</div>
 						<div class="col-lg-8 offset-lg-2 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12 mt-16">
-							<a href="" id="facebook_link" class="genric-btn success rounded center-button" style="font-size: 18px; width: fit-content; background-color: rgb(46, 204, 113);">Click Here to Join</a>
+							<a href="https://www.facebook.com/groups/1609611142411721/" id="facebook_link" class="genric-btn success rounded center-button" style="font-size: 18px; width: fit-content; background-color: rgb(46, 204, 113);">Click Here to Join</a>
 							<input type="submit" id="submit_button" value="Get Invite Link" class="genric-btn primary rounded center-button" style="font-size: 18px;" required>
 						</div>
 					</div>
