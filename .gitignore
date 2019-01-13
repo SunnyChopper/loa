@@ -5,3 +5,5 @@ storage/*
 .DS_Store
 storage/*
 storage/framework
+vendor
+bootstrap

@@ -94,7 +94,7 @@
 						<li>Mindset advice</li>
 						<li>Leadership advice</li>
 						<li>Specific book recommendations</li>
-						<li>...much more</li>
+						<li>...and more</li>
 					</ul>
 					<h4 class="text-center white mt-16">Price: <span class="green" style="font-family: 'Oxygen';">$1K/<small>year</small></span></h4>
 				</div>
