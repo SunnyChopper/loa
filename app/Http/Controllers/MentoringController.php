@@ -12,6 +12,7 @@ use App\Notifications\NewPayment;
 use App\MentoringMember;
 
 use Notification;
+use Newsletter;
 
 class MentoringController extends Controller
 {
@@ -73,6 +74,9 @@ class MentoringController extends Controller
 				$mentoring_member->subscription_id = $subscription["id"];
 				$mentoring_member->next_payment_date = date('Y-m-d', strtotime('+1 year'));
 				$mentoring_member->save();
+
+				// Store in newsletter
+				Newsletter::subscribe($data->email, ["FNAME" => $data->first_name, "LNAME" => $data->last_name], 'mentoring');
 
 				// Send them a notification email
 				Notification::route('mail', $data->email)->notify(new NewMentee(array("first_name" => $data->first_name, "last_name" => $data->last_name, "plan_name" => $group)));

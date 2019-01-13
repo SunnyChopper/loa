@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/newsletter/subscribe', function(Request $data) {
-	Newsletter::subscribe($data->email, [], 'subscribers');
+	Newsletter::subscribe($data->email, [], 'facebook-group');
 	return response()->json(['success' => 'success', 200]);
 });

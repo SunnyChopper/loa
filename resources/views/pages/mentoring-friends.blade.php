@@ -87,8 +87,16 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 					<p class="white text-center text-uppercase">Close Friends List</p>
 					<h3 class="white text-center text-uppercase title mb-8">Get exclusive daily access to Law of Ambition</h3>
-					<p class="white text-center">Gain access to Law of Ambition's exclusive close friends list where he shares strategic business advice, social media marketing tips, mindset, leadership advice and more.</p>
-					<h4 class="text-center white">Price: <span class="green" style="font-family: 'Oxygen';">$1K/<small>year</small></span></h4>
+					<p class="white text-center">Gain access to Law of Ambition's exclusive close friends list where he shares the following:</p>
+					<ul class="white text-center">
+						<li>Strategic business advice</li>
+						<li>Social media marketing tips</li>
+						<li>Mindset advice</li>
+						<li>Leadership advice</li>
+						<li>Specific book recommendations</li>
+						<li>...much more</li>
+					</ul>
+					<h4 class="text-center white mt-16">Price: <span class="green" style="font-family: 'Oxygen';">$1K/<small>year</small></span></h4>
 				</div>
 			</div>
 		</div>

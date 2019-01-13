@@ -11,7 +11,7 @@ return [
     /*
      * The listName to use when no listName has been specified in a method.
      */
-    'defaultListName' => 'subscribers',
+    'defaultListName' => 'facebook-group',
 
     /*
      * Here you can define properties of the lists.
@@ -25,15 +25,19 @@ return [
          * You can set it to any string you want and you can add
          * as many lists as you want.
          */
-        'subscribers' => [
+        'facebook-group' => [
 
             /*
              * A MailChimp list id. Check the MailChimp docs if you don't know
              * how to get this value:
              * http://kb.mailchimp.com/lists/managing-subscribers/find-your-list-id.
              */
-            'id' => env('MAILCHIMP_LIST_ID'),
+            'id' => '661efc3234',
         ],
+
+        'mentoring' => [
+            'id' => '2c063ca9e1'
+        ]
     ],
 
     /*
