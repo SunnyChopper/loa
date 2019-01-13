@@ -315,6 +315,11 @@ class PagesController extends Controller
         return view('pages.mentoring-friends');
     }
 
+    public function mentoring_vip() {
+        return view('pages.mentoring-vip');
+    }
+
+
     /* Private functions */
     private function split_name($name) {
         $name = trim($name);

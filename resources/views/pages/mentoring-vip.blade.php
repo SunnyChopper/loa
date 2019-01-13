@@ -85,10 +85,10 @@
 		<div class="container">
 			<div class="row mt-32 mb-32">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-					<p class="white text-center text-uppercase">Close Friends List</p>
+					<p class="white text-center text-uppercase">VIP Mastermind Group</p>
 					<h3 class="white text-center text-uppercase title mb-8">Get exclusive daily access to Law of Ambition</h3>
-					<p class="white text-center">Gain access to Law of Ambition's exclusive close friends list where he shares strategic business advice, social media marketing tips, mindset, leadership advice and more.</p>
-					<h4 class="text-center white">Price: <span class="green" style="font-family: 'Oxygen';">$1K/<small>year</small></span></h4>
+					<p class="white text-center">Gain exclusive access to Luis Garcia and Reece Wabara 24/7 for one year. Ask any questions on business, fashion industry, marketing, social media, and more.</p>
+					<h4 class="text-center white">Price: <span class="green" style="font-family: 'Oxygen';">$5K/<small>year</small></span></h4>
 				</div>
 			</div>
 		</div>
@@ -134,7 +134,7 @@
 					<div class="well center-button" style="">
 						<form action="/mentoring/checkout" method="post" id="checkout-form">
 							{{ csrf_field() }}
-							<input type="hidden" value="loa-a" name="fid">
+							<input type="hidden" value="loa-b" name="fid">
 							<div class="row">
 								<div class="col-lg-6 col-md-6 col-12">
 									<div class="form-group">

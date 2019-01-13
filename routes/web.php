@@ -37,7 +37,6 @@ Route::post('/contact/submit', 'PagesController@submit_contact');
 Route::get('/contact/success', 'PagesController@thank_you_post_contact');
 Route::get('/events/thank-you', 'PagesController@thank_you_post_rsvp');
 Route::get('/join', 'PagesController@join_group');
-Route::get('/mentoring/friends', 'PagesController@mentoring_friends');
 
 // Cart functions
 Route::post('/cart/add', 'CartController@add_to_cart');
@@ -134,6 +133,12 @@ Route::post('/admin/posts/create', 'PostsController@create');
 Route::post('/admin/posts/create/draft', 'PostsController@save_draft');
 Route::post('/admin/posts/update', 'PostsController@update');
 Route::post('/admin/posts/delete', 'PostsController@delete');
+
+// Mentoring functions
+Route::get('/mentoring/friends', 'PagesController@mentoring_friends');
+Route::get('/mentoring/vip', 'PagesController@mentoring_vip');
+Route::post('/mentoring/checkout', 'MentoringController@checkout');
+Route::get('/mentoring/thank-you', 'MentoringController@thank_you');
 
 // Private site
 Route::get('/members/dashboard/', 'DashboardController@index');
