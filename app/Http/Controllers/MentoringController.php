@@ -16,7 +16,7 @@ class MentoringController extends Controller
 {
     public function checkout(Request $data) {
     	// Start by creating a charge
-		$stripe = Stripe::make(env('STRIPE_SECRET'));
+		$stripe = Stripe::make(env('STRIPE_SECRET_DEV'));
 
 		try {
 			// Create the token
