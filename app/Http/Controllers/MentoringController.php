@@ -7,6 +7,7 @@ use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Stripe\Error\Card;
 
 use App\Notifications\NewMentee;
+use App\Notifications\NewPayment;
 
 use App\MentoringMember;
 
