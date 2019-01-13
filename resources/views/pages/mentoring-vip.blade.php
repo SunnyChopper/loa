@@ -222,7 +222,7 @@
 								</div>
 
 								<div class="col-12 mt-16">
-									<button type="submit" form="checkout-form" class="btn btn-success center-button">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+									<button type="submit" form="checkout-form" class="btn btn-success center-button" style="width: 100%;">Checkout <i class="fa fa-arrow-circle-right"></i></button>
 								</div>
 
 								<div class="col-12 mt-16">

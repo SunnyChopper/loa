@@ -222,14 +222,14 @@
 								</div>
 
 								<div class="col-12 mt-16">
-									<button type="submit" form="checkout-form" class="btn btn-success center-button">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+									<button type="submit" form="checkout-form" class="btn btn-success center-button" style="width: 100%;">Checkout <i class="fa fa-arrow-circle-right"></i></button>
 								</div>
 
 								<div class="col-12 mt-16">
 									<img src="https://www.4x4tabs.com/graphics/logos_creditcards.png" class="regular-image-40 centered mb-8">
 									<img src="https://summit-hydraulics.com/wp-content/uploads/2017/05/ssl-badge-new.png" class="regular-image-20 regular-image-40-mobile centered">
 								</div>
-							</div>
+							</div> 
 						</form>
 					</div>
 				</div>
