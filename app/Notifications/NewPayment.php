@@ -54,7 +54,7 @@ class NewPayment extends Notification
                     ->cc('sunny@lawofambition', 'Sunny Singh')
                     ->subject('💵 Law of Ambition - New Customer Alert 💵')
                     ->line('New customer alert for Law of Ambition.')
-                    ->line($this->first_name . " " . $this->last_name . " (" . $this->email . ") just paid $" . $this->total . " for " . $this->item . ".");
+                    ->line($this->first_name . " " . $this->last_name . " (" . $this->email . ") just paid $" . $this->total . " for " . $this->item . ".")
                     ->line("Login to the admin dashboard to view more details.")
                     ->action('Access Dashboard', url('/admin?redirect_url=admin/mentoring/view'));
     }

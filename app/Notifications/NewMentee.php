@@ -49,7 +49,7 @@ class NewMentee extends Notification
                     ->from(env('MAIL_USERNAME'), "Law of Ambition")
                     ->subject('Order Confirmation')
                     ->line('Welcome to the ' . $this->plan_name . '. Your order has been successfully processed.')
-                    ->line('If you have any questions about your purchase, please contact Luis (luis@lawofambition.com).');
+                    ->line('You\'re all set. Luis has been notified and will be contacting you shortly.');
     }
 
     /**
