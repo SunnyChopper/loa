@@ -12,8 +12,8 @@
 			background-size: cover;
 			width: 100%;
 			padding-top: 118px;
-			min-height: 75vh;
-			display: flex;
+			min-height: 25vh;
+			padding-bottom: 32px;
 		}
 
 		#overlay {
@@ -23,7 +23,7 @@
 			left: 0;
 			right: 0;
 			top: 0;
-			background-color: rgba(0,0,0,0.5);/
+			background-color: rgba(0,0,0,0.5);
 			padding-top: 64px;
 		}
 
@@ -71,46 +71,87 @@
 				padding-bottom: 16px;
 			}
 		}
+
+		@media only screen and (min-width: 575px) and (max-width: 992px) {
+			.featured-logo {
+				padding-top: 16px;
+				padding-bottom: 16px;
+			}
+		}
 	</style>
 
 	<div class="banner">
 		<div id="overlay"></div>
-		<div class="container" style="margin: auto;">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-6 col-12">
-					<p class="white text-center text-uppercase">Get 1-on-1 Mentoring with Luis</p>
-					<h3 class="white text-center text-uppercase title mb-8">Over $1M Sold Over The Internet</h3>
-					<p class="white text-center d-none d-md-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat.</p>
-					<div class="videoWrapper">
-						<!-- Copy & Pasted from YouTube -->
-						<iframe width="560" height="349" src="https://www.youtube.com/embed/CBHvh6HShzk?rel=0&hd=1" frameborder="0" allowfullscreen></iframe>
+		<div class="container">
+			<div class="row mt-32 mb-32">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+					<p class="white text-center text-uppercase">Close Friends List</p>
+					<h3 class="white text-center text-uppercase title mb-8">Get exclusive daily access to Law of Ambition</h3>
+					<p class="white text-center">Gain access to Law of Ambition's exclusive close friends list where he shares strategic business advice, social media marketing tips, mindset, leadership advice and more.</p>
+					<h4 class="text-center white">Price: <span class="green" style="font-family: 'Oxygen';">$1K/<small>year</small></span></h4>
+				</div>
+			</div>
+		</div>
+
+		<div style="background-color: rgba(4,9,30,0.5);">
+			<div class="container pt-16 pb-16">
+				<div class="row">
+					<div class="col-12">
+						<p class="white text-uppercase text-center"><small>Featured In</small></p>
 					</div>
 				</div>
 
-				<div class="col-lg-6 col-md-6 col-sm-6 col-12 mt-16-mobile" style="display: flex;">
-					<div class="well center-button" style="">
-						<h5 class="text-center">Begin Registration</h5>
-						<hr />
-						<div class="form-group">
-							<label>First Name:</label>
-							<input type="text" id="first_name_input" class="form-control" name="first_name" required>
-						</div>
+				<div class="row" style="display: flex;">
+					<div class="col-lg-2 col-md-4 col-sm-6 col-6 featured-logo">
+						<img src="https://www.mrhospitality.com/wp-content/uploads/2017/09/Forbes-Black-Logo.png" class="regular-image-80 regular-image-100-mobile">
+					</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-6 featured-logo">
+						<img src="https://www.worldforumdisrupt.com/strategy-innovation-newyork-2018/files/2017/10/BuzzFeed.png" class="regular-image-80 centered regular-image-100-mobile">
+					</div>
 
-						<div class="form-group">
-							<label>Last Name:</label>
-							<input type="text" class="form-control" name="first_name" required>
-						</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-6 featured-logo">
+						<img src="http://iamfirebrand.com//wp-content/uploads/2017/06/huffington-post-white.png" class="regular-image-80 centered regular-image-100-mobile">
+					</div>
 
-						<div class="form-group">
-							<label>Email:</label>
-							<input type="email" class="form-control" name="email" required>
-						</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-6 featured-logo">
+						<img src="https://www.logolynx.com/images/logolynx/ce/ce45fddc92f136ebb5da9fb42c0aa893.png" class="regular-image-80 centered regular-image-100-mobile">
+					</div>
 
-						<div class="form-group">
+					<div class="col-lg-2 col-md-4 col-sm-6 col-6 featured-logo">
+						<img src="http://features.laweekly.com/people-2018/images/LAW_logo.png" class="regular-image-80 centered regular-image-100-mobile">
+					</div>
+
+					<div class="col-lg-2 col-md-4 col-sm-6 col-6 featured-logo">
+						<img src="https://scottmautz.com/wp-content/uploads/2018/09/inc-logo-white.png" class="regular-image-80 centered regular-image-100-mobile">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container mt-32">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-6 col-sm-6 col-12 mt-16-mobile" style="display: flex;">
+						<div class="well center-button" style="">
+							<h5 class="text-center">Begin Registration</h5>
+							<hr />
+							<div class="form-group">
+								<label>First Name:</label>
+								<input type="text" id="first_name_input" class="form-control" name="first_name" required>
+							</div>
+
+							<div class="form-group">
+								<label>Last Name:</label>
+								<input type="text" class="form-control" name="first_name" required>
+							</div>
+
+							<div class="form-group">
+								<label>Email:</label>
+								<input type="email" class="form-control" name="email" required>
+							</div>
+
+							
 							<button type="button" class="btn btn-success center-button">Continue to Next Step <i class="fa fa-arrow-circle-right"></i></button>
+							
 						</div>
 					</div>
 				</div>
@@ -118,90 +159,5 @@
 		</div>
 	</div>
 
-	<div style="background-color: rgba(4,9,30,1);">
-		<div class="container pt-32 pb-32">
-			<div class="row">
-				<div class="col-12">
-					<p class="white text-uppercase text-center"><small>Featured In</small></p>
-				</div>
-			</div>
 
-			<div class="row" style="display: flex;">
-				<div class="col-lg-3 col-md-3 col-sm-6 col-6 featured-logo">
-					<img src="https://www.mrhospitality.com/wp-content/uploads/2017/09/Forbes-Black-Logo.png" class="regular-image-70 regular-image-100-mobile">
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-6 col-6 featured-logo">
-					<img src="https://www.worldforumdisrupt.com/strategy-innovation-newyork-2018/files/2017/10/BuzzFeed.png" class="regular-image-70 centered regular-image-100-mobile">
-				</div>
-
-				<div class="col-lg-3 col-md-3 col-sm-6 col-6 featured-logo">
-					<img src="http://iamfirebrand.com//wp-content/uploads/2017/06/huffington-post-white.png" class="regular-image-70 centered regular-image-100-mobile">
-				</div>
-
-				<div class="col-lg-3 col-md-3 col-sm-6 col-6 featured-logo">
-					<img src="https://www.logolynx.com/images/logolynx/ce/ce45fddc92f136ebb5da9fb42c0aa893.png" class="regular-image-70 centered regular-image-100-mobile">
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container pt-64 pb-64">
-		<div class="row">
-			<div class="col-12">
-				<h3 class="text-center text-uppercase" style="font-weight: 400;">What You Will Get</h3>
-			</div>
-		</div>
-
-		<div class="row mt-64">
-			<div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-8-mobile mb-8-mobile">
-				<div class="icon-box">
-					<i class="fa fa-phone"></i>
-					<h4 class="text-center mt-16" style="font-weight: 400;">Weekly Mentoring Calls</h4>
-					<p class="text-center mt-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-8-mobile mb-8-mobile">
-				<div class="icon-box">
-					<i class="fa fa-phone"></i>
-					<h4 class="text-center mt-16" style="font-weight: 400;">Weekly Mentoring Calls</h4>
-					<p class="text-center mt-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-8-mobile mb-8-mobile">
-				<div class="icon-box">
-					<i class="fa fa-phone"></i>
-					<h4 class="text-center mt-16" style="font-weight: 400;">Weekly Mentoring Calls</h4>
-					<p class="text-center mt-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div style="background-color: hsl(0, 0%, 95%);">
-		<div class="container pt-64 pb-64">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12 col-12">
-					<img src="https://i.imgur.com/5WeItCp.jpg" class="regular-image-80 regular-image-100-mobile centered">
-				</div>
-
-				<div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-16-mobile" style="display: flex;">
-					<div style="width: 100%; margin: auto;">
-						<h2 class="mb-2">How mentors have helped me.</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						<a href="#first_name_input" class="btn btn-success">Get started <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 @endsection
