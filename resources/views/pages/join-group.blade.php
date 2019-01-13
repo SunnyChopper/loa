@@ -93,11 +93,11 @@
 			}
 
             body {
-                background: #666666; 
-                background: -moz-radial-gradient(center, ellipse cover, #666666 2%, #4c4c4c 100%);
-                background: -webkit-radial-gradient(center, ellipse cover, #666666 2%,#4c4c4c 100%);
-                background: radial-gradient(ellipse at center, #666666 2%,#4c4c4c 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#4c4c4c',GradientType=1 );
+                background: rgb(43,43,43);
+                background: -moz-radial-gradient(center, ellipse cover, rgba(43,43,43,1) 0%, rgba(19,19,19,1) 100%);
+                background: -webkit-radial-gradient(center, ellipse cover, rgba(43,43,43,1) 0%,rgba(19,19,19,1) 100%);
+                background: radial-gradient(ellipse at center, rgba(43,43,43,1) 0%,rgba(19,19,19,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2b2b', endColorstr='#131313',GradientType=1 );
             }
 		</style>
 	</head>
