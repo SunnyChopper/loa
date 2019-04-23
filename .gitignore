@@ -6,4 +6,6 @@ storage/*
 storage/*
 storage/framework
 vendor
+vendor/*
 bootstrap
+bootstrap/*
